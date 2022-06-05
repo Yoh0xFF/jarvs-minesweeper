@@ -1,0 +1,50 @@
+.board {
+  display: inline-grid;
+  grid-template-columns: repeat(12, auto);
+}
+
+.board .header {
+  grid-column: 2 / span 10;
+}
+
+.board .footer {
+  grid-column: 2 / span 10;
+}
+
+.board .left {
+  grid-column: 1/1;
+  grid-row: span 11;
+}
+
+.board .right {
+  grid-column: 12/12;
+  grid-row: span 11;
+}
+
+.border-horizontal {
+  background-image: url('../assets/borders/border-hor.png');
+  height: 22px;
+}
+
+.border-vertical {
+  background-image: url('../assets/borders/border-vert.png');
+  width: 24px;
+}
+
+.corner {
+  width: 24px;
+  height: 22px;
+
+  &-top-left {
+    background-image: url('../assets/borders/corner-top-left.png');
+  }
+  &-top-right {
+    background-image: url('../assets/borders/corner-top-right.png');
+  }
+  &-bottom-left {
+    background-image: url('../assets/borders/corner-bottom-left.png');
+  }
+  &-bottom-right {
+    background-image: url('../assets/borders/corner-bottom-right.png');
+  }
+}
