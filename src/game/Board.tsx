@@ -1,11 +1,14 @@
 import React from 'react';
 
 import './Board.scss';
+import Tableau from './Tableau';
 import Tile from './Tile';
 
 export default function Board() {
   return (
     <div className='game-container'>
+      <Tableau number={123} />
+
       <div className='game-header'>
         <div className='corner-top-left' />
         <div className='top-border border-horizontal' />
