@@ -54,53 +54,6 @@
   }
 }
 
-.border-horizontal {
-  background-image: url('../assets/borders/border-hor.png');
-  height: 22px;
-}
-
-.border-vertical {
-  background-image: url('../assets/borders/border-vert.png');
-  width: 24px;
-}
-
-.joint {
-  width: 24px;
-  height: 22px;
-
-  &-left {
-    background-image: url('../assets/borders/joint-left.png');
-  }
-
-  &-right {
-    background-image: url('../assets/borders/joint-right.png');
-  }
-}
-
-.corner {
-  width: 24px;
-  height: 22px;
-
-  &-top-left {
-    background-image: url('../assets/borders/corner-top-left.png');
-  }
-  &-top-right {
-    background-image: url('../assets/borders/corner-top-right.png');
-  }
-  &-bottom-left {
-    background-image: url('../assets/borders/corner-bottom-left.png');
-  }
-  &-bottom-right {
-    background-image: url('../assets/borders/corner-bottom-right.png');
-  }
-}
-
-.face-unpressed {
-  width: 42px;
-  height: 42px;
-  background-image: url('../assets/tiles/face-unpressed.svg');
-}
-
 .digit-0 {
   width: 18px;
   height: 35px;
