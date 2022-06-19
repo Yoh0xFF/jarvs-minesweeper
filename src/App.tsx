@@ -1,12 +1,12 @@
+import Game from 'game/Game';
 import React from 'react';
 
 import './App.css';
-import Board from './game/Board';
 
 function App() {
   return (
     <div>
-      <Board />
+      <Game />
     </div>
   );
 }

@@ -1,19 +1,7 @@
-.game-header {
+.game-board {
   display: flex;
   flex-direction: column;
-
-  .header {
-    display: flex;
-    flex-direction: row;
-
-    .corner {
-      flex: 0 0 auto;
-    }
-
-    .border-horizontal {
-      flex: 1 1 auto;
-    }
-  }
+  width: fit-content;
 
   .content {
     display: flex;
@@ -23,12 +11,10 @@
       flex: 0 0 auto;
     }
 
-    .controls {
+    .tiles {
       flex: 1 1 auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 10px;
+      display: inline-grid;
+      grid-template-columns: repeat(10, 24px);
       background: silver;
     }
   }
@@ -37,7 +23,7 @@
     display: flex;
     flex-direction: row;
 
-    .joint {
+    .corner {
       flex: 0 0 auto;
     }
 
