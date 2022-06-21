@@ -1,14 +1,13 @@
-import { TileState } from 'game-logic/types';
 import React from 'react';
 
 import './Tile.scss';
 
 interface Props {
-  tile: TileState;
   x: number;
   y: number;
+  value: number;
 }
 
-export default function Tile({ tile, x, y }: Props) {
-  return <div className='tile'>{tile.value}</div>;
+export default function Tile({ x, y, value }: Props) {
+  return <div className='tile'>{value}</div>;
 }

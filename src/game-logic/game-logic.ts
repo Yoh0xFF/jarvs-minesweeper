@@ -1,13 +1,27 @@
 import { Dispatch, useReducer } from 'react';
 
-import generateNewGame from './board-initialize';
-import updateGame from './board-update';
-import { Action, GameState } from './types';
+import { generateNewBoard } from './board-initialize';
+import { updateBoard } from './board-update';
+import { Action, DifficultyLevel, GameState } from './types';
+
+const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
+  ['Beginner', [9, 9, 10]],
+  ['Intermediate', [16, 16, 40]],
+  ['Expert', [30, 16, 99]],
+]);
+
+const defaultBoardConfig: [number, number, number] = boardConfigs.get(
+  'Beginner'
+) ?? [0, 0, 0];
 
 const initialState: GameState = {
   difficultyLevel: 'Beginner',
   gameStatus: 'Pending',
-  board: [],
+  board: generateNewBoard(
+    defaultBoardConfig[0],
+    defaultBoardConfig[1],
+    defaultBoardConfig[2]
+  ),
 };
 
 function reducer(state: GameState, action: Action): GameState {
@@ -16,13 +30,17 @@ function reducer(state: GameState, action: Action): GameState {
       return {
         difficultyLevel: action.difficultyLevel,
         gameStatus: 'Pending',
-        board: generateNewGame(action.difficultyLevel),
+        board: generateNewBoard(
+          defaultBoardConfig[0],
+          defaultBoardConfig[1],
+          defaultBoardConfig[2]
+        ),
       };
     case 'click':
       return {
         difficultyLevel: 'Beginner',
         gameStatus: 'Pending',
-        board: updateGame(state.board, action.x, action.y),
+        board: updateBoard(action.x, action.y, state.board),
       };
     default:
       throw new Error();

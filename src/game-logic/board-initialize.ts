@@ -1,49 +1,45 @@
-import { boardConfigs, directions } from './config';
-import { Board, DifficultyLevel, TileState } from './types';
+import { Board, BoardMap, BoardMask } from './types';
+import { generateRandomInt, isOnBoard, steps } from './utils';
 
-function _getRandomInt(max: number): number {
-  return Math.floor(Math.random() * max);
-}
+function _updateHints(x: number, y: number, board: Board) {
+  const { n, boardMap } = board;
 
-function _updateHints(board: Board, x: number, y: number) {
-  const N = board.length,
-    M = board[0].length;
+  steps.forEach((step) => {
+    const [i, j] = step;
+    const x1 = x + i;
+    const y1 = y + j;
 
-  directions.forEach((d) => {
-    const [i, j] = d;
-
-    const x1 = x + i,
-      y1 = y + j;
-
-    const valid =
-      x1 > -1 && x1 < N && y1 > -1 && y1 < M && board[x1][y1].value !== -1;
-
-    if (valid) board[x1][y1].value += 1;
+    const update = isOnBoard(x1, y1, board) && boardMap[x1 * n + y1] !== -1;
+    if (update) boardMap[x1 * n + y1] += 1;
   });
 }
 
-export default function generateNewGame(
-  difficultyLevel: DifficultyLevel
+export function generateNewBoard(
+  n: number,
+  m: number,
+  bombCount: number
 ): Board {
-  const [N, M, bombCount] = boardConfigs.get(difficultyLevel) ?? [0, 0, 0];
+  const boardMap: BoardMap = Array(n * m).fill(0);
+  const boardMask: BoardMask = Array(n * m).fill(false);
 
-  const defaultTileState: TileState = { hidden: true, value: 0 };
-
-  const board: Board = Array.from({ length: N }, () =>
-    Array.from({ length: M }, () => ({ ...defaultTileState }))
-  );
+  const board: Board = {
+    n,
+    m,
+    bombCount,
+    boardMap,
+    boardMask,
+  };
 
   let count = 0;
   while (count < bombCount) {
-    const x = _getRandomInt(N);
-    const y = _getRandomInt(M);
-    console.log(x, y, count, bombCount, board[x][y].value);
+    const x = generateRandomInt(n);
+    const y = generateRandomInt(m);
 
-    if (board[x][y].value === -1) continue;
+    if (boardMap[x * n + y] === -1) continue;
 
-    board[x][y].value = -1;
-    _updateHints(board, x, y);
-    console.table(board);
+    boardMap[x * n + y] = -1;
+    _updateHints(x, y, board);
+
     count += 1;
   }
 

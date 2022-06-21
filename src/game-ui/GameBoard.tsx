@@ -1,5 +1,4 @@
 import { Board } from 'game-logic/types';
-import React from 'react';
 
 import './GameBoard.scss';
 import Tile from './Tile';
@@ -9,15 +8,17 @@ interface Props {
 }
 
 export default function GameBoard({ board }: Props) {
+  const { n, boardMap } = board;
+
   return (
     <div className='game-board'>
       <div className='content'>
         <div className='border border-vertical' />
 
         <div className='tiles'>
-          {board.map((row, i) =>
-            row.map((tile, j) => <Tile tile={tile} x={i} y={j} />)
-          )}
+          {boardMap.map((value, i) => (
+            <Tile x={Math.floor(i / n)} y={i % n} value={value} />
+          ))}
         </div>
 
         <div className='border border-vertical' />
