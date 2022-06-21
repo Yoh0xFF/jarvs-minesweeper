@@ -1,17 +1,22 @@
+import { Board } from 'game-logic/types';
 import React from 'react';
 
 import './GameBoard.scss';
 import Tile from './Tile';
 
-export default function GameBoard() {
+interface Props {
+  board: Board;
+}
+
+export default function GameBoard({ board }: Props) {
   return (
     <div className='game-board'>
       <div className='content'>
         <div className='border border-vertical' />
 
         <div className='tiles'>
-          {[...Array(10)].map((_, i) =>
-            [...Array(10)].map((_, j) => <Tile x={i} y={j} />)
+          {board.map((row, i) =>
+            row.map((tile, j) => <Tile tile={tile} x={i} y={j} />)
           )}
         </div>
 

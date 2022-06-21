@@ -2,7 +2,12 @@ export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Expert';
 
 export type GameStatus = 'Pending' | 'Progress' | 'Success' | 'Fail';
 
-export type Board = Array<Array<number>>;
+export interface TileState {
+  hidden: boolean;
+  value: number;
+}
+
+export type Board = Array<Array<TileState>>;
 
 export interface GameState {
   difficultyLevel: DifficultyLevel;

@@ -1,4 +1,4 @@
-import Game from 'game/Game';
+import Game from 'game-ui/Game';
 import React from 'react';
 
 import './App.css';

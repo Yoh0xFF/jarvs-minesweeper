@@ -1,8 +1,8 @@
 import { Dispatch, useReducer } from 'react';
 
-import generateNewGame from './initialize';
+import generateNewGame from './board-initialize';
+import updateGame from './board-update';
 import { Action, GameState } from './types';
-import updateGame from './update';
 
 const initialState: GameState = {
   difficultyLevel: 'Beginner',
