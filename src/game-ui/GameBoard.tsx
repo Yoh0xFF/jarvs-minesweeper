@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function GameBoard({ board }: Props) {
-  const { n, boardMap } = board;
+  const { n, boardMap, boardMask } = board;
 
   return (
     <div className='game-board'>
@@ -17,7 +17,12 @@ export default function GameBoard({ board }: Props) {
 
         <div className='tiles'>
           {boardMap.map((value, i) => (
-            <Tile x={Math.floor(i / n)} y={i % n} value={value} />
+            <Tile
+              x={Math.floor(i / n)}
+              y={i % n}
+              value={value}
+              hidden={boardMask[i]}
+            />
           ))}
         </div>
 

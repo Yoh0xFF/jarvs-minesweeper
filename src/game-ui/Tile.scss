@@ -1,6 +1,73 @@
-.tile {
+.tile-closed {
   width: 24px;
   height: 24px;
   background-image: url('../assets/tiles/closed.svg');
+  background-size: 100%;
+}
+
+.tile-mine {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/mine.svg');
+  background-size: 100%;
+}
+
+.tile-0 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type0.svg');
+  background-size: 100%;
+}
+
+.tile-1 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type1.svg');
+  background-size: 100%;
+}
+
+.tile-2 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type2.svg');
+  background-size: 100%;
+}
+
+.tile-3 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type3.svg');
+  background-size: 100%;
+}
+
+.tile-4 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type4.svg');
+  background-size: 100%;
+}
+.tile-5 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type5.svg');
+  background-size: 100%;
+}
+.tile-6 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type6.svg');
+  background-size: 100%;
+}
+.tile-7 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type7.svg');
+  background-size: 100%;
+}
+
+.tile-8 {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/tiles/type8.svg');
   background-size: 100%;
 }
