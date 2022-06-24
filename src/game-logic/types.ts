@@ -2,8 +2,29 @@ export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Expert';
 
 export type GameStatus = 'Pending' | 'Progress' | 'Success' | 'Fail';
 
-export type BoardMap = Array<number>;
-export type BoardMask = Array<boolean>;
+export enum MapValueType {
+  'MineExploded' = -2,
+  'Mine' = -1,
+  'Empty' = 0,
+  'One' = 1,
+  'Two' = 2,
+  'Three' = 3,
+  'Four' = 4,
+  'Five' = 5,
+  'Six' = 6,
+  'Seven' = 7,
+  'Eight' = 8,
+}
+
+export enum MaskValueType {
+  'Open' = 0,
+  'Closed' = 1,
+  'Marked' = 2,
+  'MarkedWrongly' = 3,
+}
+
+export type BoardMap = Array<MapValueType>;
+export type BoardMask = Array<MaskValueType>;
 
 export interface Board {
   n: number;

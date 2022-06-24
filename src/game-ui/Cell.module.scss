@@ -7,8 +7,20 @@
     background-image: url('../assets/cells/closed.svg');
   }
 
+  &Marked {
+    background-image: url('../assets/cells/flag.svg');
+  }
+
+  &MarkedWrongly {
+    background-image: url('../assets/cells/flag-wrong.svg');
+  }
+
   &Mine {
     background-image: url('../assets/cells/mine.svg');
+  }
+
+  &MineExploded {
+    background-image: url('../assets/cells/mine-exploded.svg');
   }
 
   @for $i from 0 through 8 {

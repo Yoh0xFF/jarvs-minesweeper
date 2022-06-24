@@ -7,7 +7,15 @@ import Controls from './Controls';
 import styles from './GameLayout.module.scss';
 
 export default function GameLayout() {
-  const [state] = useGameController();
+  const [state, dispatch] = useGameController();
+
+  const onCellClick = (x: number, y: number) => {
+    dispatch({
+      type: 'click',
+      x,
+      y,
+    });
+  };
 
   return (
     <div className={styles.gameLayout}>
@@ -37,7 +45,7 @@ export default function GameLayout() {
         <section>
           <div className={classNames(styles.border, styles.borderV)} />
           <div className={styles.cellGrid}>
-            <CellGrid board={state.board} />
+            <CellGrid board={state.board} onCellClick={onCellClick} />
           </div>
           <div className={classNames(styles.border, styles.borderV)} />
         </section>

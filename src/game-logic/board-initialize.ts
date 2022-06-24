@@ -1,4 +1,10 @@
-import { Board, BoardMap, BoardMask } from './types';
+import {
+  Board,
+  BoardMap,
+  BoardMask,
+  MapValueType,
+  MaskValueType,
+} from './types';
 import { generateRandomInt, isOnBoard, steps } from './utils';
 
 function _updateHints(x: number, y: number, board: Board) {
@@ -9,7 +15,8 @@ function _updateHints(x: number, y: number, board: Board) {
     const x1 = x + i;
     const y1 = y + j;
 
-    const update = isOnBoard(x1, y1, board) && boardMap[x1 * n + y1] !== -1;
+    const update =
+      isOnBoard(x1, y1, board) && boardMap[x1 * n + y1] !== MapValueType.Mine;
     if (update) boardMap[x1 * n + y1] += 1;
   });
 }
@@ -19,8 +26,8 @@ export function generateNewBoard(
   m: number,
   bombCount: number
 ): Board {
-  const boardMap: BoardMap = Array(n * m).fill(0);
-  const boardMask: BoardMask = Array(n * m).fill(false);
+  const boardMap: BoardMap = Array(n * m).fill(MapValueType.Empty);
+  const boardMask: BoardMask = Array(n * m).fill(MaskValueType.Closed);
 
   const board: Board = {
     n,
