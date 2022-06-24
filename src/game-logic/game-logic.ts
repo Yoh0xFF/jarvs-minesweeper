@@ -37,10 +37,11 @@ function reducer(state: GameState, action: Action): GameState {
         ),
       };
     case 'click':
+    case 'mark':
       return {
         difficultyLevel: 'Beginner',
         gameStatus: 'Pending',
-        board: updateBoard(action.x, action.y, state.board),
+        board: updateBoard(action.type, action.x, action.y, state.board),
       };
     default:
       throw new Error();

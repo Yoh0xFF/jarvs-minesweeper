@@ -8,9 +8,17 @@ import Layout from './Layout';
 export default function Game() {
   const [state, dispatch] = useGameController();
 
-  const onCellClick = (x: number, y: number) => {
+  const cellClickHandler = (x: number, y: number) => {
     dispatch({
       type: 'click',
+      x,
+      y,
+    });
+  };
+
+  const cellMarkHandler = (x: number, y: number) => {
+    dispatch({
+      type: 'mark',
       x,
       y,
     });
@@ -19,7 +27,13 @@ export default function Game() {
   return (
     <Layout
       controls={<Controls />}
-      cellGrid={<CellGrid board={state.board} onCellClick={onCellClick} />}
+      cellGrid={
+        <CellGrid
+          board={state.board}
+          onCellClick={cellClickHandler}
+          onCellMark={cellMarkHandler}
+        />
+      }
     />
   );
 }

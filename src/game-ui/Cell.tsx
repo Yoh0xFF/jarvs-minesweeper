@@ -10,6 +10,7 @@ interface Props {
   mapValue: MapValueType;
   maskValue: MaskValueType;
   onCellClick: (x: number, y: number) => void;
+  onCellMark: (x: number, y: number) => void;
 }
 
 export default function Cell({
@@ -18,6 +19,7 @@ export default function Cell({
   mapValue,
   maskValue,
   onCellClick,
+  onCellMark,
 }: Props) {
   let cellType = 'cellClosed';
 
@@ -51,7 +53,14 @@ export default function Cell({
   return (
     <div
       className={classNames(styles.cell, styles[cellType])}
-      onClick={() => onCellClick(x, y)}
+      onClick={(e) => {
+        e.preventDefault();
+        onCellClick(x, y);
+      }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        onCellMark(x, y);
+      }}
     />
   );
 }

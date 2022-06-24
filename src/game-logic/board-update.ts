@@ -62,7 +62,29 @@ function _open(x: number, y: number, board: Board) {
   boardMask[x * n + y] = MaskValueType.Open;
 }
 
-export function updateBoard(x: number, y: number, board: Board): Board {
+function _mark(x: number, y: number, board: Board) {
+  const { n, boardMask } = board;
+  const maskValue = boardMask[x * n + y];
+
+  if (maskValue === MaskValueType.Open) {
+    return;
+  }
+  if (maskValue === MaskValueType.Closed) {
+    boardMask[x * n + y] = MaskValueType.Marked;
+    return;
+  }
+  if (maskValue === MaskValueType.Marked) {
+    boardMask[x * n + y] = MaskValueType.Closed;
+    return;
+  }
+}
+
+export function updateBoard(
+  action: 'click' | 'mark',
+  x: number,
+  y: number,
+  board: Board
+): Board {
   const newBoard = {
     ...board,
     boardMap: [...board.boardMap],
@@ -71,15 +93,20 @@ export function updateBoard(x: number, y: number, board: Board): Board {
   const { n, boardMap } = newBoard;
   const value = boardMap[x * n + y];
 
+  if (action === 'mark') {
+    _mark(x, y, newBoard);
+    return newBoard;
+  }
+
   switch (value) {
     case MapValueType.Mine:
-      _boom(x, y, board);
+      _boom(x, y, newBoard);
       break;
     case MapValueType.Empty:
-      _expand(x, y, board);
+      _expand(x, y, newBoard);
       break;
     default:
-      _open(x, y, board);
+      _open(x, y, newBoard);
       break;
   }
 
