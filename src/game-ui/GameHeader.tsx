@@ -1,34 +1,35 @@
+import classNames from 'classnames';
 import React from 'react';
 
-import './GameHeader.scss';
+import styles from './GameHeader.module.scss';
 import Tableau from './Tableau';
 
 export default function GameHeader() {
   return (
-    <div className='game-header'>
-      <div className='header'>
-        <div className='corner corner-top-left' />
-        <div className='border border-horizontal' />
-        <div className='corner corner-top-right' />
-      </div>
+    <div className={styles.gameHeader}>
+      <header>
+        <div className={classNames(styles.corner, styles.cornerTopLeft)} />
+        <div className={classNames(styles.border, styles.borderHorizontal)} />
+        <div className={classNames(styles.corner, styles.cornerTopRight)} />
+      </header>
 
-      <div className='content'>
-        <div className='border border-vertical' />
+      <section>
+        <div className={classNames(styles.border, styles.borderVertical)} />
 
-        <div className='controls'>
+        <div className={styles.controls}>
           <Tableau number={123} />
           <div className='face face-unpressed' />
           <Tableau number={123} />
         </div>
 
-        <div className='border border-vertical' />
-      </div>
+        <div className={classNames(styles.border, styles.borderVertical)} />
+      </section>
 
-      <div className='footer'>
-        <div className='joint joint-left' />
-        <div className='border border-horizontal' />
-        <div className='joint joint-right' />
-      </div>
+      <footer>
+        <div className={classNames(styles.joint, styles.jointLeft)} />
+        <div className={classNames(styles.border, styles.borderHorizontal)} />
+        <div className={classNames(styles.joint, styles.jointRight)} />
+      </footer>
     </div>
   );
 }

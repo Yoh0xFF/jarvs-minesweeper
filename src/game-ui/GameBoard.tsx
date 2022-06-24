@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import { Board } from 'game-logic/types';
 
-import './GameBoard.scss';
+import styles from './GameBoard.module.scss';
 import Tile from './Tile';
 
 interface Props {
@@ -11,11 +12,11 @@ export default function GameBoard({ board }: Props) {
   const { n, boardMap, boardMask } = board;
 
   return (
-    <div className='game-board'>
-      <div className='content'>
-        <div className='border border-vertical' />
+    <div className={styles.gameBoard}>
+      <section>
+        <div className={classNames(styles.border, styles.borderVertical)} />
 
-        <div className='tiles'>
+        <div className={styles.tiles}>
           {boardMap.map((value, i) => (
             <Tile
               x={Math.floor(i / n)}
@@ -26,14 +27,14 @@ export default function GameBoard({ board }: Props) {
           ))}
         </div>
 
-        <div className='border border-vertical' />
-      </div>
+        <div className={classNames(styles.border, styles.borderVertical)} />
+      </section>
 
-      <div className='footer'>
-        <div className='corner corner-bottom-left' />
-        <div className='border border-horizontal' />
-        <div className='corner corner-bottom-right' />
-      </div>
+      <footer>
+        <div className={classNames(styles.corner, styles.cornerBottomLeft)} />
+        <div className={classNames(styles.border, styles.borderHorizontal)} />
+        <div className={classNames(styles.corner, styles.cornerBottomRight)} />
+      </footer>
     </div>
   );
 }
