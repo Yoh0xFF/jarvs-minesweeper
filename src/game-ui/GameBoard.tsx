@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Board } from 'game-logic/types';
 
+import Cell from './Cell';
 import styles from './GameBoard.module.scss';
-import Tile from './Tile';
 
 interface Props {
   board: Board;
@@ -16,9 +16,9 @@ export default function GameBoard({ board }: Props) {
       <section>
         <div className={classNames(styles.border, styles.borderVertical)} />
 
-        <div className={styles.tiles}>
+        <div className={styles.cellGrid}>
           {boardMap.map((value, i) => (
-            <Tile
+            <Cell
               x={Math.floor(i / n)}
               y={i % n}
               value={value}

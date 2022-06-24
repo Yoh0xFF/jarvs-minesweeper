@@ -11,7 +11,7 @@
       flex: 0 0 auto;
     }
 
-    .tiles {
+    .cellGrid {
       flex: 1 1 auto;
       display: inline-grid;
       grid-template: repeat(9, 24px) / repeat(9, 24px);

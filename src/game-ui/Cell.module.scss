@@ -1,0 +1,19 @@
+.cell {
+  width: 24px;
+  height: 24px;
+  background-size: 100%;
+
+  &Closed {
+    background-image: url('../assets/cells/closed.svg');
+  }
+
+  &Mine {
+    background-image: url('../assets/cells/mine.svg');
+  }
+
+  @for $i from 0 through 8 {
+    &#{$i} {
+      background-image: url('../assets/cells/type#{$i}.svg');
+    }
+  }
+}

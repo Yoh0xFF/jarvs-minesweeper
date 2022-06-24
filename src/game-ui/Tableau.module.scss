@@ -17,7 +17,7 @@
 
     @for $i from 0 through 9 {
       &#{$i} {
-        background-image: url('../assets/numbers/d#{$i}.svg');
+        background-image: url('../assets/digits/d#{$i}.svg');
       }
     }
   }
