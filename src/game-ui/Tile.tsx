@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import React from 'react';
 
-import './Tile.scss';
+import styles from './Tile.module.scss';
 
 interface Props {
   x: number;
@@ -10,11 +11,11 @@ interface Props {
 }
 
 export default function Tile({ x, y, value, hidden }: Props) {
-  let className = 'tile-closed';
+  let tileType = 'tileClosed';
 
   if (!hidden) {
-    className = value < 0 ? 'tile-mine' : `tile-${value}`;
+    tileType = value < 0 ? 'tileMine' : `tile${value}`;
   }
 
-  return <div className={className} />;
+  return <div className={classNames(styles.tile, styles[tileType])} />;
 }

@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import React from 'react';
 
-import './Tableau.scss';
+import styles from './Tableau.module.scss';
 
 export interface Props {
   number: number;
@@ -12,12 +13,16 @@ export default function Tableau({ number }: Props) {
   const z = number % 10;
 
   return (
-    <div className='tableau'>
-      <div className={`digit-${x}`} />
-      <div className='separator' />
-      <div className={`digit-${y}`} />
-      <div className='separator' />
-      <div className={`digit-${z}`} />
+    <div className={styles.tableau}>
+      <div className={classNames(styles.digit, styles[`digit${x}`])} />
+
+      <div className={styles.separator} />
+
+      <div className={classNames(styles.digit, styles[`digit${y}`])} />
+
+      <div className={styles.separator} />
+
+      <div className={classNames(styles.digit, styles[`digit${z}`])} />
     </div>
   );
 }
