@@ -16,11 +16,11 @@ export default function Tableau({ number }: Props) {
     <div className={styles.tableau}>
       <div className={classNames(styles.digit, styles[`digit${x}`])} />
 
-      <div className={styles.separator} />
+      <span />
 
       <div className={classNames(styles.digit, styles[`digit${y}`])} />
 
-      <div className={styles.separator} />
+      <span />
 
       <div className={classNames(styles.digit, styles[`digit${z}`])} />
     </div>

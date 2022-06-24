@@ -4,21 +4,21 @@
   border: 4px;
   border-style: inset;
   width: fit-content;
-}
 
-.separator {
-  width: 3px;
-  background-color: #333;
-}
+  span {
+    width: 3px;
+    background-color: #333;
+  }
 
-.digit {
-  width: 18px;
-  height: 35px;
-  background-size: contain;
+  .digit {
+    width: 18px;
+    height: 35px;
+    background-size: contain;
 
-  @for $i from 0 through 9 {
-    &#{$i} {
-      background-image: url('../assets/numbers/d#{$i}.svg');
+    @for $i from 0 through 9 {
+      &#{$i} {
+        background-image: url('../assets/numbers/d#{$i}.svg');
+      }
     }
   }
 }
