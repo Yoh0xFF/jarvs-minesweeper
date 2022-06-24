@@ -1,25 +1,17 @@
 import classNames from 'classnames';
-import { useGameController } from 'game-logic/game-logic';
-import React from 'react';
+import { ReactNode } from 'react';
 
-import CellGrid from './CellGrid';
-import Controls from './Controls';
-import styles from './GameLayout.module.scss';
+import styles from './Layout.module.scss';
 
-export default function GameLayout() {
-  const [state, dispatch] = useGameController();
+interface Props {
+  controls: ReactNode;
+  cellGrid: ReactNode;
+}
 
-  const onCellClick = (x: number, y: number) => {
-    dispatch({
-      type: 'click',
-      x,
-      y,
-    });
-  };
-
+export default function Layout({ controls, cellGrid }: Props) {
   return (
-    <div className={styles.gameLayout}>
-      <section className={styles.gameHeader}>
+    <div className={styles.layout}>
+      <section className={styles.header}>
         <header>
           <div className={classNames(styles.corner, styles.cornerTl)} />
           <div className={classNames(styles.border, styles.borderH)} />
@@ -28,9 +20,7 @@ export default function GameLayout() {
 
         <section>
           <div className={classNames(styles.border, styles.borderV)} />
-          <div className={styles.controls}>
-            <Controls />
-          </div>
+          <div className={styles.controls}>{controls}</div>
           <div className={classNames(styles.border, styles.borderV)} />
         </section>
 
@@ -41,12 +31,10 @@ export default function GameLayout() {
         </footer>
       </section>
 
-      <section className={styles.gameBody}>
+      <section className={styles.body}>
         <section>
           <div className={classNames(styles.border, styles.borderV)} />
-          <div className={styles.cellGrid}>
-            <CellGrid board={state.board} onCellClick={onCellClick} />
-          </div>
+          <div className={styles.cellGrid}>{cellGrid}</div>
           <div className={classNames(styles.border, styles.borderV)} />
         </section>
 

@@ -1,12 +1,11 @@
-import GameLayout from 'game-ui/GameLayout';
-import React from 'react';
+import Game from 'game-ui/Game';
 
 import './App.css';
 
 function App() {
   return (
     <div>
-      <GameLayout />
+      <Game />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-.gameLayout {
+.layout {
   display: flex;
   flex-direction: column;
   width: fit-content;
 
-  .gameHeader {
+  .header {
     display: flex;
     flex-direction: column;
 
@@ -47,7 +47,7 @@
     }
   }
 
-  .gameBody {
+  .body {
     display: flex;
     flex-direction: column;
     width: fit-content;
