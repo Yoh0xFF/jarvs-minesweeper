@@ -1,4 +1,4 @@
-import Game from 'game-ui/Game';
+import GameLayout from 'game-ui/GameLayout';
 import React from 'react';
 
 import './App.css';
@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <div>
-      <Game />
+      <GameLayout />
     </div>
   );
 }

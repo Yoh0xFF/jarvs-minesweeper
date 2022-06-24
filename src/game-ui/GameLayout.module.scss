@@ -1,0 +1,124 @@
+.gameLayout {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  .gameHeader {
+    display: flex;
+    flex-direction: column;
+
+    header {
+      display: flex;
+      flex-direction: row;
+
+      .corner {
+        flex: 0 0 auto;
+      }
+
+      .border {
+        flex: 1 1 auto;
+      }
+    }
+
+    section {
+      display: flex;
+      flex-direction: row;
+
+      .border {
+        flex: 0 0 auto;
+      }
+
+      .controls {
+        flex: 1 1 auto;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: row;
+
+      .joint {
+        flex: 0 0 auto;
+      }
+
+      .border {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .gameBody {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+    section {
+      display: flex;
+      flex-direction: row;
+
+      .border {
+        flex: 0 0 auto;
+      }
+
+      .cellGrid {
+        flex: 1 1 auto;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: row;
+
+      .corner {
+        flex: 0 0 auto;
+      }
+
+      .border {
+        flex: 1 1 auto;
+      }
+    }
+  }
+}
+
+.corner {
+  width: 24px;
+  height: 22px;
+
+  &Tl {
+    background-image: url('../assets/borders/corner-top-left.png');
+  }
+  &Tr {
+    background-image: url('../assets/borders/corner-top-right.png');
+  }
+  &Bl {
+    background-image: url('../assets/borders/corner-bottom-left.png');
+  }
+  &Br {
+    background-image: url('../assets/borders/corner-bottom-right.png');
+  }
+}
+
+.joint {
+  width: 24px;
+  height: 22px;
+
+  &L {
+    background-image: url('../assets/borders/joint-left.png');
+  }
+
+  &R {
+    background-image: url('../assets/borders/joint-right.png');
+  }
+}
+
+.border {
+  &H {
+    height: 22px;
+    background-image: url('../assets/borders/border-hor.png');
+  }
+
+  &V {
+    width: 24px;
+    background-image: url('../assets/borders/border-vert.png');
+  }
+}

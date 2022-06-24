@@ -1,0 +1,5 @@
+.cellGrid {
+  display: inline-grid;
+  grid-template: repeat(9, 24px) / repeat(9, 24px);
+  background: silver;
+}
