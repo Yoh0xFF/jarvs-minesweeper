@@ -1,37 +1,37 @@
-import { Board, MapValueType, MaskValueType } from './types';
+import { Board, CellType, MaskType } from './types';
 import { isOnBoard, steps } from './utils';
 
 function _boom(x: number, y: number, board: Board) {
-  const { n, m, boardMap, boardMask } = board;
+  const { rows, cols, cellsGrid, cellsMask } = board;
 
-  boardMap[x * n + y] = MapValueType.MineExploded;
-  boardMask[x * n + y] = MaskValueType.Open;
+  cellsGrid[x * rows + y] = CellType.MineExploded;
+  cellsMask[x * rows + y] = MaskType.Open;
 
-  for (let i = 0; i < n * m; ++i) {
-    if (boardMap[i] === MapValueType.Mine) {
-      boardMask[i] = MaskValueType.Open;
+  for (let i = 0; i < rows * cols; ++i) {
+    if (cellsGrid[i] === CellType.Mine) {
+      cellsMask[i] = MaskType.Open;
       continue;
     }
 
-    if (
-      boardMap[i] !== MapValueType.Mine &&
-      boardMask[i] === MaskValueType.Marked
-    ) {
-      boardMask[i] = MaskValueType.MarkedWrongly;
+    if (cellsGrid[i] !== CellType.Mine && cellsMask[i] === MaskType.Marked) {
+      cellsMask[i] = MaskType.MarkedWrongly;
       continue;
     }
   }
 }
 
 function _expand(x: number, y: number, board: Board) {
-  const { n, boardMap, boardMask } = board;
+  const { rows, cellsGrid, cellsMask } = board;
 
   var queue = [[x, y]];
-  boardMask[x * n + y] = MaskValueType.Open;
+  cellsMask[x * rows + y] = MaskType.Open;
 
   while (queue.length > 0) {
     const coordinates = queue.shift();
-    if (!coordinates) continue;
+    if (!coordinates) {
+      continue;
+    }
+
     const [x, y] = coordinates;
 
     steps.forEach((step) => {
@@ -41,15 +41,15 @@ function _expand(x: number, y: number, board: Board) {
 
       const open =
         isOnBoard(x1, y1, board) &&
-        boardMask[x1 * n + y1] === MaskValueType.Closed;
+        cellsMask[x1 * rows + y1] === MaskType.Closed;
 
-      if (open && boardMap[x1 * n + y1] > MapValueType.Empty) {
-        boardMask[x1 * n + y1] = MaskValueType.Open;
+      if (open && cellsGrid[x1 * rows + y1] > CellType.Empty) {
+        cellsMask[x1 * rows + y1] = MaskType.Open;
         return;
       }
 
-      if (open) {
-        boardMask[x1 * n + y1] = MaskValueType.Open;
+      if (open && cellsGrid[x1 * rows + y1] === CellType.Empty) {
+        cellsMask[x1 * rows + y1] = MaskType.Open;
         queue.push([x1, y1]);
         return;
       }
@@ -58,23 +58,26 @@ function _expand(x: number, y: number, board: Board) {
 }
 
 function _open(x: number, y: number, board: Board) {
-  const { n, boardMask } = board;
-  boardMask[x * n + y] = MaskValueType.Open;
+  const { rows, cellsMask } = board;
+
+  cellsMask[x * rows + y] = MaskType.Open;
 }
 
 function _mark(x: number, y: number, board: Board) {
-  const { n, boardMask } = board;
-  const maskValue = boardMask[x * n + y];
+  const { rows, cellsMask } = board;
+  const maskValue = cellsMask[x * rows + y];
 
-  if (maskValue === MaskValueType.Open) {
+  if (maskValue === MaskType.Open) {
     return;
   }
-  if (maskValue === MaskValueType.Closed) {
-    boardMask[x * n + y] = MaskValueType.Marked;
+
+  if (maskValue === MaskType.Closed) {
+    cellsMask[x * rows + y] = MaskType.Marked;
     return;
   }
-  if (maskValue === MaskValueType.Marked) {
-    boardMask[x * n + y] = MaskValueType.Closed;
+
+  if (maskValue === MaskType.Marked) {
+    cellsMask[x * rows + y] = MaskType.Closed;
     return;
   }
 }
@@ -87,11 +90,12 @@ export function updateBoard(
 ): Board {
   const newBoard = {
     ...board,
-    boardMap: [...board.boardMap],
-    boardMask: [...board.boardMask],
+    cellsGrid: [...board.cellsGrid],
+    cellsMask: [...board.cellsMask],
   };
-  const { n, boardMap } = newBoard;
-  const value = boardMap[x * n + y];
+
+  const { rows, cellsGrid } = newBoard;
+  const value = cellsGrid[x * rows + y];
 
   if (action === 'mark') {
     _mark(x, y, newBoard);
@@ -99,10 +103,10 @@ export function updateBoard(
   }
 
   switch (value) {
-    case MapValueType.Mine:
+    case CellType.Mine:
       _boom(x, y, newBoard);
       break;
-    case MapValueType.Empty:
+    case CellType.Empty:
       _expand(x, y, newBoard);
       break;
     default:

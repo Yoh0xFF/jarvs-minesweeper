@@ -16,5 +16,5 @@ export function generateRandomInt(max: number): number {
 }
 
 export function isOnBoard(x: number, y: number, board: Board): boolean {
-  return x > -1 && x < board.n && y > -1 && y < board.m;
+  return x > -1 && x < board.rows && y > -1 && y < board.cols;
 }

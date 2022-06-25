@@ -10,12 +10,14 @@ const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
   ['Expert', [30, 16, 99]],
 ]);
 
+const defaultDifficultyLevel: DifficultyLevel = 'Beginner';
+
 const defaultBoardConfig: [number, number, number] = boardConfigs.get(
-  'Beginner'
+  defaultDifficultyLevel
 ) ?? [0, 0, 0];
 
 const initialState: GameState = {
-  difficultyLevel: 'Beginner',
+  difficultyLevel: defaultDifficultyLevel,
   gameStatus: 'Pending',
   board: generateNewBoard(
     defaultBoardConfig[0],

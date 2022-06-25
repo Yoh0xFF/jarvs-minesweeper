@@ -5,10 +5,10 @@ import styles from './Layout.module.scss';
 
 interface Props {
   controls: ReactNode;
-  cellGrid: ReactNode;
+  cellsGrid: ReactNode;
 }
 
-export default function Layout({ controls, cellGrid }: Props) {
+export default function Layout({ controls, cellsGrid }: Props) {
   return (
     <div className={styles.layout}>
       <section className={styles.header}>
@@ -34,7 +34,7 @@ export default function Layout({ controls, cellGrid }: Props) {
       <section className={styles.body}>
         <section>
           <div className={classNames(styles.border, styles.borderV)} />
-          <div className={styles.cellGrid}>{cellGrid}</div>
+          <div className={styles.cellsGrid}>{cellsGrid}</div>
           <div className={classNames(styles.border, styles.borderV)} />
         </section>
 

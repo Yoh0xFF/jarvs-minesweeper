@@ -1,14 +1,25 @@
 import classNames from 'classnames';
-import { MapValueType, MaskValueType } from 'game-logic/types';
+import { CellType, MaskType } from 'game-logic/types';
 import React from 'react';
 
 import styles from './Cell.module.scss';
 
+const cellTypeMap = new Map<CellType, string>([
+  [CellType.MineExploded, 'cellMineExploded'],
+  [CellType.Mine, 'cellMine'],
+]);
+
+const maskTypeMap = new Map<MaskType, string>([
+  [MaskType.Closed, 'cellClosed'],
+  [MaskType.Marked, 'cellMarked'],
+  [MaskType.MarkedWrongly, 'cellMarked'],
+]);
+
 interface Props {
   x: number;
   y: number;
-  mapValue: MapValueType;
-  maskValue: MaskValueType;
+  cellType: CellType;
+  maskType: MaskType;
   onCellClick: (x: number, y: number) => void;
   onCellMark: (x: number, y: number) => void;
 }
@@ -16,43 +27,25 @@ interface Props {
 export default function Cell({
   x,
   y,
-  mapValue,
-  maskValue,
+  cellType,
+  maskType,
   onCellClick,
   onCellMark,
 }: Props) {
-  let cellType = 'cellClosed';
+  let cellClassName = 'cellClosed';
 
-  if (maskValue === MaskValueType.Open) {
-    switch (mapValue) {
-      case MapValueType.MineExploded:
-        cellType = 'cellMineExploded';
-        break;
-      case MapValueType.Mine:
-        cellType = 'cellMine';
-        break;
-      default:
-        cellType = `cell${mapValue}`;
-    }
+  if (maskType === MaskType.Open) {
+    cellClassName =
+      cellType >= 0
+        ? `cell${cellType}`
+        : cellTypeMap.get(cellType) ?? 'cellClosed';
   } else {
-    switch (maskValue) {
-      case MaskValueType.Closed:
-        cellType = 'cellClosed';
-        break;
-      case MaskValueType.Marked:
-        cellType = 'cellMarked';
-        break;
-      case MaskValueType.MarkedWrongly:
-        cellType = 'cellMarkedWrongly';
-        break;
-      default:
-        cellType = `cell${mapValue}`;
-    }
+    cellClassName = maskTypeMap.get(maskType) ?? 'cellClosed';
   }
 
   return (
     <div
-      className={classNames(styles.cell, styles[cellType])}
+      className={classNames(styles.cell, styles[cellClassName])}
       onClick={(e) => {
         e.preventDefault();
         onCellClick(x, y);

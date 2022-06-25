@@ -1,7 +1,7 @@
 import { useGameController } from 'game-logic/game-logic';
 import React from 'react';
 
-import CellGrid from './CellGrid';
+import CellsGrid from './CellsGrid';
 import Controls from './Controls';
 import Layout from './Layout';
 
@@ -27,8 +27,8 @@ export default function Game() {
   return (
     <Layout
       controls={<Controls />}
-      cellGrid={
-        <CellGrid
+      cellsGrid={
+        <CellsGrid
           board={state.board}
           onCellClick={cellClickHandler}
           onCellMark={cellMarkHandler}

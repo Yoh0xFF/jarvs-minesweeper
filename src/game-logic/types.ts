@@ -2,7 +2,7 @@ export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Expert';
 
 export type GameStatus = 'Pending' | 'Progress' | 'Success' | 'Fail';
 
-export enum MapValueType {
+export enum CellType {
   'MineExploded' = -2,
   'Mine' = -1,
   'Empty' = 0,
@@ -16,22 +16,19 @@ export enum MapValueType {
   'Eight' = 8,
 }
 
-export enum MaskValueType {
+export enum MaskType {
   'Open' = 0,
   'Closed' = 1,
   'Marked' = 2,
   'MarkedWrongly' = 3,
 }
 
-export type BoardMap = Array<MapValueType>;
-export type BoardMask = Array<MaskValueType>;
-
 export interface Board {
-  n: number;
-  m: number;
+  rows: number;
+  cols: number;
   bombCount: number;
-  boardMap: BoardMap;
-  boardMask: BoardMask;
+  cellsGrid: Array<CellType>;
+  cellsMask: Array<MaskType>;
 }
 
 export interface GameState {

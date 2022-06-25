@@ -1,14 +1,8 @@
-import {
-  Board,
-  BoardMap,
-  BoardMask,
-  MapValueType,
-  MaskValueType,
-} from './types';
+import { Board, CellType, MaskType } from './types';
 import { generateRandomInt, isOnBoard, steps } from './utils';
 
 function _updateHints(x: number, y: number, board: Board) {
-  const { n, boardMap } = board;
+  const { rows, cellsGrid } = board;
 
   steps.forEach((step) => {
     const [i, j] = step;
@@ -16,35 +10,40 @@ function _updateHints(x: number, y: number, board: Board) {
     const y1 = y + j;
 
     const update =
-      isOnBoard(x1, y1, board) && boardMap[x1 * n + y1] !== MapValueType.Mine;
-    if (update) boardMap[x1 * n + y1] += 1;
+      isOnBoard(x1, y1, board) && cellsGrid[x1 * rows + y1] !== CellType.Mine;
+
+    if (update) {
+      cellsGrid[x1 * rows + y1] += 1;
+    }
   });
 }
 
 export function generateNewBoard(
-  n: number,
-  m: number,
+  rows: number,
+  cols: number,
   bombCount: number
 ): Board {
-  const boardMap: BoardMap = Array(n * m).fill(MapValueType.Empty);
-  const boardMask: BoardMask = Array(n * m).fill(MaskValueType.Closed);
+  const boardMap = Array(rows * cols).fill(CellType.Empty) as Array<CellType>;
+  const boardMask = Array(rows * cols).fill(MaskType.Closed) as Array<MaskType>;
 
   const board: Board = {
-    n,
-    m,
+    rows,
+    cols,
     bombCount,
-    boardMap,
-    boardMask,
+    cellsGrid: boardMap,
+    cellsMask: boardMask,
   };
 
   let count = 0;
   while (count < bombCount) {
-    const x = generateRandomInt(n);
-    const y = generateRandomInt(m);
+    const x = generateRandomInt(rows);
+    const y = generateRandomInt(cols);
 
-    if (boardMap[x * n + y] === -1) continue;
+    if (boardMap[x * rows + y] === CellType.Mine) {
+      continue;
+    }
 
-    boardMap[x * n + y] = -1;
+    boardMap[x * rows + y] = CellType.Mine;
     _updateHints(x, y, board);
 
     count += 1;
