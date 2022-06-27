@@ -1,24 +1,35 @@
 .tableau {
   display: flex;
   background-color: #000;
-  border: 4px;
+  border: 2px;
   border-style: inset;
-  width: fit-content;
 
   span {
-    width: 3px;
+    width: 2px;
     background-color: #333;
   }
 
   .digit {
-    width: 18px;
-    height: 35px;
-    background-size: contain;
+    width: 13px;
+    height: 23px;
+    background-image: url('../assets/sprite.png');
 
-    @for $i from 0 through 9 {
+    @for $i from 1 through 9 {
       &#{$i} {
-        background-image: url('../assets/digits/d#{$i}.svg');
+        background-position: calc((#{$i} - 1) * -14px) 0px;
       }
+    }
+
+    &0 {
+      background-position: calc(10 * -14px) 0px;
+    }
+
+    &Minus {
+      background-position: calc(11 * -14px) 0px;
+    }
+
+    &Empty {
+      background-position: calc(12 * -14px) 0px;
     }
   }
 }

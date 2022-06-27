@@ -1,31 +1,35 @@
 .cell {
-  width: 24px;
-  height: 24px;
-  background-size: 100%;
+  width: 16px;
+  height: 16px;
+  background-image: url('../assets/sprite.png');
 
   &Closed {
-    background-image: url('../assets/cells/closed.svg');
+    background-position: 0px -49px;
+  }
+
+  &Open {
+    background-position: -17px -49px;
   }
 
   &Marked {
-    background-image: url('../assets/cells/flag.svg');
+    background-position: -34px -49px;
   }
 
   &MarkedWrongly {
-    background-image: url('../assets/cells/flag-wrong.svg');
+    background-position: -119px -49px;
   }
 
   &Mine {
-    background-image: url('../assets/cells/mine.svg');
+    background-position: -85px -49px;
   }
 
   &MineExploded {
-    background-image: url('../assets/cells/mine-exploded.svg');
+    background-position: -102px -49px;
   }
 
-  @for $i from 0 through 8 {
+  @for $i from 1 through 8 {
     &#{$i} {
-      background-image: url('../assets/cells/type#{$i}.svg');
+      background-position: calc((#{$i} - 1) * -17px) -66px;
     }
   }
 }

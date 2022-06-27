@@ -3,6 +3,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
-  background: silver;
+  align-items: center;
+  padding: 5px;
+  background: #bdbdbd;
+}
+
+.faceUnpressed {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/sprite.png');
+  background-position: 0px -24px;
 }

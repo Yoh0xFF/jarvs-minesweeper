@@ -2,123 +2,33 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
+  padding: 10px;
+  background-color: #bdbdbd;
+  border: 3px outset;
+  // border-left: 3px solid #fff;
+  // border-top: 3px solid #fff;
 
   .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    border: 3px solid;
+    border-color: #7d7d7d #fff #fff #7d7d7d;
+    margin-bottom: 10px;
 
-    header {
-      display: flex;
-      flex-direction: row;
-
-      .corner {
-        flex: 0 0 auto;
-      }
-
-      .border {
-        flex: 1 1 auto;
-      }
-    }
-
-    section {
-      display: flex;
-      flex-direction: row;
-
-      .border {
-        flex: 0 0 auto;
-      }
-
-      .controls {
-        flex: 1 1 auto;
-      }
-    }
-
-    footer {
-      display: flex;
-      flex-direction: row;
-
-      .joint {
-        flex: 0 0 auto;
-      }
-
-      .border {
-        flex: 1 1 auto;
-      }
+    .controls {
+      flex: 1 1 auto;
     }
   }
 
   .body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: fit-content;
+    border: 3px solid;
+    border-color: #7d7d7d #fff #fff #7d7d7d;
 
-    section {
-      display: flex;
-      flex-direction: row;
-
-      .border {
-        flex: 0 0 auto;
-      }
-
-      .cellsGrid {
-        flex: 1 1 auto;
-      }
+    .cellsGrid {
+      flex: 1 1 auto;
     }
-
-    footer {
-      display: flex;
-      flex-direction: row;
-
-      .corner {
-        flex: 0 0 auto;
-      }
-
-      .border {
-        flex: 1 1 auto;
-      }
-    }
-  }
-}
-
-.corner {
-  width: 24px;
-  height: 22px;
-
-  &Tl {
-    background-image: url('../assets/borders/corner-top-left.png');
-  }
-  &Tr {
-    background-image: url('../assets/borders/corner-top-right.png');
-  }
-  &Bl {
-    background-image: url('../assets/borders/corner-bottom-left.png');
-  }
-  &Br {
-    background-image: url('../assets/borders/corner-bottom-right.png');
-  }
-}
-
-.joint {
-  width: 24px;
-  height: 22px;
-
-  &L {
-    background-image: url('../assets/borders/joint-left.png');
-  }
-
-  &R {
-    background-image: url('../assets/borders/joint-right.png');
-  }
-}
-
-.border {
-  &H {
-    height: 22px;
-    background-image: url('../assets/borders/border-hor.png');
-  }
-
-  &V {
-    width: 24px;
-    background-image: url('../assets/borders/border-vert.png');
   }
 }

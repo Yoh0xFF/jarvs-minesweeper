@@ -5,6 +5,7 @@ import React from 'react';
 import styles from './Cell.module.scss';
 
 const cellTypeMap = new Map<CellType, string>([
+  [CellType.Empty, 'cellOpen'],
   [CellType.MineExploded, 'cellMineExploded'],
   [CellType.Mine, 'cellMine'],
 ]);
@@ -36,9 +37,9 @@ export default function Cell({
 
   if (maskType === MaskType.Open) {
     cellClassName =
-      cellType >= 0
+      cellType > 0
         ? `cell${cellType}`
-        : cellTypeMap.get(cellType) ?? 'cellClosed';
+        : cellTypeMap.get(cellType) ?? 'cellOpen';
   } else {
     cellClassName = maskTypeMap.get(maskType) ?? 'cellClosed';
   }
