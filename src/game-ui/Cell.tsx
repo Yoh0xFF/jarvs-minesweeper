@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { CellType, MaskType } from 'game-logic/types';
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './Cell.module.scss';
 
@@ -33,6 +33,8 @@ export default function Cell({
   onCellClick,
   onCellMark,
 }: Props) {
+  const [mouseDown, setMouseDown] = useState<boolean>(false);
+
   let cellClassName = 'cellClosed';
 
   if (maskType === MaskType.Open) {
@@ -46,7 +48,6 @@ export default function Cell({
 
   return (
     <div
-      className={classNames(styles.cell, styles[cellClassName])}
       onClick={(e) => {
         e.preventDefault();
         onCellClick(x, y);
@@ -55,6 +56,12 @@ export default function Cell({
         e.preventDefault();
         onCellMark(x, y);
       }}
+      onMouseDown={() => setMouseDown(true)}
+      onMouseUp={() => setMouseDown(false)}
+      onMouseLeave={() => setMouseDown(false)}
+      className={classNames(styles.cell, styles[cellClassName], {
+        [styles.cellOpen]: mouseDown,
+      })}
     />
   );
 }

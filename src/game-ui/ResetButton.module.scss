@@ -1,0 +1,25 @@
+.face {
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/sprite.png');
+
+  &Unpressed {
+    background-position: 0px -24px;
+  }
+
+  &Pressed {
+    background-position: -25px -24px;
+  }
+
+  &Whoops {
+    background-position: -50px -24px;
+  }
+
+  &Win {
+    background-position: -75px -24px;
+  }
+
+  &Boom {
+    background-position: -100px -24px;
+  }
+}

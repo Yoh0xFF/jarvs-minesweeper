@@ -24,9 +24,16 @@ export default function Game() {
     });
   };
 
+  const resetHandler = () => {
+    dispatch({
+      type: 'newGame',
+      difficultyLevel: 'Beginner',
+    });
+  };
+
   return (
     <Layout
-      controls={<Controls />}
+      controls={<Controls onReset={resetHandler} />}
       cellsGrid={
         <CellsGrid
           board={state.board}
