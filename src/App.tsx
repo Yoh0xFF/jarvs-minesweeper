@@ -1,10 +1,10 @@
 import Game from 'game-ui/Game';
 
-import './App.css';
+import styles from './App.module.scss';
 
 function App() {
   return (
-    <div>
+    <div className={styles.page}>
       <Game />
     </div>
   );
