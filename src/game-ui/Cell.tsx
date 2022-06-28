@@ -13,7 +13,7 @@ const cellTypeMap = new Map<CellType, string>([
 const maskTypeMap = new Map<MaskType, string>([
   [MaskType.Closed, 'cellClosed'],
   [MaskType.Marked, 'cellMarked'],
-  [MaskType.MarkedWrongly, 'cellMarked'],
+  [MaskType.MarkedWrongly, 'cellMarkedWrongly'],
 ]);
 
 interface Props {
