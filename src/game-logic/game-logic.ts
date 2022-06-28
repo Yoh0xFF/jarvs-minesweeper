@@ -1,7 +1,7 @@
 import { Dispatch, useReducer } from 'react';
 
 import { generateNewBoard } from './board-initialize';
-import { updateBoard } from './board-update';
+import { markCell, openCell } from './board-update';
 import { Action, DifficultyLevel, GameState } from './types';
 
 const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
@@ -39,11 +39,16 @@ function reducer(state: GameState, action: Action): GameState {
         ),
       };
     case 'click':
+      return {
+        difficultyLevel: 'Beginner',
+        gameStatus: 'Pending',
+        board: openCell(action.x, action.y, state.board),
+      };
     case 'mark':
       return {
         difficultyLevel: 'Beginner',
         gameStatus: 'Pending',
-        board: updateBoard(action.type, action.x, action.y, state.board),
+        board: markCell(action.x, action.y, state.board),
       };
     default:
       throw new Error();
