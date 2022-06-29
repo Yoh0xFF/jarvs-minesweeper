@@ -14,11 +14,23 @@ export default function Tableau({ number }: Props) {
 
   return (
     <div className={styles.tableau}>
-      <div className={classNames(styles.digit, styles[`digit${x}`])} />
+      <div
+        className={classNames(
+          styles.digit,
+          { [styles[`digit${x}`]]: x > 0 },
+          { [styles.digitEmpty]: x === 0 }
+        )}
+      />
 
       <span />
 
-      <div className={classNames(styles.digit, styles[`digit${y}`])} />
+      <div
+        className={classNames(
+          styles.digit,
+          { [styles[`digit${y}`]]: x > 0 || y > 0 },
+          { [styles.digitEmpty]: x === 0 && y === 0 }
+        )}
+      />
 
       <span />
 

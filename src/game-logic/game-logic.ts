@@ -41,13 +41,13 @@ function reducer(state: GameState, action: Action): GameState {
     case 'click':
       return {
         difficultyLevel: 'Beginner',
-        gameStatus: 'Pending',
+        gameStatus: 'Progress',
         board: openCell(action.x, action.y, state.board),
       };
     case 'mark':
       return {
         difficultyLevel: 'Beginner',
-        gameStatus: 'Pending',
+        gameStatus: 'Progress',
         board: markCell(action.x, action.y, state.board),
       };
     default:

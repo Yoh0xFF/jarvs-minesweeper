@@ -33,7 +33,9 @@ export default function Game() {
 
   return (
     <Layout
-      controls={<Controls onReset={resetHandler} />}
+      controls={
+        <Controls gameStatus={state.gameStatus} onReset={resetHandler} />
+      }
       cellsGrid={
         <CellsGrid
           board={state.board}
