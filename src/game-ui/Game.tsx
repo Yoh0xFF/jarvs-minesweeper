@@ -34,7 +34,11 @@ export default function Game() {
   return (
     <Layout
       controls={
-        <Controls gameStatus={state.gameStatus} onReset={resetHandler} />
+        <Controls
+          gameStatus={state.gameStatus}
+          bombCount={state.board.bombCount}
+          onReset={resetHandler}
+        />
       }
       cellsGrid={
         <CellsGrid

@@ -108,8 +108,13 @@ function _mark(x: number, y: number, board: Board) {
     return;
   }
 
-  cellsMask[pos] =
-    maskValue === MaskType.Closed ? MaskType.Marked : MaskType.Closed;
+  if (maskValue === MaskType.Closed) {
+    cellsMask[pos] = MaskType.Marked;
+    board.bombCount -= 1;
+  } else {
+    cellsMask[pos] = MaskType.Closed;
+    board.bombCount += 1;
+  }
 }
 
 export function openCell(x: number, y: number, board: Board): Board {

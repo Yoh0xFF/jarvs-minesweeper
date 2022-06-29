@@ -8,13 +8,14 @@ import Timer from './Timer';
 
 interface Props {
   gameStatus: GameStatus;
+  bombCount: number;
   onReset: () => void;
 }
 
-export default function Controls({ gameStatus, onReset }: Props) {
+export default function Controls({ gameStatus, bombCount, onReset }: Props) {
   return (
     <div className={styles.gameControls}>
-      <Tableau number={123} />
+      <Tableau number={bombCount} />
       <ResetButton onReset={onReset} />
       <Timer gameStatus={gameStatus} />
     </div>

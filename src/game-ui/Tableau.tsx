@@ -8,17 +8,36 @@ export interface Props {
 }
 
 export default function Tableau({ number }: Props) {
-  const x = Math.floor(number / 100);
-  const y = Math.floor(number / 10) % 10;
-  const z = number % 10;
+  if (number > 1000) number = 999;
+  if (number < -100) number = -99;
+
+  const negative = number < 0;
+  if (negative) number *= -1;
+
+  let x, y, z;
+
+  if (number >= 100) {
+    x = Math.floor(number / 100);
+    y = Math.floor(number / 10) % 10;
+    z = number % 10;
+  } else if (number < 100 && number >= 10) {
+    x = negative ? -1 : undefined;
+    y = Math.floor(number / 10);
+    z = number % 10;
+  } else {
+    x = undefined;
+    y = negative ? -1 : undefined;
+    z = number;
+  }
 
   return (
     <div className={styles.tableau}>
       <div
         className={classNames(
           styles.digit,
-          { [styles[`digit${x}`]]: x > 0 },
-          { [styles.digitEmpty]: x === 0 }
+          { [styles[`digit${x}`]]: x && x >= 0 },
+          { [styles.digitMinus]: x && x < 0 },
+          { [styles.digitEmpty]: x === undefined }
         )}
       />
 
@@ -27,8 +46,9 @@ export default function Tableau({ number }: Props) {
       <div
         className={classNames(
           styles.digit,
-          { [styles[`digit${y}`]]: x > 0 || y > 0 },
-          { [styles.digitEmpty]: x === 0 && y === 0 }
+          { [styles[`digit${y}`]]: y && y >= 0 },
+          { [styles.digitMinus]: y && y < 0 },
+          { [styles.digitEmpty]: y === undefined }
         )}
       />
 

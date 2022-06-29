@@ -27,6 +27,8 @@ const initialState: GameState = {
 };
 
 function reducer(state: GameState, action: Action): GameState {
+  let newBoard;
+
   switch (action.type) {
     case 'newGame':
       return {
@@ -39,16 +41,20 @@ function reducer(state: GameState, action: Action): GameState {
         ),
       };
     case 'click':
+      newBoard = openCell(action.x, action.y, state.board);
+
       return {
-        difficultyLevel: 'Beginner',
+        ...state,
         gameStatus: 'Progress',
-        board: openCell(action.x, action.y, state.board),
+        board: newBoard,
       };
     case 'mark':
+      newBoard = markCell(action.x, action.y, state.board);
+
       return {
-        difficultyLevel: 'Beginner',
+        ...state,
         gameStatus: 'Progress',
-        board: markCell(action.x, action.y, state.board),
+        board: newBoard,
       };
     default:
       throw new Error();
