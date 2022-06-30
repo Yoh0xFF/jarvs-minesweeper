@@ -1,5 +1,24 @@
-import { Board, CellType, MaskType } from './types';
+import { Board, CellType, GameStatus, MaskType } from './types';
 import { isOnBoard, steps } from './utils';
+
+function _checkIsSuccess(board: Board): boolean {
+  const { rows, cols, cellsGrid, cellsMask } = board;
+
+  for (let i = 0; i < rows * cols; ++i) {
+    const notDiscovered =
+      cellsGrid[i] !== CellType.Mine &&
+      [MaskType.Closed, MaskType.Marked].includes(cellsMask[i]);
+
+    if (notDiscovered) return false;
+  }
+
+  for (let i = 0; i < rows * cols; ++i)
+    if (cellsMask[i] === MaskType.Closed) cellsMask[i] = MaskType.Marked;
+
+  board.bombCount = 0;
+
+  return true;
+}
 
 function _boom(x: number, y: number, board: Board) {
   const { rows, cols, cellsGrid, cellsMask } = board;
@@ -63,7 +82,7 @@ function _open(x: number, y: number, board: Board) {
   cellsMask[pos] = MaskType.Open;
 }
 
-function _try_to_expand(x: number, y: number, board: Board) {
+function _tryToExpand(x: number, y: number, board: Board): boolean {
   const { rows, cellsGrid, cellsMask } = board;
 
   const pos = x * rows + y;
@@ -84,7 +103,7 @@ function _try_to_expand(x: number, y: number, board: Board) {
     if (cellsMask[npos] === MaskType.Marked) {
       if (cellsGrid[npos] !== CellType.Mine) {
         _boom(nx, ny, board);
-        return;
+        return false;
       } else {
         count += 1;
       }
@@ -92,10 +111,11 @@ function _try_to_expand(x: number, y: number, board: Board) {
   }
 
   if (count < cellsGrid[pos]) {
-    return;
+    return true;
   }
 
   _expand(x, y, board);
+  return true;
 }
 
 function _mark(x: number, y: number, board: Board) {
@@ -117,7 +137,11 @@ function _mark(x: number, y: number, board: Board) {
   }
 }
 
-export function openCell(x: number, y: number, board: Board): Board {
+export function openCell(
+  x: number,
+  y: number,
+  board: Board
+): [Board, GameStatus] {
   const newBoard = {
     ...board,
     cellsGrid: [...board.cellsGrid],
@@ -131,27 +155,31 @@ export function openCell(x: number, y: number, board: Board): Board {
 
   switch (maskType) {
     case MaskType.Open:
-      _try_to_expand(x, y, newBoard);
-      return newBoard;
+      const isFail = _tryToExpand(x, y, newBoard);
+      if (!isFail) return [newBoard, 'Fail'];
+
+      const isSuccess = _checkIsSuccess(newBoard);
+      return [newBoard, isSuccess ? 'Success' : 'Progress'];
     case MaskType.Marked:
     case MaskType.MarkedWrongly:
-      return newBoard;
+      return [newBoard, 'Progress'];
   }
 
   switch (cellType) {
     case CellType.Mine:
       _boom(x, y, newBoard);
-      return newBoard;
+      return [newBoard, 'Fail'];
     case CellType.Empty:
       _expand(x, y, newBoard);
-      return newBoard;
+      return [newBoard, 'Progress'];
     default:
       _open(x, y, newBoard);
-      return newBoard;
+      const isSuccess = _checkIsSuccess(newBoard);
+      return [newBoard, isSuccess ? 'Success' : 'Progress'];
   }
 }
 
-export function markCell(x: number, y: number, board: Board) {
+export function markCell(x: number, y: number, board: Board): Board {
   const newBoard = {
     ...board,
     cellsGrid: [...board.cellsGrid],

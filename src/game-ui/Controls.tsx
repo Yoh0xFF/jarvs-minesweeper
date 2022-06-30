@@ -16,7 +16,7 @@ export default function Controls({ gameStatus, bombCount, onReset }: Props) {
   return (
     <div className={styles.gameControls}>
       <Tableau number={bombCount} />
-      <ResetButton onReset={onReset} />
+      <ResetButton gameStatus={gameStatus} onReset={onReset} />
       <Timer gameStatus={gameStatus} />
     </div>
   );

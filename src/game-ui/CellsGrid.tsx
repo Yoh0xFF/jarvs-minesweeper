@@ -1,16 +1,22 @@
-import { Board } from 'game-logic/types';
+import { Board, GameStatus } from 'game-logic/types';
 import React from 'react';
 
 import Cell from './Cell';
 import styles from './CellsGrid.module.scss';
 
 interface Props {
+  gameStatus: GameStatus;
   board: Board;
   onCellClick: (x: number, y: number) => void;
   onCellMark: (x: number, y: number) => void;
 }
 
-export default function CellsGrid({ board, onCellClick, onCellMark }: Props) {
+export default function CellsGrid({
+  gameStatus,
+  board,
+  onCellClick,
+  onCellMark,
+}: Props) {
   const { rows, cellsGrid, cellsMask } = board;
 
   return (
@@ -24,6 +30,7 @@ export default function CellsGrid({ board, onCellClick, onCellMark }: Props) {
             key={`cell-${x}-${y}`}
             x={x}
             y={y}
+            gameStatus={gameStatus}
             cellType={cellType}
             maskType={cellsMask[i]}
             onCellClick={onCellClick}

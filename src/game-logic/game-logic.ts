@@ -27,7 +27,7 @@ const initialState: GameState = {
 };
 
 function reducer(state: GameState, action: Action): GameState {
-  let newBoard;
+  let newBoard, newGameStatus;
 
   switch (action.type) {
     case 'newGame':
@@ -41,11 +41,11 @@ function reducer(state: GameState, action: Action): GameState {
         ),
       };
     case 'click':
-      newBoard = openCell(action.x, action.y, state.board);
+      [newBoard, newGameStatus] = openCell(action.x, action.y, state.board);
 
       return {
         ...state,
-        gameStatus: 'Progress',
+        gameStatus: newGameStatus,
         board: newBoard,
       };
     case 'mark':

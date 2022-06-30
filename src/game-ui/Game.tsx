@@ -42,6 +42,7 @@ export default function Game() {
       }
       cellsGrid={
         <CellsGrid
+          gameStatus={state.gameStatus}
           board={state.board}
           onCellClick={cellClickHandler}
           onCellMark={cellMarkHandler}
