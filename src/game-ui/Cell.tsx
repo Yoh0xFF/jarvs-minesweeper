@@ -50,11 +50,11 @@ export default function Cell({
 
   return ['Pending', 'Progress'].includes(gameStatus) ? (
     <div
-      onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      onClick={(e) => {
         e.preventDefault();
         onCellClick(x, y);
       }}
-      onContextMenu={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      onContextMenu={(e) => {
         e.preventDefault();
         onCellMark(x, y);
       }}
