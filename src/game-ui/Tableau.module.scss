@@ -1,3 +1,5 @@
+@use '../styles/sprite';
+
 .tableau {
   display: flex;
   background-color: #000;
@@ -10,26 +12,30 @@
   }
 
   .digit {
-    width: 13px;
-    height: 23px;
+    width: sprite.$digit-asset-w;
+    height: sprite.$digit-asset-h;
     background-image: url('../assets/sprite.png');
 
     @for $i from 1 through 9 {
       &#{$i} {
-        background-position: calc((#{$i} - 1) * -14px) 0px;
+        background-position: calc((#{$i} - 1) * #{sprite.$digit-assets-hoffset})
+          sprite.$digit-assets-voffset;
       }
     }
 
     &0 {
-      background-position: calc(9 * -14px) 0px;
+      background-position: calc(9 * sprite.$digit-assets-hoffset)
+        sprite.$digit-assets-voffset;
     }
 
     &Minus {
-      background-position: calc(10 * -14px) 0px;
+      background-position: calc(10 * sprite.$digit-assets-hoffset)
+        sprite.$digit-assets-voffset;
     }
 
     &Empty {
-      background-position: calc(11 * -14px) 0px;
+      background-position: calc(11 * sprite.$digit-assets-hoffset)
+        sprite.$digit-assets-voffset;
     }
   }
 }

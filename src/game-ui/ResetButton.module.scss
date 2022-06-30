@@ -1,25 +1,32 @@
+@use '../styles/sprite';
+
 .face {
-  width: 24px;
-  height: 24px;
+  width: sprite.$face-asset-w;
+  height: sprite.$face-asset-h;
   background-image: url('../assets/sprite.png');
 
   &Unpressed {
-    background-position: 0px -24px;
+    background-position: calc(0 * sprite.$face-assets-hoffset)
+      sprite.$face-assets-voffset;
   }
 
   &Pressed {
-    background-position: -25px -24px;
+    background-position: calc(1 * sprite.$face-assets-hoffset)
+      sprite.$face-assets-voffset;
   }
 
   &Whoops {
-    background-position: -50px -24px;
+    background-position: calc(2 * sprite.$face-assets-hoffset)
+      sprite.$face-assets-voffset;
   }
 
   &Win {
-    background-position: -75px -24px;
+    background-position: calc(3 * sprite.$face-assets-hoffset)
+      sprite.$face-assets-voffset;
   }
 
   &Boom {
-    background-position: -100px -24px;
+    background-position: calc(4 * sprite.$face-assets-hoffset)
+      sprite.$face-assets-voffset;
   }
 }
