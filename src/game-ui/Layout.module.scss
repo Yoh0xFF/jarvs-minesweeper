@@ -4,31 +4,30 @@
   width: fit-content;
   padding: 10px;
   background-color: #bdbdbd;
-  border: 3px outset;
+  border: 2px outset;
+  border-color: #fff #7d7d7d #7d7d7d #fff;
   scale: 150%;
-  // border-left: 3px solid #fff;
-  // border-top: 3px solid #fff;
 
-  .header {
+  & > section:nth-child(1) {
     display: flex;
     flex-direction: row;
-    border: 3px solid;
+    border: 2px solid;
     border-color: #7d7d7d #fff #fff #7d7d7d;
     margin-bottom: 10px;
 
-    .controls {
+    & > div {
       flex: 1 1 auto;
     }
   }
 
-  .body {
+  & > section:nth-child(2) {
     display: flex;
     flex-direction: row;
     width: fit-content;
-    border: 3px solid;
+    border: 2px solid;
     border-color: #7d7d7d #fff #fff #7d7d7d;
 
-    .cellsGrid {
+    & > div {
       flex: 1 1 auto;
     }
   }

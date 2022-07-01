@@ -10,11 +10,11 @@ interface Props {
 export default function Layout({ controls, cellsGrid }: Props) {
   return (
     <div className={styles.layout}>
-      <section className={styles.header}>
+      <section>
         <div className={styles.controls}>{controls}</div>
       </section>
 
-      <section className={styles.body}>
+      <section>
         <div className={styles.cellsGrid}>{cellsGrid}</div>
       </section>
     </div>

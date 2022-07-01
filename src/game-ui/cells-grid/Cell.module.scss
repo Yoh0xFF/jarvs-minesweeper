@@ -1,9 +1,9 @@
-@use '../styles/sprite';
+@use '../../styles/sprite';
 
 .cell {
   width: sprite.$cell-asset-w;
   height: sprite.$cell-asset-h;
-  background-image: url('../assets/sprite.png');
+  background-image: url('../../assets/sprite.png');
 
   &Closed {
     background-position: calc(0 * sprite.$cell-assets-hoffset)

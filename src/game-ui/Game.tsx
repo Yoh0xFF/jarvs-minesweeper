@@ -1,9 +1,9 @@
 import { useGameController } from 'game-logic/game-logic';
 import React from 'react';
 
-import CellsGrid from './CellsGrid';
-import Controls from './Controls';
 import Layout from './Layout';
+import CellsGrid from './cells-grid/CellsGrid';
+import Controls from './controls/Controls';
 
 export default function Game() {
   const [state, dispatch] = useGameController();

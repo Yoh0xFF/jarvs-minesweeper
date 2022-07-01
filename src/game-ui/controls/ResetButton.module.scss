@@ -1,9 +1,9 @@
-@use '../styles/sprite';
+@use '../../styles/sprite';
 
 .face {
   width: sprite.$face-asset-w;
   height: sprite.$face-asset-h;
-  background-image: url('../assets/sprite.png');
+  background-image: url('../../assets/sprite.png');
 
   &Unpressed {
     background-position: calc(0 * sprite.$face-assets-hoffset)
