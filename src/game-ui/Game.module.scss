@@ -2,5 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  transform-origin: top;
+  transform: scale(1.25);
 }
