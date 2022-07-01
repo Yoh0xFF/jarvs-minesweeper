@@ -39,5 +39,6 @@ export interface GameState {
 
 export type Action =
   | { type: 'newGame'; difficultyLevel: DifficultyLevel }
+  | { type: 'resetGame' }
   | { type: 'click'; x: number; y: number }
   | { type: 'mark'; x: number; y: number };

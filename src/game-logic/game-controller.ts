@@ -7,7 +7,7 @@ import { Action, DifficultyLevel, GameState } from './types';
 const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
   ['Beginner', [9, 9, 10]],
   ['Intermediate', [16, 16, 40]],
-  ['Expert', [30, 16, 99]],
+  ['Expert', [16, 30, 99]],
 ]);
 
 const defaultDifficultyLevel: DifficultyLevel = 'Beginner';
@@ -28,17 +28,28 @@ const initialState: GameState = {
 
 function reducer(state: GameState, action: Action): GameState {
   let newBoard, newGameStatus;
+  let rows, cols, bombCount;
 
   switch (action.type) {
     case 'newGame':
+      [rows, cols, bombCount] = boardConfigs.get(action.difficultyLevel) ?? [
+        0, 0, 0,
+      ];
+
       return {
         difficultyLevel: action.difficultyLevel,
         gameStatus: 'Pending',
-        board: generateNewBoard(
-          defaultBoardConfig[0],
-          defaultBoardConfig[1],
-          defaultBoardConfig[2]
-        ),
+        board: generateNewBoard(rows, cols, bombCount),
+      };
+    case 'resetGame':
+      [rows, cols, bombCount] = boardConfigs.get(state.difficultyLevel) ?? [
+        0, 0, 0,
+      ];
+
+      return {
+        ...state,
+        gameStatus: 'Pending',
+        board: generateNewBoard(rows, cols, bombCount),
       };
     case 'click':
       [newBoard, newGameStatus] = openCell(action.x, action.y, state.board);

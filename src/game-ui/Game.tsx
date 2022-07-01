@@ -1,4 +1,5 @@
 import { useGameController } from 'game-logic/game-controller';
+import { DifficultyLevel } from 'game-logic/types';
 
 import styles from './Game.module.scss';
 import GameLayout from './GameLayout';
@@ -27,14 +28,20 @@ export default function Game() {
 
   const resetHandler = () => {
     dispatch({
+      type: 'resetGame',
+    });
+  };
+
+  const newGameHandler = (difficultyLevel: DifficultyLevel) => {
+    dispatch({
       type: 'newGame',
-      difficultyLevel: 'Beginner',
+      difficultyLevel,
     });
   };
 
   return (
     <div className={styles.gameContainer}>
-      <Menu />
+      <Menu onNewGame={newGameHandler} />
 
       <GameLayout
         controls={
@@ -46,6 +53,7 @@ export default function Game() {
         }
         cellsGrid={
           <CellsGrid
+            difficultyLevel={state.difficultyLevel}
             gameStatus={state.gameStatus}
             board={state.board}
             onCellClick={cellClickHandler}

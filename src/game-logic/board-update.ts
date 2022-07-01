@@ -23,7 +23,7 @@ function _checkIsSuccess(board: Board): boolean {
 function _boom(x: number, y: number, board: Board) {
   const { rows, cols, cellsGrid, cellsMask } = board;
 
-  const pos = x * rows + y;
+  const pos = x * cols + y;
   cellsMask[pos] = MaskType.Open;
   cellsGrid[pos] = CellType.MineExploded;
 
@@ -41,10 +41,10 @@ function _boom(x: number, y: number, board: Board) {
 }
 
 function _expand(x: number, y: number, board: Board) {
-  const { rows, cellsGrid, cellsMask } = board;
+  const { cols, cellsGrid, cellsMask } = board;
 
   var queue = [[x, y]];
-  const pos = x * rows + y;
+  const pos = x * cols + y;
   cellsMask[pos] = MaskType.Open;
 
   while (queue.length > 0) {
@@ -57,7 +57,7 @@ function _expand(x: number, y: number, board: Board) {
       const [i, j] = step;
       const nx = x + i;
       const ny = y + j;
-      const npos = nx * rows + ny;
+      const npos = nx * cols + ny;
 
       const open =
         isOnBoard(nx, ny, board) && cellsMask[npos] === MaskType.Closed;
@@ -71,16 +71,16 @@ function _expand(x: number, y: number, board: Board) {
 }
 
 function _open(x: number, y: number, board: Board) {
-  const { rows, cellsMask } = board;
+  const { cols, cellsMask } = board;
 
-  const pos = x * rows + y;
+  const pos = x * cols + y;
   cellsMask[pos] = MaskType.Open;
 }
 
 function _tryToExpand(x: number, y: number, board: Board): boolean {
-  const { rows, cellsGrid, cellsMask } = board;
+  const { cols, cellsGrid, cellsMask } = board;
 
-  const pos = x * rows + y;
+  const pos = x * cols + y;
   let count = 0;
 
   // Check neighbors, if some of them is marked wrongly then explode,
@@ -89,7 +89,7 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
     const [i, j] = step;
     const nx = x + i;
     const ny = y + j;
-    const npos = nx * rows + ny;
+    const npos = nx * cols + ny;
 
     if (!isOnBoard(nx, ny, board)) {
       continue;
@@ -112,9 +112,9 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
 }
 
 function _mark(x: number, y: number, board: Board) {
-  const { rows, cellsMask } = board;
+  const { cols, cellsMask } = board;
 
-  const pos = x * rows + y;
+  const pos = x * cols + y;
   const maskValue = cellsMask[pos];
 
   if (maskValue === MaskType.Open) return;
@@ -139,8 +139,8 @@ export function openCell(
     cellsMask: [...board.cellsMask],
   };
 
-  const { rows, cellsGrid, cellsMask } = newBoard;
-  const pos = x * rows + y;
+  const { cols, cellsGrid, cellsMask } = newBoard;
+  const pos = x * cols + y;
   const cellType = cellsGrid[pos];
   const maskType = cellsMask[pos];
 

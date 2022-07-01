@@ -2,9 +2,9 @@ import { Board, CellType, MaskType } from './types';
 import { generateRandomInt, isOnBoard, steps } from './utils';
 
 function _setMine(x: number, y: number, board: Board): boolean {
-  const { rows, cellsGrid } = board;
+  const { cols, cellsGrid } = board;
 
-  const pos = x * rows + y;
+  const pos = x * cols + y;
 
   // If already set then return
   if (cellsGrid[pos] === CellType.Mine) return false;
@@ -16,7 +16,7 @@ function _setMine(x: number, y: number, board: Board): boolean {
     const [i, j] = step;
     const nx = x + i;
     const ny = y + j;
-    const npos = nx * rows + ny;
+    const npos = nx * cols + ny;
 
     const update =
       isOnBoard(nx, ny, board) && cellsGrid[npos] !== CellType.Mine;

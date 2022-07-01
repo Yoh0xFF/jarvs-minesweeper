@@ -1,5 +1,25 @@
+@use '../../styles/sprite';
+@use '../../styles/grid';
+
 .cellsGrid {
   display: inline-grid;
-  grid-template: repeat(9, 16px) / repeat(9, 16px);
   background: silver;
+
+  &Beginner {
+    grid-template:
+      repeat(grid.$beginner-rows, sprite.$cell-asset-h)
+      / repeat(grid.$beginner-cols, sprite.$cell-asset-w);
+  }
+
+  &Intermediate {
+    grid-template:
+      repeat(grid.$intermediate-rows, sprite.$cell-asset-h)
+      / repeat(grid.$intermediate-cols, sprite.$cell-asset-w);
+  }
+
+  &Expert {
+    grid-template:
+      repeat(grid.$expert-rows, sprite.$cell-asset-h)
+      / repeat(grid.$expert-cols, sprite.$cell-asset-w);
+  }
 }

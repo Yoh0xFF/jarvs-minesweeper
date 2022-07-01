@@ -1,10 +1,12 @@
-import { Board, GameStatus } from 'game-logic/types';
+import classNames from 'classnames';
+import { Board, DifficultyLevel, GameStatus } from 'game-logic/types';
 import React from 'react';
 
 import Cell from './Cell';
 import styles from './CellsGrid.module.scss';
 
 interface Props {
+  difficultyLevel: DifficultyLevel;
   gameStatus: GameStatus;
   board: Board;
   onCellClick: (x: number, y: number) => void;
@@ -12,18 +14,21 @@ interface Props {
 }
 
 export default function CellsGrid({
+  difficultyLevel,
   gameStatus,
   board,
   onCellClick,
   onCellMark,
 }: Props) {
-  const { rows, cellsGrid, cellsMask } = board;
+  const { cols, cellsGrid, cellsMask } = board;
+
+  const gridClassName = `cellsGrid${difficultyLevel}`;
 
   return (
-    <div className={styles.cellsGrid}>
+    <div className={classNames(styles.cellsGrid, styles[gridClassName])}>
       {cellsGrid.map((cellType, i) => {
-        const x = Math.floor(i / rows);
-        const y = i % rows;
+        const x = Math.floor(i / cols);
+        const y = i % cols;
 
         return (
           <Cell
