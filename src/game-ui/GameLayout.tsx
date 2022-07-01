@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 
-import styles from './Layout.module.scss';
+import styles from './GameLayout.module.scss';
 
 interface Props {
   controls: ReactNode;
   cellsGrid: ReactNode;
 }
 
-export default function Layout({ controls, cellsGrid }: Props) {
+export default function GameLayout({ controls, cellsGrid }: Props) {
   return (
     <div className={styles.layout}>
       <section>

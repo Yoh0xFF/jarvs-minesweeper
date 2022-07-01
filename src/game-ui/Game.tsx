@@ -1,9 +1,10 @@
 import { useGameController } from 'game-logic/game-controller';
-import React from 'react';
 
-import Layout from './Layout';
+import styles from './Game.module.scss';
+import GameLayout from './GameLayout';
 import CellsGrid from './cells-grid/CellsGrid';
 import Controls from './controls/Controls';
+import Menu from './menu/Menu';
 
 export default function Game() {
   const [state, dispatch] = useGameController();
@@ -32,22 +33,26 @@ export default function Game() {
   };
 
   return (
-    <Layout
-      controls={
-        <Controls
-          gameStatus={state.gameStatus}
-          bombCount={state.board.bombCount}
-          onReset={resetHandler}
-        />
-      }
-      cellsGrid={
-        <CellsGrid
-          gameStatus={state.gameStatus}
-          board={state.board}
-          onCellClick={cellClickHandler}
-          onCellMark={cellMarkHandler}
-        />
-      }
-    />
+    <div className={styles.gameContainer}>
+      <Menu />
+
+      <GameLayout
+        controls={
+          <Controls
+            gameStatus={state.gameStatus}
+            bombCount={state.board.bombCount}
+            onReset={resetHandler}
+          />
+        }
+        cellsGrid={
+          <CellsGrid
+            gameStatus={state.gameStatus}
+            board={state.board}
+            onCellClick={cellClickHandler}
+            onCellMark={cellMarkHandler}
+          />
+        }
+      />
+    </div>
   );
 }

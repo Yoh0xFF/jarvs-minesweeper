@@ -6,7 +6,8 @@
   background-color: #bdbdbd;
   border: 2px outset;
   border-color: #fff #7d7d7d #7d7d7d #fff;
-  scale: 150%;
+  // scale: 150%;
+  // transform: scale(1.2);
 
   & > section:nth-child(1) {
     display: flex;
