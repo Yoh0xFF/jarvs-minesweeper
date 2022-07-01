@@ -11,11 +11,11 @@ export default function Layout({ controls, cellsGrid }: Props) {
   return (
     <div className={styles.layout}>
       <section>
-        <div className={styles.controls}>{controls}</div>
+        <div>{controls}</div>
       </section>
 
       <section>
-        <div className={styles.cellsGrid}>{cellsGrid}</div>
+        <div>{cellsGrid}</div>
       </section>
     </div>
   );
