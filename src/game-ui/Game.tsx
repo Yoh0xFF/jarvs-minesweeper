@@ -1,4 +1,4 @@
-import { useGameController } from 'game-logic/game-logic';
+import { useGameController } from 'game-logic/game-controller';
 import React from 'react';
 
 import Layout from './Layout';

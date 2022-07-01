@@ -7,14 +7,12 @@ function _setMine(x: number, y: number, board: Board): boolean {
   const pos = x * rows + y;
 
   // If already set then return
-  if (cellsGrid[pos] === CellType.Mine) {
-    return false;
-  }
+  if (cellsGrid[pos] === CellType.Mine) return false;
 
   // Set mine and update hints around it
   cellsGrid[pos] = CellType.Mine;
 
-  steps.forEach((step) => {
+  for (const step of steps) {
     const [i, j] = step;
     const nx = x + i;
     const ny = y + j;
@@ -23,10 +21,8 @@ function _setMine(x: number, y: number, board: Board): boolean {
     const update =
       isOnBoard(nx, ny, board) && cellsGrid[npos] !== CellType.Mine;
 
-    if (update) {
-      cellsGrid[npos] += 1;
-    }
-  });
+    if (update) cellsGrid[npos] += 1;
+  }
 
   return true;
 }
@@ -52,9 +48,7 @@ export function generateNewBoard(
     const x = generateRandomInt(rows);
     const y = generateRandomInt(cols);
 
-    if (_setMine(x, y, board)) {
-      count += 1;
-    }
+    if (_setMine(x, y, board)) count += 1;
   }
 
   return board;

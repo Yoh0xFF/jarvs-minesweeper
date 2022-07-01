@@ -49,9 +49,7 @@ function _expand(x: number, y: number, board: Board) {
 
   while (queue.length > 0) {
     const coordinates = queue.shift();
-    if (!coordinates) {
-      continue;
-    }
+    if (!coordinates) continue;
 
     const [x, y] = coordinates;
 
@@ -66,10 +64,7 @@ function _expand(x: number, y: number, board: Board) {
 
       if (open) {
         cellsMask[npos] = MaskType.Open;
-
-        if (cellsGrid[npos] === CellType.Empty) {
-          queue.push([nx, ny]);
-        }
+        if (cellsGrid[npos] === CellType.Empty) queue.push([nx, ny]);
       }
     }
   }
@@ -110,9 +105,7 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
     }
   }
 
-  if (count < cellsGrid[pos]) {
-    return true;
-  }
+  if (count < cellsGrid[pos]) return true;
 
   _expand(x, y, board);
   return true;
@@ -124,9 +117,7 @@ function _mark(x: number, y: number, board: Board) {
   const pos = x * rows + y;
   const maskValue = cellsMask[pos];
 
-  if (maskValue === MaskType.Open) {
-    return;
-  }
+  if (maskValue === MaskType.Open) return;
 
   if (maskValue === MaskType.Closed) {
     cellsMask[pos] = MaskType.Marked;
@@ -155,11 +146,8 @@ export function openCell(
 
   switch (maskType) {
     case MaskType.Open:
-      const isFail = _tryToExpand(x, y, newBoard);
-      if (!isFail) return [newBoard, 'Fail'];
-
-      const isSuccess = _checkIsSuccess(newBoard);
-      return [newBoard, isSuccess ? 'Success' : 'Progress'];
+      if (!_tryToExpand(x, y, newBoard)) return [newBoard, 'Fail'];
+      return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
     case MaskType.Marked:
     case MaskType.MarkedWrongly:
       return [newBoard, 'Progress'];
@@ -174,8 +162,7 @@ export function openCell(
       return [newBoard, 'Progress'];
     default:
       _open(x, y, newBoard);
-      const isSuccess = _checkIsSuccess(newBoard);
-      return [newBoard, isSuccess ? 'Success' : 'Progress'];
+      return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
   }
 }
 
