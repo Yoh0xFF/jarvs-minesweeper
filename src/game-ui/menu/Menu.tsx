@@ -1,19 +1,24 @@
 import { DifficultyLevel } from 'game-logic/types';
-import React from 'react';
 
-import Button from './Button';
 import styles from './Menu.module.scss';
+import RadioButton from './RadioButton';
 
 interface Props {
+  difficultyLevel: DifficultyLevel;
   onNewGame: (difficultyLevel: DifficultyLevel) => void;
 }
 
-export default function Menu({ onNewGame }: Props) {
+export default function Menu({ difficultyLevel, onNewGame }: Props) {
   return (
     <div className={styles.menu}>
-      <Button label='Beginner' onClick={() => onNewGame('Beginner')} />
-      <Button label='Intermediate' onClick={() => onNewGame('Intermediate')} />
-      <Button label='Expert' onClick={() => onNewGame('Expert')} />
+      {['Beginner', 'Intermediate', 'Expert'].map((x) => (
+        <RadioButton
+          key={x}
+          difficultyLevel={x as DifficultyLevel}
+          checked={difficultyLevel === x}
+          onClick={() => onNewGame(x as DifficultyLevel)}
+        />
+      ))}
     </div>
   );
 }

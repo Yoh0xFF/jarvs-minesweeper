@@ -41,7 +41,10 @@ export default function Game() {
 
   return (
     <div className={styles.gameContainer}>
-      <Menu onNewGame={newGameHandler} />
+      <Menu
+        difficultyLevel={state.difficultyLevel}
+        onNewGame={newGameHandler}
+      />
 
       <GameLayout
         controls={
