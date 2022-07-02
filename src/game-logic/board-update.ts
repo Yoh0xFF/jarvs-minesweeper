@@ -5,13 +5,15 @@ function _checkIsSuccess(board: Board): boolean {
   const { rows, cols, cellsGrid, cellsMask } = board;
 
   for (let i = 0; i < rows * cols; ++i) {
-    const notDiscovered =
-      cellsGrid[i] !== CellTypes.Mine &&
-      (cellsMask[i] === MaskTypes.Closed || cellsMask[i] === MaskTypes.Marked);
+    const isWithoutMine = cellsGrid[i] !== CellTypes.Mine;
+    const isClosedOrMarked =
+      cellsMask[i] === MaskTypes.Closed || cellsMask[i] === MaskTypes.Marked;
 
-    if (notDiscovered) return false;
+    // Users win the game when they open every cell without mine.
+    if (isWithoutMine && isClosedOrMarked) return false;
   }
 
+  // When the users win the game, mark all cells with mine.
   for (let i = 0; i < rows * cols; ++i)
     if (cellsMask[i] === MaskTypes.Closed) cellsMask[i] = MaskTypes.Marked;
 
@@ -158,12 +160,15 @@ export function openCell(
 
   switch (cellType) {
     case CellTypes.Mine:
+      // If the users click the cell with mine, finish the game.
       _boom(x, y, newBoard);
       return [newBoard, 'Fail'];
     case CellTypes.Empty:
+      // If the users click an empty cell, expand all the blank cells around it.
       _expand(x, y, newBoard);
       return [newBoard, 'Progress'];
     default:
+      // If the users click the cell with a hint, open it.
       _open(x, y, newBoard);
       return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
   }
