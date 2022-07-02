@@ -47,6 +47,7 @@ export default function Game() {
       />
 
       <GameLayout
+        gameStatus={state.gameStatus}
         controls={
           <Controls
             gameStatus={state.gameStatus}
