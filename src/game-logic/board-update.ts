@@ -1,4 +1,4 @@
-import { Board, CellType, GameStatus, MaskType } from './types';
+import { Board, CellTypes, GameStatus, MaskTypes } from './types';
 import { isOnBoard, steps } from './utils';
 
 function _checkIsSuccess(board: Board): boolean {
@@ -6,14 +6,14 @@ function _checkIsSuccess(board: Board): boolean {
 
   for (let i = 0; i < rows * cols; ++i) {
     const notDiscovered =
-      cellsGrid[i] !== CellType.Mine &&
-      [MaskType.Closed, MaskType.Marked].includes(cellsMask[i]);
+      cellsGrid[i] !== CellTypes.Mine &&
+      (cellsMask[i] === MaskTypes.Closed || cellsMask[i] === MaskTypes.Closed);
 
     if (notDiscovered) return false;
   }
 
   for (let i = 0; i < rows * cols; ++i)
-    if (cellsMask[i] === MaskType.Closed) cellsMask[i] = MaskType.Marked;
+    if (cellsMask[i] === MaskTypes.Closed) cellsMask[i] = MaskTypes.Marked;
 
   board.bombCount = 0;
 
@@ -24,17 +24,17 @@ function _boom(x: number, y: number, board: Board) {
   const { rows, cols, cellsGrid, cellsMask } = board;
 
   const pos = x * cols + y;
-  cellsMask[pos] = MaskType.Open;
-  cellsGrid[pos] = CellType.MineExploded;
+  cellsMask[pos] = MaskTypes.Open;
+  cellsGrid[pos] = CellTypes.MineExploded;
 
   for (let i = 0; i < rows * cols; ++i) {
-    if (cellsGrid[i] === CellType.Mine) {
-      cellsMask[i] = MaskType.Open;
+    if (cellsGrid[i] === CellTypes.Mine) {
+      cellsMask[i] = MaskTypes.Open;
       continue;
     }
 
-    if (cellsGrid[i] !== CellType.Mine && cellsMask[i] === MaskType.Marked) {
-      cellsMask[i] = MaskType.MarkedWrongly;
+    if (cellsGrid[i] !== CellTypes.Mine && cellsMask[i] === MaskTypes.Marked) {
+      cellsMask[i] = MaskTypes.MarkedWrongly;
       continue;
     }
   }
@@ -45,7 +45,7 @@ function _expand(x: number, y: number, board: Board) {
 
   var queue = [[x, y]];
   const pos = x * cols + y;
-  cellsMask[pos] = MaskType.Open;
+  cellsMask[pos] = MaskTypes.Open;
 
   while (queue.length > 0) {
     const coordinates = queue.shift();
@@ -60,11 +60,11 @@ function _expand(x: number, y: number, board: Board) {
       const npos = nx * cols + ny;
 
       const open =
-        isOnBoard(nx, ny, board) && cellsMask[npos] === MaskType.Closed;
+        isOnBoard(nx, ny, board) && cellsMask[npos] === MaskTypes.Closed;
 
       if (open) {
-        cellsMask[npos] = MaskType.Open;
-        if (cellsGrid[npos] === CellType.Empty) queue.push([nx, ny]);
+        cellsMask[npos] = MaskTypes.Open;
+        if (cellsGrid[npos] === CellTypes.Empty) queue.push([nx, ny]);
       }
     }
   }
@@ -74,7 +74,7 @@ function _open(x: number, y: number, board: Board) {
   const { cols, cellsMask } = board;
 
   const pos = x * cols + y;
-  cellsMask[pos] = MaskType.Open;
+  cellsMask[pos] = MaskTypes.Open;
 }
 
 function _tryToExpand(x: number, y: number, board: Board): boolean {
@@ -95,8 +95,8 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
       continue;
     }
 
-    if (cellsMask[npos] === MaskType.Marked) {
-      if (cellsGrid[npos] !== CellType.Mine) {
+    if (cellsMask[npos] === MaskTypes.Marked) {
+      if (cellsGrid[npos] !== CellTypes.Mine) {
         _boom(nx, ny, board);
         return false;
       } else {
@@ -117,13 +117,13 @@ function _mark(x: number, y: number, board: Board) {
   const pos = x * cols + y;
   const maskValue = cellsMask[pos];
 
-  if (maskValue === MaskType.Open) return;
+  if (maskValue === MaskTypes.Open) return;
 
-  if (maskValue === MaskType.Closed) {
-    cellsMask[pos] = MaskType.Marked;
+  if (maskValue === MaskTypes.Closed) {
+    cellsMask[pos] = MaskTypes.Marked;
     board.bombCount -= 1;
   } else {
-    cellsMask[pos] = MaskType.Closed;
+    cellsMask[pos] = MaskTypes.Closed;
     board.bombCount += 1;
   }
 }
@@ -145,19 +145,19 @@ export function openCell(
   const maskType = cellsMask[pos];
 
   switch (maskType) {
-    case MaskType.Open:
+    case MaskTypes.Open:
       if (!_tryToExpand(x, y, newBoard)) return [newBoard, 'Fail'];
       return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
-    case MaskType.Marked:
-    case MaskType.MarkedWrongly:
+    case MaskTypes.Marked:
+    case MaskTypes.MarkedWrongly:
       return [newBoard, 'Progress'];
   }
 
   switch (cellType) {
-    case CellType.Mine:
+    case CellTypes.Mine:
       _boom(x, y, newBoard);
       return [newBoard, 'Fail'];
-    case CellType.Empty:
+    case CellTypes.Empty:
       _expand(x, y, newBoard);
       return [newBoard, 'Progress'];
     default:

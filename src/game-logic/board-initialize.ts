@@ -1,4 +1,4 @@
-import { Board, CellType, MaskType } from './types';
+import { Board, CellType, CellTypes, MaskType, MaskTypes } from './types';
 import { generateRandomInt, isOnBoard, steps } from './utils';
 
 function _setMine(x: number, y: number, board: Board): boolean {
@@ -7,10 +7,10 @@ function _setMine(x: number, y: number, board: Board): boolean {
   const pos = x * cols + y;
 
   // If already set then return
-  if (cellsGrid[pos] === CellType.Mine) return false;
+  if (cellsGrid[pos] === CellTypes.Mine) return false;
 
   // Set mine and update hints around it
-  cellsGrid[pos] = CellType.Mine;
+  cellsGrid[pos] = CellTypes.Mine;
 
   for (const step of steps) {
     const [i, j] = step;
@@ -19,7 +19,7 @@ function _setMine(x: number, y: number, board: Board): boolean {
     const npos = nx * cols + ny;
 
     const update =
-      isOnBoard(nx, ny, board) && cellsGrid[npos] !== CellType.Mine;
+      isOnBoard(nx, ny, board) && cellsGrid[npos] !== CellTypes.Mine;
 
     if (update) cellsGrid[npos] += 1;
   }
@@ -32,8 +32,10 @@ export function generateNewBoard(
   cols: number,
   bombCount: number
 ): Board {
-  const cellsGrid = Array(rows * cols).fill(CellType.Empty) as Array<CellType>;
-  const cellsMask = Array(rows * cols).fill(MaskType.Closed) as Array<MaskType>;
+  const cellsGrid = Array(rows * cols).fill(CellTypes.Empty) as Array<CellType>;
+  const cellsMask = Array(rows * cols).fill(
+    MaskTypes.Closed
+  ) as Array<MaskType>;
 
   const board: Board = {
     rows,

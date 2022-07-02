@@ -1,19 +1,25 @@
 import classNames from 'classnames';
-import { CellType, GameStatus, MaskType } from 'game-logic/types';
+import {
+  CellType,
+  CellTypes,
+  GameStatus,
+  MaskType,
+  MaskTypes,
+} from 'game-logic/types';
 import React, { useState } from 'react';
 
 import styles from './Cell.module.scss';
 
 const cellTypeMap = new Map<CellType, string>([
-  [CellType.Empty, 'cellOpen'],
-  [CellType.MineExploded, 'cellMineExploded'],
-  [CellType.Mine, 'cellMine'],
+  [CellTypes.Empty, 'cellOpen'],
+  [CellTypes.MineExploded, 'cellMineExploded'],
+  [CellTypes.Mine, 'cellMine'],
 ]);
 
 const maskTypeMap = new Map<MaskType, string>([
-  [MaskType.Closed, 'cellClosed'],
-  [MaskType.Marked, 'cellMarked'],
-  [MaskType.MarkedWrongly, 'cellMarkedWrongly'],
+  [MaskTypes.Closed, 'cellClosed'],
+  [MaskTypes.Marked, 'cellMarked'],
+  [MaskTypes.MarkedWrongly, 'cellMarkedWrongly'],
 ]);
 
 interface Props {
@@ -39,7 +45,7 @@ export default function Cell({
 
   let cellClassName = 'cellClosed';
 
-  if (maskType === MaskType.Open) {
+  if (maskType === MaskTypes.Open) {
     cellClassName =
       cellType > 0
         ? `cell${cellType}`
@@ -60,7 +66,7 @@ export default function Cell({
       }}
       onMouseDown={(e) =>
         // We need click effect only when the user clicks closed tile
-        setMouseDown(e.button === 0 && maskType === MaskType.Closed)
+        setMouseDown(e.button === 0 && maskType === MaskTypes.Closed)
       }
       onMouseUp={() => setMouseDown(false)}
       onMouseLeave={() => setMouseDown(false)}

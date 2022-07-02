@@ -1,27 +1,35 @@
-export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Expert';
+// Game difficulty levels
+export const DifficultyLevels = ['Beginner', 'Intermediate', 'Expert'] as const;
+export type DifficultyLevel = typeof DifficultyLevels[number];
 
-export type GameStatus = 'Pending' | 'Progress' | 'Success' | 'Fail';
+// Game progress statuses
+export const GameStatuses = ['Pending', 'Progress', 'Success', 'Fail'] as const;
+export type GameStatus = typeof GameStatuses[number];
 
-export enum CellType {
-  'MineExploded' = -2,
-  'Mine' = -1,
-  'Empty' = 0,
-  'One' = 1,
-  'Two' = 2,
-  'Three' = 3,
-  'Four' = 4,
-  'Five' = 5,
-  'Six' = 6,
-  'Seven' = 7,
-  'Eight' = 8,
-}
+// Board cell types
+export const CellTypes = {
+  MineExploded: -2,
+  Mine: -1,
+  Empty: 0,
+  One: 1,
+  Two: 2,
+  Three: 3,
+  Four: 4,
+  Five: 5,
+  Six: 6,
+  Seven: 7,
+  Eight: 8,
+} as const;
+export type CellType = typeof CellTypes[keyof typeof CellTypes];
 
-export enum MaskType {
-  'Open' = 0,
-  'Closed' = 1,
-  'Marked' = 2,
-  'MarkedWrongly' = 3,
-}
+// Board mask types
+export const MaskTypes = {
+  Open: 0,
+  Closed: 1,
+  Marked: 2,
+  MarkedWrongly: 3,
+} as const;
+export type MaskType = typeof MaskTypes[keyof typeof MaskTypes];
 
 export interface Board {
   rows: number;

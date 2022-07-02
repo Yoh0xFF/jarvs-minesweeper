@@ -1,4 +1,4 @@
-import { DifficultyLevel } from 'game-logic/types';
+import { DifficultyLevel, DifficultyLevels } from 'game-logic/types';
 
 import styles from './Menu.module.scss';
 import RadioButton from './RadioButton';
@@ -11,7 +11,7 @@ interface Props {
 export default function Menu({ difficultyLevel, onNewGame }: Props) {
   return (
     <div className={styles.menu}>
-      {['Beginner', 'Intermediate', 'Expert'].map((x) => (
+      {DifficultyLevels.map((x) => (
         <RadioButton
           key={x}
           difficultyLevel={x as DifficultyLevel}
