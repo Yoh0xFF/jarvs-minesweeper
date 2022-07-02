@@ -14,9 +14,9 @@ export default function Menu({ difficultyLevel, onNewGame }: Props) {
       {DifficultyLevels.map((x) => (
         <RadioButton
           key={x}
-          difficultyLevel={x as DifficultyLevel}
+          difficultyLevel={x}
           checked={difficultyLevel === x}
-          onClick={() => onNewGame(x as DifficultyLevel)}
+          onClick={() => onNewGame(x)}
         />
       ))}
     </div>

@@ -12,6 +12,7 @@ function _setMine(x: number, y: number, board: Board): boolean {
   // Set mine and update hints around it
   cellsGrid[pos] = CellTypes.Mine;
 
+  // Update hints around the mine
   for (const step of steps) {
     const [i, j] = step;
     const nx = x + i;

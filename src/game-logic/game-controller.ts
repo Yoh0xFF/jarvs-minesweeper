@@ -2,28 +2,21 @@ import { Dispatch, useReducer } from 'react';
 
 import { generateNewBoard } from './board-initialize';
 import { markCell, openCell } from './board-update';
-import { Action, DifficultyLevel, GameState } from './types';
+import { Action, DifficultyLevel, GameState, GameStatus } from './types';
+import { boardConfigs } from './utils';
 
-const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
-  ['Beginner', [9, 9, 10]],
-  ['Intermediate', [16, 16, 40]],
-  ['Expert', [16, 30, 99]],
-]);
-
+// Default initial values
 const defaultDifficultyLevel: DifficultyLevel = 'Beginner';
-
-const defaultBoardConfig: [number, number, number] = boardConfigs.get(
+const defaultGameStatus: GameStatus = 'Pending';
+const [defaultRows, defaultCols, defaultBombCount] = boardConfigs.get(
   defaultDifficultyLevel
 ) ?? [0, 0, 0];
 
+// Initial state
 const initialState: GameState = {
   difficultyLevel: defaultDifficultyLevel,
-  gameStatus: 'Pending',
-  board: generateNewBoard(
-    defaultBoardConfig[0],
-    defaultBoardConfig[1],
-    defaultBoardConfig[2]
-  ),
+  gameStatus: defaultGameStatus,
+  board: generateNewBoard(defaultRows, defaultCols, defaultBombCount),
 };
 
 function reducer(state: GameState, action: Action): GameState {
@@ -67,8 +60,6 @@ function reducer(state: GameState, action: Action): GameState {
         gameStatus: 'Progress',
         board: newBoard,
       };
-    default:
-      throw new Error();
   }
 }
 

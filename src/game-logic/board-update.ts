@@ -7,7 +7,7 @@ function _checkIsSuccess(board: Board): boolean {
   for (let i = 0; i < rows * cols; ++i) {
     const notDiscovered =
       cellsGrid[i] !== CellTypes.Mine &&
-      (cellsMask[i] === MaskTypes.Closed || cellsMask[i] === MaskTypes.Closed);
+      (cellsMask[i] === MaskTypes.Closed || cellsMask[i] === MaskTypes.Marked);
 
     if (notDiscovered) return false;
   }
@@ -146,10 +146,13 @@ export function openCell(
 
   switch (maskType) {
     case MaskTypes.Open:
+      // If the users click opened cell,
+      // we try to expand if all mines around it are marked.
       if (!_tryToExpand(x, y, newBoard)) return [newBoard, 'Fail'];
       return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
     case MaskTypes.Marked:
     case MaskTypes.MarkedWrongly:
+      // If the users click marked cell, we should do nothing.
       return [newBoard, 'Progress'];
   }
 
