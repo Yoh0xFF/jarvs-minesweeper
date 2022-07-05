@@ -28,7 +28,7 @@ interface Props {
   gameStatus: GameStatus;
   cellType: CellType;
   maskType: MaskType;
-  onCellClick: (x: number, y: number) => void;
+  onCellOpen: (x: number, y: number) => void;
   onCellMark: (x: number, y: number) => void;
 }
 
@@ -38,7 +38,7 @@ export default function Cell({
   gameStatus,
   cellType,
   maskType,
-  onCellClick,
+  onCellOpen,
   onCellMark,
 }: Props) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
@@ -58,7 +58,7 @@ export default function Cell({
     <div
       onClick={(e) => {
         e.preventDefault();
-        onCellClick(x, y);
+        onCellOpen(x, y);
       }}
       onContextMenu={(e) => {
         e.preventDefault();

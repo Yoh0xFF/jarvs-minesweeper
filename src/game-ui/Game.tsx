@@ -10,7 +10,7 @@ import styles from './Game.module.scss';
 export default function Game() {
   const [state, dispatch] = useGameController();
 
-  const cellClickHandler = (x: number, y: number) => {
+  const openCellHandler = (x: number, y: number) => {
     dispatch({
       type: 'click',
       x,
@@ -18,7 +18,7 @@ export default function Game() {
     });
   };
 
-  const cellMarkHandler = (x: number, y: number) => {
+  const markCellHandler = (x: number, y: number) => {
     dispatch({
       type: 'mark',
       x,
@@ -26,7 +26,7 @@ export default function Game() {
     });
   };
 
-  const resetHandler = () => {
+  const resetGameHandler = () => {
     dispatch({
       type: 'resetGame',
     });
@@ -52,7 +52,7 @@ export default function Game() {
           <Controls
             gameStatus={state.gameStatus}
             bombCount={state.board.bombCount}
-            onReset={resetHandler}
+            onReset={resetGameHandler}
           />
         }
         cellsGrid={
@@ -60,8 +60,8 @@ export default function Game() {
             difficultyLevel={state.difficultyLevel}
             gameStatus={state.gameStatus}
             board={state.board}
-            onCellClick={cellClickHandler}
-            onCellMark={cellMarkHandler}
+            onCellOpen={openCellHandler}
+            onCellMark={markCellHandler}
           />
         }
       />

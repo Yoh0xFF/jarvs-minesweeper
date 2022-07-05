@@ -9,7 +9,7 @@ interface Props {
   difficultyLevel: DifficultyLevel;
   gameStatus: GameStatus;
   board: Board;
-  onCellClick: (x: number, y: number) => void;
+  onCellOpen: (x: number, y: number) => void;
   onCellMark: (x: number, y: number) => void;
 }
 
@@ -17,7 +17,7 @@ export default function CellsGrid({
   difficultyLevel,
   gameStatus,
   board,
-  onCellClick,
+  onCellOpen,
   onCellMark,
 }: Props) {
   const { cols, cellsGrid, cellsMask } = board;
@@ -38,7 +38,7 @@ export default function CellsGrid({
             gameStatus={gameStatus}
             cellType={cellType}
             maskType={cellsMask[i]}
-            onCellClick={onCellClick}
+            onCellOpen={onCellOpen}
             onCellMark={onCellMark}
           />
         );
