@@ -23,6 +23,7 @@ const initialState: GameState = {
   board: generateNewBoard(defaultRows, defaultCols, defaultBombCount),
 };
 
+// State reducer
 function reducer(state: GameState, action: Action): GameState {
   let newBoard, newGameStatus;
   let rows, cols, bombCount;
@@ -67,6 +68,7 @@ function reducer(state: GameState, action: Action): GameState {
   }
 }
 
+// Game controller hook
 export default function useGameController(): [GameState, Dispatch<Action>] {
   const [state, dispatch] = useReducer(reducer, initialState);
   return [state, dispatch];

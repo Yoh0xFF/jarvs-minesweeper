@@ -30,11 +30,13 @@ function _boom(x: number, y: number, board: Board) {
   cellsGrid[pos] = CellTypes.MineExploded;
 
   for (let i = 0; i < rows * cols; ++i) {
+    // When the users lose the game, open all cells with mine.
     if (cellsGrid[i] === CellTypes.Mine) {
       cellsMask[i] = MaskTypes.Open;
       continue;
     }
 
+    // When the users lose the game, point out all cells which are marked wrongly.
     if (cellsGrid[i] !== CellTypes.Mine && cellsMask[i] === MaskTypes.Marked) {
       cellsMask[i] = MaskTypes.MarkedWrongly;
       continue;
@@ -49,6 +51,7 @@ function _expand(x: number, y: number, board: Board) {
   const pos = x * cols + y;
   cellsMask[pos] = MaskTypes.Open;
 
+  // Expand all the empty cells around the opened empty cell.
   while (queue.length > 0) {
     const coordinates = queue.shift();
     if (!coordinates) continue;
@@ -66,17 +69,11 @@ function _expand(x: number, y: number, board: Board) {
 
       if (open) {
         cellsMask[npos] = MaskTypes.Open;
+        // Continue expanding only if the neighbor cell is empty.
         if (cellsGrid[npos] === CellTypes.Empty) queue.push([nx, ny]);
       }
     }
   }
-}
-
-function _open(x: number, y: number, board: Board) {
-  const { cols, cellsMask } = board;
-
-  const pos = x * cols + y;
-  cellsMask[pos] = MaskTypes.Open;
 }
 
 function _tryToExpand(x: number, y: number, board: Board): boolean {
@@ -113,6 +110,13 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
   return true;
 }
 
+function _open(x: number, y: number, board: Board) {
+  const { cols, cellsMask } = board;
+
+  const pos = x * cols + y;
+  cellsMask[pos] = MaskTypes.Open;
+}
+
 function _mark(x: number, y: number, board: Board) {
   const { cols, cellsMask } = board;
 
@@ -121,6 +125,7 @@ function _mark(x: number, y: number, board: Board) {
 
   if (maskValue === MaskTypes.Open) return;
 
+  // If closed, then mark, and unmark otherwise.
   if (maskValue === MaskTypes.Closed) {
     cellsMask[pos] = MaskTypes.Marked;
     board.bombCount -= 1;
