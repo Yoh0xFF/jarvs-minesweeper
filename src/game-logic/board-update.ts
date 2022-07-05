@@ -1,5 +1,5 @@
-import { Board, CellTypes, GameStatus, MaskTypes } from '@app/game-logic/types';
-import { isOnBoard, steps } from '@app/game-logic/utils';
+import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
+import { isOnBoard, steps } from 'game-logic/utils';
 
 function _checkIsSuccess(board: Board): boolean {
   const { rows, cols, cellsGrid, cellsMask } = board;

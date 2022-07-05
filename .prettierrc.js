@@ -6,7 +6,7 @@ module.exports = {
   singleQuote: true,
   jsxSingleQuote: true,
   jsxBracketSameLine: false,
-  importOrder: ["^[./]", "^@app/(.*)$"],
+  importOrder: ["^[./]"],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   bracketSpacing: true

@@ -4,8 +4,8 @@ import {
   CellTypes,
   MaskType,
   MaskTypes,
-} from '@app/game-logic/types';
-import { generateRandomInt, isOnBoard, steps } from '@app/game-logic/utils';
+} from 'game-logic/types';
+import { generateRandomInt, isOnBoard, steps } from 'game-logic/utils';
 
 function _setMine(x: number, y: number, board: Board): boolean {
   const { cols, cellsGrid } = board;

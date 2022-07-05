@@ -1,15 +1,14 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
-
-import styles from './Cell.module.scss';
-
 import {
   CellType,
   CellTypes,
   GameStatus,
   MaskType,
   MaskTypes,
-} from '@app/game-logic/types';
+} from 'game-logic/types';
+import React, { useState } from 'react';
+
+import styles from './Cell.module.scss';
 
 const cellTypeMap = new Map<CellType, string>([
   [CellTypes.Empty, 'cellOpen'],

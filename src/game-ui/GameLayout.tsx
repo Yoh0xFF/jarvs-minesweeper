@@ -1,9 +1,8 @@
 import classNames from 'classnames';
+import { GameStatus } from 'game-logic/types';
 import { ReactNode } from 'react';
 
 import styles from './GameLayout.module.scss';
-
-import { GameStatus } from '@app/game-logic/types';
 
 interface Props {
   gameStatus: GameStatus;
