@@ -1,5 +1,5 @@
-import { useGameController } from 'game-logic/game-controller';
 import { DifficultyLevel } from 'game-logic/types';
+import useGameController from 'game-logic/useGameController';
 import GameLayout from 'game-ui/GameLayout';
 import CellsGrid from 'game-ui/cells-grid/CellsGrid';
 import Controls from 'game-ui/controls/Controls';

@@ -1,11 +1,11 @@
-import { generateNewBoard } from 'game-logic/board-initialize';
-import { markCell, openCell } from 'game-logic/board-update';
+import { generateNewBoard } from 'game-logic/initBoard';
 import {
   Action,
   DifficultyLevel,
   GameState,
   GameStatus,
 } from 'game-logic/types';
+import { markCell, openCell } from 'game-logic/updateBoard';
 import { boardConfigs } from 'game-logic/utils';
 import { Dispatch, useReducer } from 'react';
 
@@ -67,7 +67,7 @@ function reducer(state: GameState, action: Action): GameState {
   }
 }
 
-export function useGameController(): [GameState, Dispatch<Action>] {
+export default function useGameController(): [GameState, Dispatch<Action>] {
   const [state, dispatch] = useReducer(reducer, initialState);
   return [state, dispatch];
 }
