@@ -10,16 +10,16 @@ import React, { useState } from 'react';
 
 import styles from './Cell.module.scss';
 
-const cellTypeMap = new Map<CellType, string>([
-  [CellTypes.Empty, 'cellOpen'],
-  [CellTypes.MineExploded, 'cellMineExploded'],
-  [CellTypes.Mine, 'cellMine'],
+const cellTypeToClassNameMap = new Map<CellType, string>([
+  [CellTypes.Empty, 'open'],
+  [CellTypes.MineExploded, 'mineExploded'],
+  [CellTypes.Mine, 'mine'],
 ]);
 
-const maskTypeMap = new Map<MaskType, string>([
-  [MaskTypes.Closed, 'cellClosed'],
-  [MaskTypes.Marked, 'cellMarked'],
-  [MaskTypes.MarkedWrongly, 'cellMarkedWrongly'],
+const maskTypeToClassNameMap = new Map<MaskType, string>([
+  [MaskTypes.Closed, 'closed'],
+  [MaskTypes.Marked, 'marked'],
+  [MaskTypes.MarkedWrongly, 'markedWrongly'],
 ]);
 
 interface Props {
@@ -43,15 +43,15 @@ export default function Cell({
 }: Props) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
 
-  let cellClassName = 'cellClosed';
+  let cellClassName;
 
   if (maskType === MaskTypes.Open) {
     cellClassName =
       cellType > 0
-        ? `cell${cellType}`
-        : cellTypeMap.get(cellType) ?? 'cellOpen';
+        ? `hint${cellType}`
+        : cellTypeToClassNameMap.get(cellType) ?? 'open';
   } else {
-    cellClassName = maskTypeMap.get(maskType) ?? 'cellClosed';
+    cellClassName = maskTypeToClassNameMap.get(maskType) ?? 'closed';
   }
 
   return ['Pending', 'Progress'].includes(gameStatus) ? (
@@ -73,7 +73,7 @@ export default function Cell({
       className={classNames(
         styles.cell,
         { [styles[cellClassName]]: !mouseDown },
-        { [styles.cellOpen]: mouseDown }
+        { [styles.open]: mouseDown }
       )}
     />
   ) : (

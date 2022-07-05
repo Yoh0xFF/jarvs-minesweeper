@@ -5,38 +5,38 @@
   height: sprite.$cell-asset-h;
   background-image: url('~assets/sprite.png');
 
-  &Closed {
+  &.closed {
     background-position: calc(0 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
-  &Open {
+  &.open {
     background-position: calc(1 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
-  &Marked {
+  &.marked {
     background-position: calc(2 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
-  &MarkedWrongly {
+  &.markedWrongly {
     background-position: calc(7 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
-  &Mine {
+  &.mine {
     background-position: calc(5 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
-  &MineExploded {
+  &.mineExploded {
     background-position: calc(6 * sprite.$cell-assets-hoffset)
       sprite.$cell-assets-voffset;
   }
 
   @for $i from 1 through 8 {
-    &#{$i} {
+    &.hint#{$i} {
       background-position: calc((#{$i} - 1) * #{sprite.$number-assets-hoffset})
         sprite.$number-assets-voffset;
     }

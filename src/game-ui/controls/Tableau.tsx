@@ -36,8 +36,8 @@ export default function Tableau({ number }: Props) {
         className={classNames(
           styles.digit,
           { [styles[`digit${x}`]]: x && x >= 0 },
-          { [styles.digitMinus]: x && x < 0 },
-          { [styles.digitEmpty]: x === undefined }
+          { [styles.minus]: x && x < 0 },
+          { [styles.empty]: x === undefined }
         )}
       />
 
@@ -47,8 +47,8 @@ export default function Tableau({ number }: Props) {
         className={classNames(
           styles.digit,
           { [styles[`digit${y}`]]: y && y >= 0 },
-          { [styles.digitMinus]: y && y < 0 },
-          { [styles.digitEmpty]: y === undefined }
+          { [styles.minus]: y && y < 0 },
+          { [styles.empty]: y === undefined }
         )}
       />
 

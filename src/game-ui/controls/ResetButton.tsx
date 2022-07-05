@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 
 import styles from './ResetButton.module.scss';
 
-const faceTypeMap = new Map<GameStatus, string>([
-  ['Pending', 'faceUnpressed'],
-  ['Progress', 'faceUnpressed'],
-  ['Success', 'faceWin'],
-  ['Fail', 'faceBoom'],
+const gameStatusToClassNameMap = new Map<GameStatus, string>([
+  ['Pending', 'unpressed'],
+  ['Progress', 'unpressed'],
+  ['Success', 'success'],
+  ['Fail', 'fail'],
 ]);
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
 export default function ResetButton({ gameStatus, onReset }: Props) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
 
-  const faceType = faceTypeMap.get(gameStatus) ?? 'faceUnpressed';
+  const className = gameStatusToClassNameMap.get(gameStatus) ?? 'unpressed';
 
   return (
     <div
@@ -29,8 +29,8 @@ export default function ResetButton({ gameStatus, onReset }: Props) {
       onMouseLeave={() => setMouseDown(false)}
       className={classNames(
         styles.face,
-        { [styles[faceType]]: !mouseDown },
-        { [styles.facePressed]: mouseDown }
+        { [styles[className]]: !mouseDown },
+        { [styles.pressed]: mouseDown }
       )}
     />
   );

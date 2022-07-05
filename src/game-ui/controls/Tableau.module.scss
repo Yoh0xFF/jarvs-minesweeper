@@ -17,23 +17,23 @@
     background-image: url('~assets/sprite.png');
 
     @for $i from 1 through 9 {
-      &#{$i} {
+      &.digit#{$i} {
         background-position: calc((#{$i} - 1) * #{sprite.$digit-assets-hoffset})
           sprite.$digit-assets-voffset;
       }
     }
 
-    &0 {
+    &.digit0 {
       background-position: calc(9 * sprite.$digit-assets-hoffset)
         sprite.$digit-assets-voffset;
     }
 
-    &Minus {
+    &.minus {
       background-position: calc(10 * sprite.$digit-assets-hoffset)
         sprite.$digit-assets-voffset;
     }
 
-    &Empty {
+    &.empty {
       background-position: calc(11 * sprite.$digit-assets-hoffset)
         sprite.$digit-assets-voffset;
     }
