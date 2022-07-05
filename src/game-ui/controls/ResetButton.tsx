@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-import { GameStatus } from 'game-logic/types';
 import React, { useState } from 'react';
 
 import styles from './ResetButton.module.scss';
+
+import { GameStatus } from '@app/game-logic/types';
 
 const faceTypeMap = new Map<GameStatus, string>([
   ['Pending', 'faceUnpressed'],

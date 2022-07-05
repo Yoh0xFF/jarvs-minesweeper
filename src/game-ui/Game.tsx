@@ -1,11 +1,11 @@
-import { useGameController } from 'game-logic/game-controller';
-import { DifficultyLevel } from 'game-logic/types';
-
 import styles from './Game.module.scss';
-import GameLayout from './GameLayout';
-import CellsGrid from './cells-grid/CellsGrid';
-import Controls from './controls/Controls';
-import Menu from './menu/Menu';
+
+import { useGameController } from '@app/game-logic/game-controller';
+import { DifficultyLevel } from '@app/game-logic/types';
+import GameLayout from '@app/game-ui/GameLayout';
+import CellsGrid from '@app/game-ui/cells-grid/CellsGrid';
+import Controls from '@app/game-ui/controls/Controls';
+import Menu from '@app/game-ui/menu/Menu';
 
 export default function Game() {
   const [state, dispatch] = useGameController();

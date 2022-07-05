@@ -1,7 +1,7 @@
-import { GameStatus } from 'game-logic/types';
 import React, { useEffect, useState } from 'react';
 
-import Tableau from './Tableau';
+import { GameStatus } from '@app/game-logic/types';
+import Tableau from '@app/game-ui/controls/Tableau';
 
 interface Props {
   gameStatus: GameStatus;

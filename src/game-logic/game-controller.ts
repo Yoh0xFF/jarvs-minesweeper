@@ -1,9 +1,14 @@
 import { Dispatch, useReducer } from 'react';
 
-import { generateNewBoard } from './board-initialize';
-import { markCell, openCell } from './board-update';
-import { Action, DifficultyLevel, GameState, GameStatus } from './types';
-import { boardConfigs } from './utils';
+import { generateNewBoard } from '@app/game-logic/board-initialize';
+import { markCell, openCell } from '@app/game-logic/board-update';
+import {
+  Action,
+  DifficultyLevel,
+  GameState,
+  GameStatus,
+} from '@app/game-logic/types';
+import { boardConfigs } from '@app/game-logic/utils';
 
 // Default initial values
 const defaultDifficultyLevel: DifficultyLevel = 'Beginner';

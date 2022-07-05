@@ -1,10 +1,11 @@
-import { GameStatus } from 'game-logic/types';
 import React from 'react';
 
 import styles from './Controls.module.scss';
-import ResetButton from './ResetButton';
-import Tableau from './Tableau';
-import Timer from './Timer';
+
+import { GameStatus } from '@app/game-logic/types';
+import ResetButton from '@app/game-ui/controls/ResetButton';
+import Tableau from '@app/game-ui/controls/Tableau';
+import Timer from '@app/game-ui/controls/Timer';
 
 interface Props {
   gameStatus: GameStatus;

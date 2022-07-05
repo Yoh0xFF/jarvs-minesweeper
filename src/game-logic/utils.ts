@@ -1,4 +1,4 @@
-import { Board, DifficultyLevel } from './types';
+import { Board, DifficultyLevel } from '@app/game-logic/types';
 
 export const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
   ['Beginner', [9, 9, 10]],

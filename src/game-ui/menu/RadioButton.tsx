@@ -1,7 +1,8 @@
-import { DifficultyLevel } from 'game-logic/types';
 import React from 'react';
 
 import './RadioButton.module.scss';
+
+import { DifficultyLevel } from '@app/game-logic/types';
 
 interface Props {
   difficultyLevel: DifficultyLevel;

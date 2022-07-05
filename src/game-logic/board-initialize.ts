@@ -1,5 +1,11 @@
-import { Board, CellType, CellTypes, MaskType, MaskTypes } from './types';
-import { generateRandomInt, isOnBoard, steps } from './utils';
+import {
+  Board,
+  CellType,
+  CellTypes,
+  MaskType,
+  MaskTypes,
+} from '@app/game-logic/types';
+import { generateRandomInt, isOnBoard, steps } from '@app/game-logic/utils';
 
 function _setMine(x: number, y: number, board: Board): boolean {
   const { cols, cellsGrid } = board;

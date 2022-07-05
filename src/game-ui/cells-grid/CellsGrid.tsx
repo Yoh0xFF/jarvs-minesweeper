@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { Board, DifficultyLevel, GameStatus } from 'game-logic/types';
 import React from 'react';
 
-import Cell from './Cell';
 import styles from './CellsGrid.module.scss';
+
+import { Board, DifficultyLevel, GameStatus } from '@app/game-logic/types';
+import Cell from '@app/game-ui/cells-grid/Cell';
 
 interface Props {
   difficultyLevel: DifficultyLevel;
