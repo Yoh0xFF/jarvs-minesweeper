@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import styles from './ResetButton.module.scss';
 
-const gameStatusToClassNameMap = new Map<GameStatus, string>([
+const _gameStatusToClassNameMap = new Map<GameStatus, string>([
   ['Pending', 'unpressed'],
   ['Progress', 'unpressed'],
   ['Success', 'success'],
@@ -19,7 +19,7 @@ interface Props {
 export default function ResetButton({ gameStatus, onReset }: Props) {
   const [mouseDown, setMouseDown] = useState<boolean>(false);
 
-  const className = gameStatusToClassNameMap.get(gameStatus) ?? 'unpressed';
+  const className = _gameStatusToClassNameMap.get(gameStatus) ?? 'unpressed';
 
   return (
     <div
