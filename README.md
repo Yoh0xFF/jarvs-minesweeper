@@ -2,7 +2,7 @@
 
 ## Description
 
-Minesweeper is a single-player puzzle video game. The game's objective is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them, with help from clues about the number of neighboring mines in each field.
+Minesweeper is a single-player puzzle video game. The game's objective is to clear a rectangular board containing hidden `mines` or bombs without detonating any of them, with help from clues about the number of neighboring mines in each field.
 
 ## Gameplay
 
@@ -10,7 +10,7 @@ A game of Minesweeper begins when the player makes the first click on a board wi
 
 To win the game, players must open all non-mine cells without opening any mines, and flagging all the mined cells is not required.
 
-The "score" of the game is the time taken to complete it. The timer starts when the player makes their first click and ends when they make their last click.
+The `score` of the game is the time taken to complete it. The timer starts when the player makes their first click and ends when they make their last click.
 
 ## Sprite Sheet
 
