@@ -1,11 +1,11 @@
-import { generateNewBoard } from 'game-logic/initBoard';
+import { generateNewBoard } from 'game-logic/gameStateInit';
+import { markCell, openCell } from 'game-logic/gameStateUpdate';
 import {
   Action,
   DifficultyLevel,
   GameState,
   GameStatus,
 } from 'game-logic/types';
-import { markCell, openCell } from 'game-logic/updateBoard';
 import { boardConfigs } from 'game-logic/utils';
 import { Dispatch, useReducer } from 'react';
 

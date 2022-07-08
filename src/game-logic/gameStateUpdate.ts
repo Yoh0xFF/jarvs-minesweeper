@@ -1,4 +1,4 @@
-import { swapMine } from 'game-logic/initBoard';
+import { swapMine } from 'game-logic/gameStateInit';
 import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
 import { copyBoard, isOnBoard, steps } from 'game-logic/utils';
 
@@ -26,7 +26,7 @@ function _checkIsSuccess(board: Board): boolean {
   return true;
 }
 
-function _boom(x: number, y: number, board: Board) {
+function _fail(x: number, y: number, board: Board) {
   const { rows, cols, grid, mask } = board;
 
   mask[x][y] = MaskTypes.Open;
@@ -93,7 +93,7 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
 
     if (mask[nx][ny] === MaskTypes.Marked)
       if (grid[nx][ny] !== CellTypes.Mine) {
-        _boom(nx, ny, board);
+        _fail(nx, ny, board);
         return false;
       } else count += 1;
   }
@@ -164,7 +164,7 @@ export function openCell(
       return [newBoard, 'Progress'];
     }
 
-    _boom(x, y, newBoard);
+    _fail(x, y, newBoard);
     return [newBoard, 'Fail'];
   }
 
