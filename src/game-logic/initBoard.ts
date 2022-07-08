@@ -21,8 +21,7 @@ function _setMine(x: number, y: number, board: Board): boolean {
   // Update hints around the mine
   for (const step of steps) {
     const [i, j] = step;
-    const nx = x + i;
-    const ny = y + j;
+    const [nx, ny] = [x + i, y + j];
     const npos = nx * cols + ny;
 
     const update =
@@ -39,10 +38,8 @@ export function generateNewBoard(
   cols: number,
   bombCount: number
 ): Board {
-  const cellsGrid = Array(rows * cols).fill(CellTypes.Empty) as Array<CellType>;
-  const cellsMask = Array(rows * cols).fill(
-    MaskTypes.Closed
-  ) as Array<MaskType>;
+  const cellsGrid: Array<CellType> = Array(rows * cols).fill(CellTypes.Empty);
+  const cellsMask: Array<MaskType> = Array(rows * cols).fill(MaskTypes.Closed);
 
   const board: Board = {
     rows,

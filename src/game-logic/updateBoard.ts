@@ -60,8 +60,7 @@ function _expand(x: number, y: number, board: Board) {
 
     for (const step of steps) {
       const [i, j] = step;
-      const nx = x + i;
-      const ny = y + j;
+      const [nx, ny] = [x + i, y + j];
       const npos = nx * cols + ny;
 
       const open =
@@ -86,8 +85,7 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
   // if all mines are marked correctly then expand.
   for (const step of steps) {
     const [i, j] = step;
-    const nx = x + i;
-    const ny = y + j;
+    const [nx, ny] = [x + i, y + j];
     const npos = nx * cols + ny;
 
     if (!isOnBoard(nx, ny, board)) {
