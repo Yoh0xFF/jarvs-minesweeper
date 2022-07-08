@@ -1,3 +1,4 @@
+import { swapMine } from 'game-logic/initBoard';
 import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
 import { isOnBoard, steps } from 'game-logic/utils';
 
@@ -93,18 +94,13 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
     const [i, j] = step;
     const [nx, ny] = [x + i, y + j];
 
-    if (!isOnBoard(nx, ny, board)) {
-      continue;
-    }
+    if (!isOnBoard(nx, ny, board)) continue;
 
-    if (cellsMask[nx][ny] === MaskTypes.Marked) {
+    if (cellsMask[nx][ny] === MaskTypes.Marked)
       if (cellsGrid[nx][ny] !== CellTypes.Mine) {
         _boom(nx, ny, board);
         return false;
-      } else {
-        count += 1;
-      }
-    }
+      } else count += 1;
   }
 
   if (count < cellsGrid[x][y]) return true;
@@ -114,9 +110,12 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
 }
 
 function _open(x: number, y: number, board: Board) {
-  const { cellsMask } = board;
+  const { cellsGrid, cellsMask } = board;
 
   cellsMask[x][y] = MaskTypes.Open;
+
+  // If the users click an empty cell, expand all the blank cells around it.
+  if (cellsGrid[x][y] === CellTypes.Empty) _expand(x, y, board);
 }
 
 function _mark(x: number, y: number, board: Board) {
@@ -139,7 +138,8 @@ function _mark(x: number, y: number, board: Board) {
 export function openCell(
   x: number,
   y: number,
-  board: Board
+  board: Board,
+  isFirstOpen: boolean
 ): [Board, GameStatus] {
   const { rows, cellsGrid, cellsMask } = board;
 
@@ -152,32 +152,35 @@ export function openCell(
   const cellType = cellsGrid[x][y];
   const maskType = cellsMask[x][y];
 
-  switch (maskType) {
-    case MaskTypes.Open:
-      // If the users click opened cell,
-      // we try to expand if all mines around it are marked.
-      if (!_tryToExpand(x, y, newBoard)) return [newBoard, 'Fail'];
-      return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
-    case MaskTypes.Marked:
-    case MaskTypes.MarkedWrongly:
-      // If the users click marked cell, we should do nothing.
-      return [newBoard, 'Progress'];
+  // If the users click opened cell,
+  // we try to expand if all mines around it are marked.
+  if (maskType === MaskTypes.Open) {
+    if (!_tryToExpand(x, y, newBoard)) return [newBoard, 'Fail'];
+    return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
   }
 
-  switch (cellType) {
-    case CellTypes.Mine:
-      // If the users click the cell with mine, finish the game.
-      _boom(x, y, newBoard);
-      return [newBoard, 'Fail'];
-    case CellTypes.Empty:
-      // If the users click an empty cell, expand all the blank cells around it.
-      _expand(x, y, newBoard);
-      return [newBoard, 'Progress'];
-    default:
-      // If the users click the cell with a hint, open it.
-      _open(x, y, newBoard);
-      return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
+  // If the users click marked cell, we should do nothing.
+  if (maskType === MaskTypes.Marked || maskType === MaskTypes.MarkedWrongly) {
+    return [newBoard, 'Progress'];
   }
+
+  // If the users click the cell with mine, finish the game.
+  if (cellType === CellTypes.Mine) {
+    // First open should always be successful.
+    // If cell contains mine, we need to swap it.
+    if (isFirstOpen) {
+      swapMine(x, y, newBoard);
+      _open(x, y, newBoard);
+      return [newBoard, 'Progress'];
+    }
+
+    _boom(x, y, newBoard);
+    return [newBoard, 'Fail'];
+  }
+
+  // If the users click the cell with a hint, open it.
+  _open(x, y, newBoard);
+  return [newBoard, _checkIsSuccess(newBoard) ? 'Success' : 'Progress'];
 }
 
 export function markCell(x: number, y: number, board: Board): Board {

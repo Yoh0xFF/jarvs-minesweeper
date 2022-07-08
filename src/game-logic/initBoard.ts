@@ -17,17 +17,46 @@ function _setMine(x: number, y: number, board: Board): boolean {
   cellsGrid[x][y] = CellTypes.Mine;
 
   // Update hints around the mine
+  _updateHints(x, y, board);
+
+  return true;
+}
+
+function _updateHints(x: number, y: number, board: Board) {
+  const { cellsGrid } = board;
+
+  // Increment hints around the cell if it contains mine and decrement otherwise.
+  const increment = cellsGrid[x][y] === CellTypes.Mine;
+  const decrement = cellsGrid[x][y] !== CellTypes.Mine;
+
   for (const step of steps) {
     const [i, j] = step;
     const [nx, ny] = [x + i, y + j];
 
-    const update =
+    const updateHint =
       isOnBoard(nx, ny, board) && cellsGrid[nx][ny] !== CellTypes.Mine;
 
-    if (update) cellsGrid[nx][ny] += 1;
+    if (updateHint && increment) cellsGrid[nx][ny] += 1;
+    if (updateHint && decrement && cellsGrid[nx][ny] > 0)
+      cellsGrid[nx][ny] -= 1;
+  }
+}
+
+function _countMines(x: number, y: number, board: Board): CellType {
+  const { cellsGrid } = board;
+  let count = CellTypes.Empty;
+
+  for (const step of steps) {
+    const [i, j] = step;
+    const [nx, ny] = [x + i, y + j];
+
+    const hasMine =
+      isOnBoard(nx, ny, board) && cellsGrid[nx][ny] === CellTypes.Mine;
+
+    if (hasMine) count += 1;
   }
 
-  return true;
+  return count;
 }
 
 export function generateNewBoard(
@@ -59,4 +88,20 @@ export function generateNewBoard(
   }
 
   return board;
+}
+
+export function swapMine(x: number, y: number, board: Board) {
+  const { rows, cols, cellsGrid } = board;
+
+  if (cellsGrid[x][y] !== CellTypes.Mine) return;
+
+  cellsGrid[x][y] = _countMines(x, y, board);
+  _updateHints(x, y, board);
+
+  while (true) {
+    const nx = generateRandomInt(rows);
+    const ny = generateRandomInt(cols);
+
+    if (_setMine(nx, ny, board)) break;
+  }
 }
