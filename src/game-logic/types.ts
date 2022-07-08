@@ -35,8 +35,8 @@ export interface Board {
   readonly rows: number;
   readonly cols: number;
   bombCount: number;
-  cellsGrid: Array<Array<CellType>>;
-  cellsMask: Array<Array<MaskType>>;
+  grid: Array<Array<CellType>>;
+  mask: Array<Array<MaskType>>;
 }
 
 export interface GameState {

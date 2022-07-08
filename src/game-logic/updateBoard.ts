@@ -3,14 +3,13 @@ import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
 import { isOnBoard, steps } from 'game-logic/utils';
 
 function _checkIsSuccess(board: Board): boolean {
-  const { rows, cols, cellsGrid, cellsMask } = board;
+  const { rows, cols, grid, mask } = board;
 
   for (let x = 0; x < rows; ++x) {
     for (let y = 0; y < cols; ++y) {
-      const isWithoutMine = cellsGrid[x][y] !== CellTypes.Mine;
+      const isWithoutMine = grid[x][y] !== CellTypes.Mine;
       const isClosedOrMarked =
-        cellsMask[x][y] === MaskTypes.Closed ||
-        cellsMask[x][y] === MaskTypes.Marked;
+        mask[x][y] === MaskTypes.Closed || mask[x][y] === MaskTypes.Marked;
 
       // Users win the game when they open every cell without mine.
       if (isWithoutMine && isClosedOrMarked) return false;
@@ -20,8 +19,7 @@ function _checkIsSuccess(board: Board): boolean {
   // When the users win the game, mark all cells with mine.
   for (let x = 0; x < rows; ++x)
     for (let y = 0; y < cols; ++y)
-      if (cellsMask[x][y] === MaskTypes.Closed)
-        cellsMask[x][y] = MaskTypes.Marked;
+      if (mask[x][y] === MaskTypes.Closed) mask[x][y] = MaskTypes.Marked;
 
   board.bombCount = 0;
 
@@ -29,25 +27,22 @@ function _checkIsSuccess(board: Board): boolean {
 }
 
 function _boom(x: number, y: number, board: Board) {
-  const { rows, cols, cellsGrid, cellsMask } = board;
+  const { rows, cols, grid, mask } = board;
 
-  cellsMask[x][y] = MaskTypes.Open;
-  cellsGrid[x][y] = CellTypes.MineExploded;
+  mask[x][y] = MaskTypes.Open;
+  grid[x][y] = CellTypes.MineExploded;
 
   for (let x = 0; x < rows; ++x) {
     for (let y = 0; y < cols; ++y) {
       // When the users lose the game, open all cells with mine.
-      if (cellsGrid[x][y] === CellTypes.Mine) {
-        cellsMask[x][y] = MaskTypes.Open;
+      if (grid[x][y] === CellTypes.Mine) {
+        mask[x][y] = MaskTypes.Open;
         continue;
       }
 
       // When the users lose the game, point out all cells which are marked wrongly.
-      if (
-        cellsGrid[x][y] !== CellTypes.Mine &&
-        cellsMask[x][y] === MaskTypes.Marked
-      ) {
-        cellsMask[x][y] = MaskTypes.MarkedWrongly;
+      if (grid[x][y] !== CellTypes.Mine && mask[x][y] === MaskTypes.Marked) {
+        mask[x][y] = MaskTypes.MarkedWrongly;
         continue;
       }
     }
@@ -55,10 +50,10 @@ function _boom(x: number, y: number, board: Board) {
 }
 
 function _expand(x: number, y: number, board: Board) {
-  const { cellsGrid, cellsMask } = board;
+  const { grid, mask } = board;
 
   var queue = [[x, y]];
-  cellsMask[x][y] = MaskTypes.Open;
+  mask[x][y] = MaskTypes.Open;
 
   // Expand all the empty cells around the opened empty cell.
   while (queue.length > 0) {
@@ -72,19 +67,19 @@ function _expand(x: number, y: number, board: Board) {
       const [nx, ny] = [x + i, y + j];
 
       const open =
-        isOnBoard(nx, ny, board) && cellsMask[nx][ny] === MaskTypes.Closed;
+        isOnBoard(nx, ny, board) && mask[nx][ny] === MaskTypes.Closed;
 
       if (open) {
-        cellsMask[nx][ny] = MaskTypes.Open;
+        mask[nx][ny] = MaskTypes.Open;
         // Continue expanding only if the neighbor cell is empty.
-        if (cellsGrid[nx][ny] === CellTypes.Empty) queue.push([nx, ny]);
+        if (grid[nx][ny] === CellTypes.Empty) queue.push([nx, ny]);
       }
     }
   }
 }
 
 function _tryToExpand(x: number, y: number, board: Board): boolean {
-  const { cellsGrid, cellsMask } = board;
+  const { grid, mask } = board;
 
   let count = 0;
 
@@ -96,41 +91,41 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
 
     if (!isOnBoard(nx, ny, board)) continue;
 
-    if (cellsMask[nx][ny] === MaskTypes.Marked)
-      if (cellsGrid[nx][ny] !== CellTypes.Mine) {
+    if (mask[nx][ny] === MaskTypes.Marked)
+      if (grid[nx][ny] !== CellTypes.Mine) {
         _boom(nx, ny, board);
         return false;
       } else count += 1;
   }
 
-  if (count < cellsGrid[x][y]) return true;
+  if (count < grid[x][y]) return true;
 
   _expand(x, y, board);
   return true;
 }
 
 function _open(x: number, y: number, board: Board) {
-  const { cellsGrid, cellsMask } = board;
+  const { grid, mask } = board;
 
-  cellsMask[x][y] = MaskTypes.Open;
+  mask[x][y] = MaskTypes.Open;
 
   // If the users click an empty cell, expand all the blank cells around it.
-  if (cellsGrid[x][y] === CellTypes.Empty) _expand(x, y, board);
+  if (grid[x][y] === CellTypes.Empty) _expand(x, y, board);
 }
 
 function _mark(x: number, y: number, board: Board) {
-  const { cellsMask } = board;
+  const { mask } = board;
 
-  const maskValue = cellsMask[x][y];
+  const maskValue = mask[x][y];
 
   if (maskValue === MaskTypes.Open) return;
 
   // If closed, then mark, and unmark otherwise.
   if (maskValue === MaskTypes.Closed) {
-    cellsMask[x][y] = MaskTypes.Marked;
+    mask[x][y] = MaskTypes.Marked;
     board.bombCount -= 1;
   } else {
-    cellsMask[x][y] = MaskTypes.Closed;
+    mask[x][y] = MaskTypes.Closed;
     board.bombCount += 1;
   }
 }
@@ -141,16 +136,16 @@ export function openCell(
   board: Board,
   isFirstOpen: boolean
 ): [Board, GameStatus] {
-  const { rows, cellsGrid, cellsMask } = board;
+  const { rows, grid, mask } = board;
 
   const newBoard = {
     ...board,
-    cellsGrid: Array.from({ length: rows }, (_, x) => [...cellsGrid[x]]),
-    cellsMask: Array.from({ length: rows }, (_, x) => [...cellsMask[x]]),
+    grid: Array.from({ length: rows }, (_, x) => [...grid[x]]),
+    mask: Array.from({ length: rows }, (_, x) => [...mask[x]]),
   };
 
-  const cellType = cellsGrid[x][y];
-  const maskType = cellsMask[x][y];
+  const cellType = grid[x][y];
+  const maskType = mask[x][y];
 
   // If the users click opened cell,
   // we try to expand if all mines around it are marked.
@@ -184,12 +179,12 @@ export function openCell(
 }
 
 export function markCell(x: number, y: number, board: Board): Board {
-  const { rows, cellsGrid, cellsMask } = board;
+  const { rows, grid, mask } = board;
 
   const newBoard = {
     ...board,
-    cellsGrid: Array.from({ length: rows }, (_, x) => [...cellsGrid[x]]),
-    cellsMask: Array.from({ length: rows }, (_, x) => [...cellsMask[x]]),
+    grid: Array.from({ length: rows }, (_, x) => [...grid[x]]),
+    mask: Array.from({ length: rows }, (_, x) => [...mask[x]]),
   };
 
   _mark(x, y, newBoard);

@@ -1,8 +1,8 @@
 import { DifficultyLevel } from 'game-logic/types';
 import useGameController from 'game-logic/useGameController';
 import GameLayout from 'game-ui/GameLayout';
-import CellsGrid from 'game-ui/cells-grid/CellsGrid';
 import Controls from 'game-ui/controls/Controls';
+import Grid from 'game-ui/grid/Grid';
 import Menu from 'game-ui/menu/Menu';
 
 import styles from './Game.module.scss';
@@ -55,8 +55,8 @@ export default function Game() {
             onReset={resetGameHandler}
           />
         }
-        cellsGrid={
-          <CellsGrid
+        grid={
+          <Grid
             difficultyLevel={state.difficultyLevel}
             gameStatus={state.gameStatus}
             board={state.board}

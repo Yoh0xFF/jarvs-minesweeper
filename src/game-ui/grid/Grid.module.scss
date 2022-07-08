@@ -1,23 +1,23 @@
 @use '~styles/sprite';
 @use '~styles/grid';
 
-.cellsGrid {
+.grid {
   display: inline-grid;
   background: silver;
 
-  &Beginner {
+  &.beginner {
     grid-template:
       repeat(grid.$beginner-rows, sprite.$cell-asset-h)
       / repeat(grid.$beginner-cols, sprite.$cell-asset-w);
   }
 
-  &Intermediate {
+  &.intermediate {
     grid-template:
       repeat(grid.$intermediate-rows, sprite.$cell-asset-h)
       / repeat(grid.$intermediate-cols, sprite.$cell-asset-w);
   }
 
-  &Expert {
+  &.expert {
     grid-template:
       repeat(grid.$expert-rows, sprite.$cell-asset-h)
       / repeat(grid.$expert-cols, sprite.$cell-asset-w);

@@ -8,7 +8,7 @@ import styles from './GameLayout.module.scss';
 interface Props {
   gameStatus: GameStatus;
   controls: ReactNode;
-  cellsGrid: ReactNode;
+  grid: ReactNode;
 }
 
 function _fire(particleRatio: number, opts: confetti.Options) {
@@ -44,7 +44,7 @@ function _runConfettiAnimation() {
   });
 }
 
-export default function GameLayout({ gameStatus, controls, cellsGrid }: Props) {
+export default function GameLayout({ gameStatus, controls, grid }: Props) {
   useEffect(() => {
     if (gameStatus !== 'Success') return;
 
@@ -62,7 +62,7 @@ export default function GameLayout({ gameStatus, controls, cellsGrid }: Props) {
       </section>
 
       <section>
-        <div>{cellsGrid}</div>
+        <div>{grid}</div>
       </section>
     </div>
   );
