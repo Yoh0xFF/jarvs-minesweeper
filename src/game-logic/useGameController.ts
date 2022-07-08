@@ -49,7 +49,7 @@ function reducer(state: GameState, action: Action): GameState {
         gameStatus: 'Pending',
         board: generateNewBoard(rows, cols, bombCount),
       };
-    case 'click':
+    case 'open':
       const isFirstOpen = state.gameStatus === 'Pending';
       [newBoard, newGameStatus] = openCell(
         action.x,

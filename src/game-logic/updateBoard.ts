@@ -1,6 +1,6 @@
 import { swapMine } from 'game-logic/initBoard';
 import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
-import { isOnBoard, steps } from 'game-logic/utils';
+import { copyBoard, isOnBoard, steps } from 'game-logic/utils';
 
 function _checkIsSuccess(board: Board): boolean {
   const { rows, cols, grid, mask } = board;
@@ -136,14 +136,9 @@ export function openCell(
   board: Board,
   isFirstOpen: boolean
 ): [Board, GameStatus] {
-  const { rows, grid, mask } = board;
+  const newBoard = copyBoard(board);
 
-  const newBoard = {
-    ...board,
-    grid: Array.from({ length: rows }, (_, x) => [...grid[x]]),
-    mask: Array.from({ length: rows }, (_, x) => [...mask[x]]),
-  };
-
+  const { grid, mask } = newBoard;
   const cellType = grid[x][y];
   const maskType = mask[x][y];
 
@@ -179,13 +174,7 @@ export function openCell(
 }
 
 export function markCell(x: number, y: number, board: Board): Board {
-  const { rows, grid, mask } = board;
-
-  const newBoard = {
-    ...board,
-    grid: Array.from({ length: rows }, (_, x) => [...grid[x]]),
-    mask: Array.from({ length: rows }, (_, x) => [...mask[x]]),
-  };
+  const newBoard = copyBoard(board);
 
   _mark(x, y, newBoard);
 

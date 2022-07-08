@@ -12,7 +12,7 @@ export default function Game() {
 
   const openCellHandler = (x: number, y: number) => {
     dispatch({
-      type: 'click',
+      type: 'open',
       x,
       y,
     });

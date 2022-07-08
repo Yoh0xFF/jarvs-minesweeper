@@ -1,11 +1,10 @@
+import { Board, CellType, CellTypes } from 'game-logic/types';
 import {
-  Board,
-  CellType,
-  CellTypes,
-  MaskType,
-  MaskTypes,
-} from 'game-logic/types';
-import { generateRandomInt, isOnBoard, steps } from 'game-logic/utils';
+  createBoard,
+  generateRandomInt,
+  isOnBoard,
+  steps,
+} from 'game-logic/utils';
 
 function _setMine(x: number, y: number, board: Board): boolean {
   const { grid } = board;
@@ -62,20 +61,7 @@ export function generateNewBoard(
   cols: number,
   bombCount: number
 ): Board {
-  const grid: Array<Array<CellType>> = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => CellTypes.Empty)
-  );
-  const mask: Array<Array<MaskType>> = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => MaskTypes.Closed)
-  );
-
-  const board: Board = {
-    rows,
-    cols,
-    bombCount,
-    grid,
-    mask,
-  };
+  const board = createBoard(rows, cols, bombCount);
 
   let count = 0;
   while (count < bombCount) {
