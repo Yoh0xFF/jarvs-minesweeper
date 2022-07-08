@@ -20,29 +20,26 @@ export default function CellsGrid({
   onCellOpen,
   onCellMark,
 }: Props) {
-  const { cols, cellsGrid, cellsMask } = board;
+  const { cellsGrid, cellsMask } = board;
 
   const gridClassName = `cellsGrid${difficultyLevel}`;
 
   return (
     <div className={classNames(styles.cellsGrid, styles[gridClassName])}>
-      {cellsGrid.map((cellType, i) => {
-        const x = Math.floor(i / cols);
-        const y = i % cols;
-
-        return (
+      {cellsGrid.map((row, x) =>
+        row.map((_, y) => (
           <Cell
             key={`cell-${x}-${y}`}
             x={x}
             y={y}
             gameStatus={gameStatus}
-            cellType={cellType}
-            maskType={cellsMask[i]}
+            cellType={cellsGrid[x][y]}
+            maskType={cellsMask[x][y]}
             onCellOpen={onCellOpen}
             onCellMark={onCellMark}
           />
-        );
-      })}
+        ))
+      )}
     </div>
   );
 }

@@ -32,11 +32,11 @@ export const MaskTypes = {
 export type MaskType = typeof MaskTypes[keyof typeof MaskTypes];
 
 export interface Board {
-  rows: number;
-  cols: number;
+  readonly rows: number;
+  readonly cols: number;
   bombCount: number;
-  cellsGrid: Array<CellType>;
-  cellsMask: Array<MaskType>;
+  cellsGrid: Array<Array<CellType>>;
+  cellsMask: Array<Array<MaskType>>;
 }
 
 export interface GameState {
