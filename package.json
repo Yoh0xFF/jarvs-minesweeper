@@ -1,7 +1,7 @@
 {
   "name": "jarvs-minesweeper",
   "description": "JARVS(Just A Rather Very Simple) Minesweeper",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Ioram Gordadze <Yoh0xFF@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/Yoh0xFF/jarvs-minesweeper",
