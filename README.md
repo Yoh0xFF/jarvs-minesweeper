@@ -14,4 +14,4 @@ The `score` of the game is the time taken to complete it. The timer starts when 
 
 ## Sprite Sheet
 
-I downloaded the game's sprite sheet the [Spriters Resource](https://www.spriters-resource.com/pc_computer/minesweeper/sheet/19849/) website, and the credits for `Winmine 31/NT and 2000+` resources go to [Black Squirrel](https://www.spriters-resource.com/submitter/Black+Squirrel/).
+I downloaded the game's sprite sheet from the [Spriters Resource](https://www.spriters-resource.com/pc_computer/minesweeper/sheet/19849/) website, and the credits for `Winmine 31/NT and 2000+` resources go to [Black Squirrel](https://www.spriters-resource.com/submitter/Black+Squirrel/).
