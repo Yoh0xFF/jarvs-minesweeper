@@ -11,9 +11,7 @@ export default function Timer({ gameStatus }: Props) {
 
   useEffect(() => {
     if (gameStatus !== 'Progress') {
-      if (gameStatus === 'Pending') {
-        setTime(0);
-      }
+      if (gameStatus === 'Pending') setTime(0);
       return;
     }
 

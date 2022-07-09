@@ -38,9 +38,8 @@ export default function Game() {
     if (
       state.gameStatus === 'Pending' &&
       state.board.grid[x][y] === CellTypes.Mine
-    ) {
+    )
       board = swapMine(x, y, state.board);
-    }
 
     dispatch({
       type: 'open',

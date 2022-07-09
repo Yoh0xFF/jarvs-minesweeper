@@ -45,14 +45,12 @@ export default function Cell({
 
   let cellClassName;
 
-  if (maskType === MaskTypes.Open) {
+  if (maskType === MaskTypes.Open)
     cellClassName =
       cellType > 0
         ? `hint${cellType}`
         : _cellTypeToClassNameMap.get(cellType) ?? 'open';
-  } else {
-    cellClassName = _maskTypeToClassNameMap.get(maskType) ?? 'closed';
-  }
+  else cellClassName = _maskTypeToClassNameMap.get(maskType) ?? 'closed';
 
   return ['Pending', 'Progress'].includes(gameStatus) ? (
     <div

@@ -148,9 +148,8 @@ export function openCell(
   }
 
   // If the users click marked cell, we should do nothing.
-  if (maskType === MaskTypes.Marked || maskType === MaskTypes.MarkedWrongly) {
+  if (maskType === MaskTypes.Marked || maskType === MaskTypes.MarkedWrongly)
     return [board, 'Progress'];
-  }
 
   // If the users click the cell with mine, finish the game.
   if (cellType === CellTypes.Mine) {
