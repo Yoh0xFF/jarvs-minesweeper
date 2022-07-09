@@ -13,7 +13,7 @@ export default function Game() {
   const [state, dispatch] = useGameController();
 
   const resetGameHandler = () => {
-    // We need to generate board in handler because the reducer needs to be pure.
+    // We need to generate board in the handler because the reducer needs to be pure.
     const board = generateNewBoard(state.difficultyLevel);
 
     dispatch({
@@ -24,7 +24,7 @@ export default function Game() {
   };
 
   const newGameHandler = (difficultyLevel: DifficultyLevel) => {
-    // We need to generate board in handler because the reducer needs to be pure.
+    // We need to generate board in the handler because the reducer needs to be pure.
     const board = generateNewBoard(difficultyLevel);
 
     dispatch({
@@ -37,6 +37,7 @@ export default function Game() {
   const openCellHandler = (x: number, y: number) => {
     // First open should always be successful.
     // If cell contains mine, we need to swap it.
+    // We need to swap mines in the handler because the reducer needs to be pure.
     let board;
     if (
       state.gameStatus === 'Pending' &&
