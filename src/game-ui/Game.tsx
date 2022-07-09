@@ -1,7 +1,6 @@
 import { generateNewBoard } from 'game-logic/gameStateInit';
 import { DifficultyLevel } from 'game-logic/types';
 import useGameController from 'game-logic/useGameController';
-import { boardConfigs } from 'game-logic/utils';
 import GameLayout from 'game-ui/GameLayout';
 import Controls from 'game-ui/controls/Controls';
 import Grid from 'game-ui/grid/Grid';
@@ -30,26 +29,19 @@ export default function Game() {
   };
 
   const resetGameHandler = () => {
-    const config = boardConfigs.get(state.difficultyLevel);
-    if (!config) return;
-    const [rows, cols, bombCount] = config;
-
     // We need to generate board in handler because the reducer needs to be pure.
-    const board = generateNewBoard(rows, cols, bombCount);
+    const board = generateNewBoard(state.difficultyLevel);
 
     dispatch({
-      type: 'resetGame',
+      type: 'newGame',
+      difficultyLevel: state.difficultyLevel,
       board,
     });
   };
 
   const newGameHandler = (difficultyLevel: DifficultyLevel) => {
-    const config = boardConfigs.get(difficultyLevel);
-    if (!config) return;
-    const [rows, cols, bombCount] = config;
-
     // We need to generate board in handler because the reducer needs to be pure.
-    const board = generateNewBoard(rows, cols, bombCount);
+    const board = generateNewBoard(difficultyLevel);
 
     dispatch({
       type: 'newGame',

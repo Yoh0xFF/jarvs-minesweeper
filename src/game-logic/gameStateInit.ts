@@ -1,5 +1,6 @@
-import { Board, CellType, CellTypes } from 'game-logic/types';
+import { Board, CellType, CellTypes, DifficultyLevel } from 'game-logic/types';
 import {
+  boardConfigs,
   createBoard,
   generateRandomInt,
   isOnBoard,
@@ -56,11 +57,14 @@ function _countMines(x: number, y: number, board: Board): CellType {
   return count;
 }
 
-export function generateNewBoard(
-  rows: number,
-  cols: number,
-  bombCount: number
-): Board {
+export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
+  const config = boardConfigs.get(difficultyLevel);
+  if (!config)
+    throw new Error(
+      `Config not found for the difficulty level: ${difficultyLevel}`
+    );
+  const [rows, cols, bombCount] = config;
+
   const board = createBoard(rows, cols, bombCount);
 
   let count = 0;

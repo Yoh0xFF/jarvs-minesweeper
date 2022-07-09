@@ -29,12 +29,6 @@ function reducer(state: GameState, action: Action): GameState {
         gameStatus: 'Pending',
         board: action.board,
       };
-    case 'resetGame':
-      return {
-        ...state,
-        gameStatus: 'Pending',
-        board: action.board,
-      };
     case 'open':
       const isFirstOpen = state.gameStatus === 'Pending';
       [newBoard, newGameStatus] = openCell(
