@@ -1,5 +1,7 @@
 # JARVS(Just A Rather Very Simple) Minesweeper
 
+You can play the game [here](https://yoh0xff.github.io/jarvs-minesweeper-host/).
+
 ## Description
 
 Minesweeper is a single-player puzzle video game. The game's objective is to clear a rectangular board containing hidden `mines` or bombs without detonating any of them, with help from clues about the number of neighboring mines in each field.
