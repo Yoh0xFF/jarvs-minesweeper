@@ -1,4 +1,3 @@
-import { generateNewBoard } from 'game-logic/gameStateInit';
 import { markCell, openCell } from 'game-logic/gameStateUpdate';
 import {
   Action,
@@ -6,48 +5,35 @@ import {
   GameState,
   GameStatus,
 } from 'game-logic/types';
-import { boardConfigs } from 'game-logic/utils';
 import { Dispatch, useReducer } from 'react';
 
 // Default initial values
 const defaultDifficultyLevel: DifficultyLevel = 'Beginner';
 const defaultGameStatus: GameStatus = 'Pending';
-const [defaultRows, defaultCols, defaultBombCount] = boardConfigs.get(
-  defaultDifficultyLevel
-) ?? [0, 0, 0];
 
 // Initial state
 const initialState: GameState = {
   difficultyLevel: defaultDifficultyLevel,
   gameStatus: defaultGameStatus,
-  board: generateNewBoard(defaultRows, defaultCols, defaultBombCount),
+  board: { rows: 0, cols: 0, bombCount: 0, grid: [], mask: [] },
 };
 
 // State reducer
 function reducer(state: GameState, action: Action): GameState {
   let newBoard, newGameStatus;
-  let rows, cols, bombCount;
 
   switch (action.type) {
     case 'newGame':
-      [rows, cols, bombCount] = boardConfigs.get(action.difficultyLevel) ?? [
-        0, 0, 0,
-      ];
-
       return {
         difficultyLevel: action.difficultyLevel,
         gameStatus: 'Pending',
-        board: generateNewBoard(rows, cols, bombCount),
+        board: action.board,
       };
     case 'resetGame':
-      [rows, cols, bombCount] = boardConfigs.get(state.difficultyLevel) ?? [
-        0, 0, 0,
-      ];
-
       return {
         ...state,
         gameStatus: 'Pending',
-        board: generateNewBoard(rows, cols, bombCount),
+        board: action.board,
       };
     case 'open':
       const isFirstOpen = state.gameStatus === 'Pending';
