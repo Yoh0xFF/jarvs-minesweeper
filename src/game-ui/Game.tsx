@@ -12,22 +12,6 @@ import styles from './Game.module.scss';
 export default function Game() {
   const [state, dispatch] = useGameController();
 
-  const openCellHandler = (x: number, y: number) => {
-    dispatch({
-      type: 'open',
-      x,
-      y,
-    });
-  };
-
-  const markCellHandler = (x: number, y: number) => {
-    dispatch({
-      type: 'mark',
-      x,
-      y,
-    });
-  };
-
   const resetGameHandler = () => {
     // We need to generate board in handler because the reducer needs to be pure.
     const board = generateNewBoard(state.difficultyLevel);
@@ -47,6 +31,22 @@ export default function Game() {
       type: 'newGame',
       difficultyLevel,
       board,
+    });
+  };
+
+  const openCellHandler = (x: number, y: number) => {
+    dispatch({
+      type: 'open',
+      x,
+      y,
+    });
+  };
+
+  const markCellHandler = (x: number, y: number) => {
+    dispatch({
+      type: 'mark',
+      x,
+      y,
     });
   };
 

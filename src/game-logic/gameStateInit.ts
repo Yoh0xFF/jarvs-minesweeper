@@ -7,21 +7,6 @@ import {
   steps,
 } from 'game-logic/utils';
 
-function _setMine(x: number, y: number, board: Board): boolean {
-  const { grid } = board;
-
-  // If already set then return
-  if (grid[x][y] === CellTypes.Mine) return false;
-
-  // Set mine and update hints around it
-  grid[x][y] = CellTypes.Mine;
-
-  // Update hints around the mine
-  _updateHints(x, y, board);
-
-  return true;
-}
-
 function _updateHints(x: number, y: number, board: Board) {
   const { grid } = board;
 
@@ -55,6 +40,21 @@ function _countMines(x: number, y: number, board: Board): CellType {
   }
 
   return count;
+}
+
+function _setMine(x: number, y: number, board: Board): boolean {
+  const { grid } = board;
+
+  // If already set then return
+  if (grid[x][y] === CellTypes.Mine) return false;
+
+  // Set mine and update hints around it
+  grid[x][y] = CellTypes.Mine;
+
+  // Update hints around the mine
+  _updateHints(x, y, board);
+
+  return true;
 }
 
 export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
