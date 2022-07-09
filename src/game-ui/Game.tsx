@@ -14,23 +14,19 @@ export default function Game() {
 
   const resetGameHandler = () => {
     // We need to generate board in the handler because the reducer needs to be pure.
-    const board = generateNewBoard(state.difficultyLevel);
-
     dispatch({
       type: 'newGame',
       difficultyLevel: state.difficultyLevel,
-      board,
+      board: generateNewBoard(state.difficultyLevel),
     });
   };
 
   const newGameHandler = (difficultyLevel: DifficultyLevel) => {
     // We need to generate board in the handler because the reducer needs to be pure.
-    const board = generateNewBoard(difficultyLevel);
-
     dispatch({
       type: 'newGame',
       difficultyLevel,
-      board,
+      board: generateNewBoard(difficultyLevel),
     });
   };
 
