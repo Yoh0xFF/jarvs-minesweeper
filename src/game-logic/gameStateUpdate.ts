@@ -1,4 +1,3 @@
-import { swapMine } from 'game-logic/gameStateInit';
 import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
 import { copyBoard, isOnBoard, steps } from 'game-logic/utils';
 
@@ -133,8 +132,7 @@ function _mark(x: number, y: number, board: Board) {
 export function openCell(
   x: number,
   y: number,
-  board: Board,
-  isFirstOpen: boolean
+  board: Board
 ): [Board, GameStatus] {
   const newBoard = copyBoard(board);
 
@@ -156,14 +154,6 @@ export function openCell(
 
   // If the users click the cell with mine, finish the game.
   if (cellType === CellTypes.Mine) {
-    // First open should always be successful.
-    // If cell contains mine, we need to swap it.
-    if (isFirstOpen) {
-      swapMine(x, y, newBoard);
-      _open(x, y, newBoard);
-      return [newBoard, 'Progress'];
-    }
-
     _fail(x, y, newBoard);
     return [newBoard, 'Fail'];
   }

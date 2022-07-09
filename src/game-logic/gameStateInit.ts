@@ -1,6 +1,7 @@
 import { Board, CellType, CellTypes, DifficultyLevel } from 'game-logic/types';
 import {
   boardConfigs,
+  copyBoard,
   createBoard,
   generateRandomInt,
   isOnBoard,
@@ -78,10 +79,11 @@ export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
   return board;
 }
 
-export function swapMine(x: number, y: number, board: Board) {
-  const { rows, cols, grid } = board;
+export function swapMine(x: number, y: number, board: Board): Board {
+  if (board.grid[x][y] !== CellTypes.Mine) return board;
 
-  if (grid[x][y] !== CellTypes.Mine) return;
+  board = copyBoard(board);
+  const { rows, cols, grid } = board;
 
   grid[x][y] = _countMines(x, y, board);
   _updateHints(x, y, board);
@@ -92,4 +94,6 @@ export function swapMine(x: number, y: number, board: Board) {
 
     if (_setMine(nx, ny, board)) break;
   }
+
+  return board;
 }

@@ -1,5 +1,5 @@
-import { generateNewBoard } from 'game-logic/gameStateInit';
-import { DifficultyLevel } from 'game-logic/types';
+import { generateNewBoard, swapMine } from 'game-logic/gameStateInit';
+import { CellTypes, DifficultyLevel } from 'game-logic/types';
 import useGameController from 'game-logic/useGameController';
 import GameLayout from 'game-ui/GameLayout';
 import Controls from 'game-ui/controls/Controls';
@@ -35,10 +35,21 @@ export default function Game() {
   };
 
   const openCellHandler = (x: number, y: number) => {
+    // First open should always be successful.
+    // If cell contains mine, we need to swap it.
+    let board;
+    if (
+      state.gameStatus === 'Pending' &&
+      state.board.grid[x][y] === CellTypes.Mine
+    ) {
+      board = swapMine(x, y, state.board);
+    }
+
     dispatch({
       type: 'open',
       x,
       y,
+      board,
     });
   };
 
