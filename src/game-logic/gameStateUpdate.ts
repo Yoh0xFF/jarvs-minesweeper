@@ -80,10 +80,10 @@ function _expand(x: number, y: number, board: Board) {
 function _tryToExpand(x: number, y: number, board: Board): boolean {
   const { grid, mask } = board;
 
+  let fail = false;
   let count = 0;
 
-  // Check neighbors, if some of them is marked wrongly then explode,
-  // if all mines are marked correctly then expand.
+  // Check neighbors
   for (const step of steps) {
     const [i, j] = step;
     const [nx, ny] = [x + i, y + j];
@@ -92,13 +92,27 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
 
     if (mask[nx][ny] === MaskTypes.Marked)
       if (grid[nx][ny] !== CellTypes.Mine) {
-        _fail(nx, ny, board);
-        return false;
+        fail = true;
+        break;
       } else count += 1;
   }
 
+  // If some of the mines are marked wrongly then fail.
+  if (fail)
+    for (const step of steps) {
+      const [i, j] = step;
+      const [nx, ny] = [x + i, y + j];
+
+      if (isOnBoard(nx, ny, board) && grid[nx][ny] === CellTypes.Mine) {
+        _fail(nx, ny, board);
+        return false;
+      }
+    }
+
+  // If all mines aren't marked do nothing.
   if (count < grid[x][y]) return true;
 
+  // If all mines are marked correctly then expand.
   _expand(x, y, board);
   return true;
 }
