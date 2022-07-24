@@ -16,14 +16,15 @@ export default function RadioButton({
 }: Props) {
   return (
     <p>
-      <input
-        type='radio'
-        id={difficultyLevel}
-        name='radio-group'
-        checked={checked}
-        onChange={() => onClick()}
-      />
-      <label htmlFor={difficultyLevel}>{difficultyLevel}</label>
+      <label>
+        <input
+          type='radio'
+          name='radio-group'
+          checked={checked}
+          onChange={() => onClick()}
+        />
+        <span>{difficultyLevel}</span>
+      </label>
     </p>
   );
 }

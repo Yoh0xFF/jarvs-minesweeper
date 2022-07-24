@@ -1,8 +1,4 @@
 p {
-  input[type='radio'] {
-    accent-color: #6272a4;
-  }
-
   label {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -15,6 +11,11 @@ p {
     padding: 0.25em 0.5em;
     box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px,
       4px 4px 0px 0px, 5px 5px 0px 0px;
-    margin-left: 0.5rem;
+    white-space: nowrap;
+
+    input[type='radio'] {
+      accent-color: #6272a4;
+      margin-right: 0.5rem;
+    }
   }
 }
