@@ -3,13 +3,16 @@ import React from 'react';
 
 import styles from './Tableau.module.scss';
 
+const MAX_NUM = 999;
+const MIN_NUM = -99;
+
 export interface Props {
   number: number;
 }
 
 export default function Tableau({ number }: Props) {
-  if (number > 1000) number = 999;
-  if (number < -100) number = -99;
+  if (number > MAX_NUM) number = MAX_NUM;
+  if (number < MIN_NUM) number = MIN_NUM;
 
   const negative = number < 0;
   if (negative) number *= -1;

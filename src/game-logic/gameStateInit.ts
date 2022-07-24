@@ -58,6 +58,17 @@ function _setMine(x: number, y: number, board: Board): boolean {
   return true;
 }
 
+function _addRandomMine(board: Board) {
+  const { rows, cols } = board;
+  let hasAddedMine = false;
+
+  while (!hasAddedMine) {
+    const x = generateRandomInt(rows);
+    const y = generateRandomInt(cols);
+    hasAddedMine = _setMine(x, y, board);
+  }
+}
+
 export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
   const config = boardConfigs.get(difficultyLevel);
   if (!config)
@@ -70,10 +81,8 @@ export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
 
   let count = 0;
   while (count < bombCount) {
-    const x = generateRandomInt(rows);
-    const y = generateRandomInt(cols);
-
-    if (_setMine(x, y, board)) count += 1;
+    _addRandomMine(board);
+    count += 1;
   }
 
   return board;
@@ -83,17 +92,16 @@ export function swapMine(x: number, y: number, board: Board): Board {
   if (board.grid[x][y] !== CellTypes.Mine) return board;
 
   board = copyBoard(board);
-  const { rows, cols, grid } = board;
+  const { grid } = board;
 
+  // Remove mine from the cell
   grid[x][y] = _countMines(x, y, board);
+
+  // Update hints around the cell
   _updateHints(x, y, board);
 
-  while (true) {
-    const nx = generateRandomInt(rows);
-    const ny = generateRandomInt(cols);
-
-    if (_setMine(nx, ny, board)) break;
-  }
+  // Add new randome mine
+  _addRandomMine(board);
 
   return board;
 }
