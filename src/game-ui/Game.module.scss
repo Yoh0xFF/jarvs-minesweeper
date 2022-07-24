@@ -5,4 +5,8 @@
   gap: 1rem;
   transform-origin: top;
   transform: scale(1.25);
+
+  @media screen and (max-width: 700px) {
+    transform-origin: top left;
+  }
 }

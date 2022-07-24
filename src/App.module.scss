@@ -1,6 +1,10 @@
 .page {
   display: flex;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
   padding-top: 1rem;
+
+  @media screen and (max-width: 700px) {
+    justify-content: flex-start;
+  }
 }
