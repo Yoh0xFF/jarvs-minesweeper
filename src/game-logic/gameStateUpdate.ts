@@ -20,7 +20,7 @@ function _checkIsSuccess(board: Board): boolean {
     for (let y = 0; y < cols; ++y)
       if (mask[x][y] === MaskTypes.Closed) mask[x][y] = MaskTypes.Marked;
 
-  board.bombCount = 0;
+  board.mineCount = 0;
 
   return true;
 }
@@ -136,10 +136,10 @@ function _mark(x: number, y: number, board: Board) {
   // If closed, then mark, and unmark otherwise.
   if (maskValue === MaskTypes.Closed) {
     mask[x][y] = MaskTypes.Marked;
-    board.bombCount -= 1;
+    board.mineCount -= 1;
   } else {
     mask[x][y] = MaskTypes.Closed;
-    board.bombCount += 1;
+    board.mineCount += 1;
   }
 }
 

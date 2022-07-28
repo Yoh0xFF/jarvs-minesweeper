@@ -75,7 +75,7 @@ export default function Game() {
         controls={
           <Controls
             gameStatus={state.gameStatus}
-            bombCount={state.board.bombCount}
+            mineCount={state.board.mineCount}
             onReset={resetGameHandler}
           />
         }

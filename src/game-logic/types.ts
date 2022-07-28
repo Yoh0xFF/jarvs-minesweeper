@@ -34,7 +34,7 @@ export type MaskType = typeof MaskTypes[keyof typeof MaskTypes];
 export interface Board {
   readonly rows: number;
   readonly cols: number;
-  bombCount: number;
+  mineCount: number;
   grid: Array<Array<CellType>>;
   mask: Array<Array<MaskType>>;
 }

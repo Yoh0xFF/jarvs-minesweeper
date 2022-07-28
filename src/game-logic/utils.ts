@@ -39,7 +39,7 @@ export function createBoard(
   const board: Board = {
     rows,
     cols,
-    bombCount,
+    mineCount: bombCount,
     grid,
     mask,
   };

@@ -8,14 +8,14 @@ import styles from './Controls.module.scss';
 
 interface Props {
   gameStatus: GameStatus;
-  bombCount: number;
+  mineCount: number;
   onReset: () => void;
 }
 
-export default function Controls({ gameStatus, bombCount, onReset }: Props) {
+export default function Controls({ gameStatus, mineCount, onReset }: Props) {
   return (
     <div className={styles.gameControls}>
-      <Tableau number={bombCount} />
+      <Tableau number={mineCount} />
       <ResetButton gameStatus={gameStatus} onReset={onReset} />
       <Timer gameStatus={gameStatus} />
     </div>

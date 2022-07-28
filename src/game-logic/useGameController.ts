@@ -15,7 +15,7 @@ const defaultGameStatus: GameStatus = 'Pending';
 const initialState: GameState = {
   difficultyLevel: defaultDifficultyLevel,
   gameStatus: defaultGameStatus,
-  board: { rows: 0, cols: 0, bombCount: 0, grid: [], mask: [] },
+  board: { rows: 0, cols: 0, mineCount: 0, grid: [], mask: [] },
 };
 
 // State reducer
