@@ -27,7 +27,7 @@ export const steps = [
 export function createBoard(
   rows: number,
   cols: number,
-  bombCount: number
+  mineCount: number
 ): Board {
   const grid: Array<Array<CellType>> = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => CellTypes.Empty)
@@ -39,7 +39,7 @@ export function createBoard(
   const board: Board = {
     rows,
     cols,
-    mineCount: bombCount,
+    mineCount: mineCount,
     grid,
     mask,
   };

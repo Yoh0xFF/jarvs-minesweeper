@@ -75,12 +75,12 @@ export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
     throw new Error(
       `Config not found for the difficulty level: ${difficultyLevel}`
     );
-  const [rows, cols, bombCount] = config;
+  const [rows, cols, mineCount] = config;
 
-  const board = createBoard(rows, cols, bombCount);
+  const board = createBoard(rows, cols, mineCount);
 
   let count = 0;
-  while (count < bombCount) {
+  while (count < mineCount) {
     _addRandomMine(board);
     count += 1;
   }

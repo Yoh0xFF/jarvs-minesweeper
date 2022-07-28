@@ -39,13 +39,13 @@ function _validateBoardMask(board: Board) {
 }
 
 function _validateBoard(board: Board, difficultyLevel: DifficultyLevel) {
-  const [rows, cols, bombCount] = boardConfigs.get(difficultyLevel) ?? [
+  const [rows, cols, mineCount] = boardConfigs.get(difficultyLevel) ?? [
     0, 0, 0,
   ];
 
   expect(board.rows).toBe(rows);
   expect(board.cols).toBe(cols);
-  expect(board.mineCount).toBe(bombCount);
+  expect(board.mineCount).toBe(mineCount);
 
   _validateBoardMineCount(board);
   _validateBoardHints(board);
