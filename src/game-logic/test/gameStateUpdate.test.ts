@@ -1,10 +1,18 @@
 import { openCell } from 'game-logic/gameStateUpdate';
+import * as clickMarkedCellTestCase from 'game-logic/test/board-test-cases/clickMarkedCell';
 import * as clickOpenCellTryToExpandFailTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandFail';
 import * as clickOpenCellTryToExpandSuccessTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandSuccess';
+import * as discoverAllMinesTestCase from 'game-logic/test/board-test-cases/discoverAllMines';
 import * as openCellWithHintTestCase from 'game-logic/test/board-test-cases/openCellWithHint';
 import * as openCellWithMineTestCase from 'game-logic/test/board-test-cases/openCellWithMine';
 import * as openEmptyCellTestCase from 'game-logic/test/board-test-cases/openEmptyCell';
-import { Board, CellType, DifficultyLevel, MaskType } from 'game-logic/types';
+import {
+  Board,
+  CellType,
+  DifficultyLevel,
+  GameStatus,
+  MaskType,
+} from 'game-logic/types';
 import { boardConfigs } from 'game-logic/utils';
 
 function _initTestBoard(
@@ -25,6 +33,25 @@ function _initTestBoard(
   return board;
 }
 
+function _checkTestCase(
+  difficultyLevel: DifficultyLevel,
+  inputMask: MaskType[][],
+  inputGrid: CellType[][],
+  inputX: number,
+  inputY: number,
+  expectedStatus: GameStatus,
+  expectedMask: MaskType[][],
+  expectedGrid?: CellType[][]
+) {
+  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
+
+  const [newBoard, status] = openCell(inputX, inputY, board);
+
+  expect(status).toBe(expectedStatus);
+  expect(newBoard.mask).toEqual(expectedMask);
+  expectedGrid && expect(newBoard.grid).toEqual(expectedGrid);
+}
+
 test('Open cell with hint', () => {
   const {
     difficultyLevel,
@@ -36,12 +63,15 @@ test('Open cell with hint', () => {
     expectedMask,
   } = openCellWithHintTestCase;
 
-  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
-
-  const [newBoard, status] = openCell(inputX, inputY, board);
-
-  expect(status).toBe(expectedStatus);
-  expect(newBoard.mask).toEqual(expectedMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask
+  );
 });
 
 test('Open cell with mine', () => {
@@ -56,13 +86,16 @@ test('Open cell with mine', () => {
     expectedMask,
   } = openCellWithMineTestCase;
 
-  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
-
-  const [newBoard, status] = openCell(inputX, inputY, board);
-
-  expect(status).toBe(expectedStatus);
-  expect(newBoard.grid).toEqual(expectedGrid);
-  expect(newBoard.mask).toEqual(expectedMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask,
+    expectedGrid
+  );
 });
 
 test('Open empy cell', () => {
@@ -76,12 +109,15 @@ test('Open empy cell', () => {
     expectedMask,
   } = openEmptyCellTestCase;
 
-  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
-
-  const [newBoard, status] = openCell(inputX, inputY, board);
-
-  expect(status).toBe(expectedStatus);
-  expect(newBoard.mask).toEqual(expectedMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask
+  );
 });
 
 test('Click open cell, try to expand with success', () => {
@@ -95,12 +131,15 @@ test('Click open cell, try to expand with success', () => {
     expectedMask,
   } = clickOpenCellTryToExpandSuccessTestCase;
 
-  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
-
-  const [newBoard, status] = openCell(inputX, inputY, board);
-
-  expect(status).toBe(expectedStatus);
-  expect(newBoard.mask).toEqual(expectedMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask
+  );
 });
 
 test('Click open cell, try to expand with fail', () => {
@@ -115,11 +154,58 @@ test('Click open cell, try to expand with fail', () => {
     expectedMask,
   } = clickOpenCellTryToExpandFailTestCase;
 
-  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask,
+    expectedGrid
+  );
+});
 
-  const [newBoard, status] = openCell(inputX, inputY, board);
+test('Discover all mines', () => {
+  const {
+    difficultyLevel,
+    inputGrid,
+    inputMask,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask,
+  } = discoverAllMinesTestCase;
 
-  expect(status).toBe(expectedStatus);
-  expect(newBoard.grid).toEqual(expectedGrid);
-  expect(newBoard.mask).toEqual(expectedMask);
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask
+  );
+});
+
+test('Click marked cell', () => {
+  const {
+    difficultyLevel,
+    inputGrid,
+    inputMask,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask,
+  } = clickMarkedCellTestCase;
+
+  _checkTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedStatus,
+    expectedMask
+  );
 });
