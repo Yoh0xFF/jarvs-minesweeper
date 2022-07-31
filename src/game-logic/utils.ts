@@ -29,10 +29,10 @@ export function createBoard(
   cols: number,
   mineCount: number
 ): Board {
-  const grid: Array<Array<CellType>> = Array.from({ length: rows }, () =>
+  const grid: CellType[][] = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => CellTypes.Empty)
   );
-  const mask: Array<Array<MaskType>> = Array.from({ length: rows }, () =>
+  const mask: MaskType[][] = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => MaskTypes.Closed)
   );
 

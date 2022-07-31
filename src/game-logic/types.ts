@@ -35,8 +35,8 @@ export interface Board {
   readonly rows: number;
   readonly cols: number;
   mineCount: number;
-  grid: Array<Array<CellType>>;
-  mask: Array<Array<MaskType>>;
+  grid: CellType[][];
+  mask: MaskType[][];
 }
 
 export interface GameState {

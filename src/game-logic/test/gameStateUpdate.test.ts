@@ -17,8 +17,8 @@ import { boardConfigs } from 'game-logic/utils';
 
 function _initTestBoard(
   diffiultyLevel: DifficultyLevel,
-  inputGrid: Array<Array<CellType>>,
-  inputMask: Array<Array<MaskType>>
+  inputGrid: CellType[][],
+  inputMask: MaskType[][]
 ): Board {
   const [rows, cols, mineCount] = boardConfigs.get(diffiultyLevel) ?? [0, 0, 0];
 
