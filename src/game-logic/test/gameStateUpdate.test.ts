@@ -1,11 +1,13 @@
-import { openCell } from 'game-logic/gameStateUpdate';
+import { markCell, openCell } from 'game-logic/gameStateUpdate';
 import * as clickMarkedCellTestCase from 'game-logic/test/board-test-cases/clickMarkedCell';
 import * as clickOpenCellTryToExpandFailTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandFail';
 import * as clickOpenCellTryToExpandSuccessTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandSuccess';
 import * as discoverAllMinesTestCase from 'game-logic/test/board-test-cases/discoverAllMines';
+import * as markCellTestCase from 'game-logic/test/board-test-cases/markCell';
 import * as openCellWithHintTestCase from 'game-logic/test/board-test-cases/openCellWithHint';
 import * as openCellWithMineTestCase from 'game-logic/test/board-test-cases/openCellWithMine';
 import * as openEmptyCellTestCase from 'game-logic/test/board-test-cases/openEmptyCell';
+import * as unmarkCellTestCase from 'game-logic/test/board-test-cases/unmarkCell';
 import {
   Board,
   CellType,
@@ -33,7 +35,7 @@ function _initTestBoard(
   return board;
 }
 
-function _checkTestCase(
+function _checkOpenCellTestCase(
   difficultyLevel: DifficultyLevel,
   inputMask: MaskType[][],
   inputGrid: CellType[][],
@@ -52,6 +54,21 @@ function _checkTestCase(
   expectedGrid && expect(newBoard.grid).toEqual(expectedGrid);
 }
 
+function _checkMarkCellTestCase(
+  difficultyLevel: DifficultyLevel,
+  inputMask: MaskType[][],
+  inputGrid: CellType[][],
+  inputX: number,
+  inputY: number,
+  expectedMask: MaskType[][]
+) {
+  const board = _initTestBoard(difficultyLevel, inputGrid, inputMask);
+
+  const newBoard = markCell(inputX, inputY, board);
+
+  expect(newBoard.mask).toEqual(expectedMask);
+}
+
 test('Open cell with hint', () => {
   const {
     difficultyLevel,
@@ -63,7 +80,7 @@ test('Open cell with hint', () => {
     expectedMask,
   } = openCellWithHintTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -86,7 +103,7 @@ test('Open cell with mine', () => {
     expectedMask,
   } = openCellWithMineTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -109,7 +126,7 @@ test('Open empy cell', () => {
     expectedMask,
   } = openEmptyCellTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -131,7 +148,7 @@ test('Click open cell, try to expand with success', () => {
     expectedMask,
   } = clickOpenCellTryToExpandSuccessTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -154,7 +171,7 @@ test('Click open cell, try to expand with fail', () => {
     expectedMask,
   } = clickOpenCellTryToExpandFailTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -177,7 +194,7 @@ test('Discover all mines', () => {
     expectedMask,
   } = discoverAllMinesTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
@@ -199,13 +216,53 @@ test('Click marked cell', () => {
     expectedMask,
   } = clickMarkedCellTestCase;
 
-  _checkTestCase(
+  _checkOpenCellTestCase(
     difficultyLevel,
     inputMask,
     inputGrid,
     inputX,
     inputY,
     expectedStatus,
+    expectedMask
+  );
+});
+
+test('Mark cell', () => {
+  const {
+    difficultyLevel,
+    inputGrid,
+    inputMask,
+    inputX,
+    inputY,
+    expectedMask,
+  } = markCellTestCase;
+
+  _checkMarkCellTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
+    expectedMask
+  );
+});
+
+test('Unmark cell', () => {
+  const {
+    difficultyLevel,
+    inputGrid,
+    inputMask,
+    inputX,
+    inputY,
+    expectedMask,
+  } = unmarkCellTestCase;
+
+  _checkMarkCellTestCase(
+    difficultyLevel,
+    inputMask,
+    inputGrid,
+    inputX,
+    inputY,
     expectedMask
   );
 });
