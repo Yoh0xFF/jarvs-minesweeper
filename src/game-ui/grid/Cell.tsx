@@ -73,8 +73,12 @@ export default function Cell({
         { [styles[cellClassName]]: !mouseDown },
         { [styles.open]: mouseDown }
       )}
+      role='button'
     />
   ) : (
-    <div className={classNames(styles.cell, styles[cellClassName])} />
+    <div
+      className={classNames(styles.cell, styles[cellClassName])}
+      role='button'
+    />
   );
 }
