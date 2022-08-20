@@ -24,6 +24,7 @@ export default function Grid({
 
   return (
     <div
+      data-testid='grid'
       className={classNames(styles.grid, styles[difficultyLevel.toLowerCase()])}
     >
       {grid.map((row, x) =>

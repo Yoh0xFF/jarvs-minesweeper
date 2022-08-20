@@ -36,6 +36,7 @@ export default function Tableau({ number }: Props) {
   return (
     <div className={styles.tableau}>
       <div
+        data-testid='digitX'
         className={classNames(
           styles.digit,
           { [styles[`digit${x}`]]: x && x >= 0 },
@@ -47,6 +48,7 @@ export default function Tableau({ number }: Props) {
       <span />
 
       <div
+        data-testid='digitY'
         className={classNames(
           styles.digit,
           { [styles[`digit${y}`]]: y && y >= 0 },
@@ -57,7 +59,10 @@ export default function Tableau({ number }: Props) {
 
       <span />
 
-      <div className={classNames(styles.digit, styles[`digit${z}`])} />
+      <div
+        data-testid='digitZ'
+        className={classNames(styles.digit, styles[`digit${z}`])}
+      />
     </div>
   );
 }
