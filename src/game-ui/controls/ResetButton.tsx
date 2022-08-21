@@ -23,6 +23,7 @@ export default function ResetButton({ gameStatus, onReset }: Props) {
 
   return (
     <div
+      role='button'
       onClick={() => onReset()}
       onMouseDown={() => setMouseDown(true)}
       onMouseUp={() => setMouseDown(false)}
