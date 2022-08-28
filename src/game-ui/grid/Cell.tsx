@@ -73,11 +73,13 @@ export default function Cell({
         { [styles[cellClassName]]: !mouseDown },
         { [styles.open]: mouseDown }
       )}
+      data-testid='gridCell'
       role='button'
     />
   ) : (
     <div
       className={classNames(styles.cell, styles[cellClassName])}
+      data-testid='gridCell'
       role='button'
     />
   );

@@ -107,7 +107,7 @@ test('Mark cell callback called on context menu event', async () => {
   );
 
   const button = await screen.findByRole('button');
-  await fireEvent.contextMenu(button);
+  fireEvent.contextMenu(button);
   expect(onCellMark).toHaveBeenCalledWith(x, y);
 });
 
@@ -129,7 +129,7 @@ test('Callbacks are not called for the finished game', async () => {
 
   const button = await screen.findByRole('button');
   await userEvent.click(button);
-  await fireEvent.contextMenu(button);
+  fireEvent.contextMenu(button);
   expect(onCellMark).not.toBeCalled();
   expect(onCellMark).not.toBeCalled();
 });
