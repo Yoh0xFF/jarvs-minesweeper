@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { CellType, CellTypes, MaskType, MaskTypes } from 'game-logic/types';
 import Cell from 'game-ui/grid/Cell';
 
-function _initByMaskType(maskType: MaskType) {
+function initByMaskType(maskType: MaskType) {
   return (
     <Cell
       x={0}
@@ -17,7 +17,7 @@ function _initByMaskType(maskType: MaskType) {
   );
 }
 
-function _initByCellType(cellType: CellType) {
+function initByCellType(cellType: CellType) {
   return (
     <Cell
       x={0}
@@ -34,9 +34,9 @@ function _initByCellType(cellType: CellType) {
 test('Check mask type class names', async () => {
   render(
     <>
-      {_initByMaskType(MaskTypes.Closed)}
-      {_initByMaskType(MaskTypes.Marked)}
-      {_initByMaskType(MaskTypes.MarkedWrongly)}
+      {initByMaskType(MaskTypes.Closed)}
+      {initByMaskType(MaskTypes.Marked)}
+      {initByMaskType(MaskTypes.MarkedWrongly)}
     </>
   );
 
@@ -50,11 +50,11 @@ test('Check mask type class names', async () => {
 test('Check cell type class names', async () => {
   render(
     <>
-      {_initByCellType(CellTypes.Empty)}
-      {_initByCellType(CellTypes.MineExploded)}
-      {_initByCellType(CellTypes.Mine)}
-      {_initByCellType(CellTypes.One)}
-      {_initByCellType(CellTypes.Two)}
+      {initByCellType(CellTypes.Empty)}
+      {initByCellType(CellTypes.MineExploded)}
+      {initByCellType(CellTypes.Mine)}
+      {initByCellType(CellTypes.One)}
+      {initByCellType(CellTypes.Two)}
     </>
   );
 

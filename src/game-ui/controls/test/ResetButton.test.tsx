@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { GameStatus } from 'game-logic/types';
 import ResetButton from 'game-ui/controls/ResetButton';
 
-async function _validateClassName(gameStatus: GameStatus, className: string) {
+async function validateClassName(gameStatus: GameStatus, className: string) {
   render(<ResetButton gameStatus={gameStatus} onReset={jest.fn()} />);
 
   const button = await screen.findByRole('button');
@@ -11,19 +11,19 @@ async function _validateClassName(gameStatus: GameStatus, className: string) {
 }
 
 test('Check pending game reset button face', async () => {
-  await _validateClassName('Pending', 'unpressed');
+  await validateClassName('Pending', 'unpressed');
 });
 
 test('Check in progress game reset button face', async () => {
-  await _validateClassName('Progress', 'unpressed');
+  await validateClassName('Progress', 'unpressed');
 });
 
 test('Check successful game reset button face', async () => {
-  await _validateClassName('Success', 'success');
+  await validateClassName('Success', 'success');
 });
 
 test('Check failed game reset button face', async () => {
-  await _validateClassName('Fail', 'fail');
+  await validateClassName('Fail', 'fail');
 });
 
 test('Check reset callback is called on click', async () => {

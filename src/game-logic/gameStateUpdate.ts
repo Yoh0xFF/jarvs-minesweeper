@@ -1,7 +1,7 @@
 import { Board, CellTypes, GameStatus, MaskTypes } from 'game-logic/types';
 import { copyBoard, isOnBoard, steps } from 'game-logic/utils';
 
-function _checkIsSuccess(board: Board): boolean {
+function checkIsSuccess(board: Board): boolean {
   const { rows, cols, grid, mask } = board;
 
   for (let x = 0; x < rows; ++x) {
@@ -25,7 +25,7 @@ function _checkIsSuccess(board: Board): boolean {
   return true;
 }
 
-function _fail(x: number, y: number, board: Board) {
+function updateBoardAfterFail(x: number, y: number, board: Board) {
   const { rows, cols, grid, mask } = board;
 
   mask[x][y] = MaskTypes.Open;
@@ -48,7 +48,7 @@ function _fail(x: number, y: number, board: Board) {
   }
 }
 
-function _expand(x: number, y: number, board: Board) {
+function expand(x: number, y: number, board: Board) {
   const { grid, mask } = board;
 
   var queue = [[x, y]];
@@ -77,7 +77,7 @@ function _expand(x: number, y: number, board: Board) {
   }
 }
 
-function _tryToExpand(x: number, y: number, board: Board): boolean {
+function tryToExpand(x: number, y: number, board: Board): boolean {
   const { grid, mask } = board;
 
   let fail = false;
@@ -104,7 +104,7 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
       const [nx, ny] = [x + i, y + j];
 
       if (isOnBoard(nx, ny, board) && grid[nx][ny] === CellTypes.Mine) {
-        _fail(nx, ny, board);
+        updateBoardAfterFail(nx, ny, board);
         return false;
       }
     }
@@ -113,20 +113,20 @@ function _tryToExpand(x: number, y: number, board: Board): boolean {
   if (count < grid[x][y]) return true;
 
   // If all mines are marked correctly then expand.
-  _expand(x, y, board);
+  expand(x, y, board);
   return true;
 }
 
-function _open(x: number, y: number, board: Board) {
+function open(x: number, y: number, board: Board) {
   const { grid, mask } = board;
 
   mask[x][y] = MaskTypes.Open;
 
   // If the users click an empty cell, expand all the blank cells around it.
-  if (grid[x][y] === CellTypes.Empty) _expand(x, y, board);
+  if (grid[x][y] === CellTypes.Empty) expand(x, y, board);
 }
 
-function _mark(x: number, y: number, board: Board) {
+function mark(x: number, y: number, board: Board) {
   const { mask } = board;
 
   const maskValue = mask[x][y];
@@ -157,8 +157,8 @@ export function openCell(
   // If the users click opened cell,
   // we try to expand if all mines around it are marked.
   if (maskType === MaskTypes.Open) {
-    if (!_tryToExpand(x, y, board)) return [board, 'Fail'];
-    return [board, _checkIsSuccess(board) ? 'Success' : 'Progress'];
+    if (!tryToExpand(x, y, board)) return [board, 'Fail'];
+    return [board, checkIsSuccess(board) ? 'Success' : 'Progress'];
   }
 
   // If the users click marked cell, we should do nothing.
@@ -167,19 +167,19 @@ export function openCell(
 
   // If the users click the cell with mine, finish the game.
   if (cellType === CellTypes.Mine) {
-    _fail(x, y, board);
+    updateBoardAfterFail(x, y, board);
     return [board, 'Fail'];
   }
 
   // If the users click the cell with a hint, open it.
-  _open(x, y, board);
-  return [board, _checkIsSuccess(board) ? 'Success' : 'Progress'];
+  open(x, y, board);
+  return [board, checkIsSuccess(board) ? 'Success' : 'Progress'];
 }
 
 export function markCell(x: number, y: number, board: Board): Board {
   board = copyBoard(board);
 
-  _mark(x, y, board);
+  mark(x, y, board);
 
   return board;
 }

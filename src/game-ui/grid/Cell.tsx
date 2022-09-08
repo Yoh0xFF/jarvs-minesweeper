@@ -10,13 +10,13 @@ import React, { useState } from 'react';
 
 import styles from './Cell.module.scss';
 
-const _cellTypeToClassNameMap = new Map<CellType, string>([
+const cellTypeToClassNameMap = new Map<CellType, string>([
   [CellTypes.Empty, 'open'],
   [CellTypes.MineExploded, 'mineExploded'],
   [CellTypes.Mine, 'mine'],
 ]);
 
-const _maskTypeToClassNameMap = new Map<MaskType, string>([
+const maskTypeToClassNameMap = new Map<MaskType, string>([
   [MaskTypes.Closed, 'closed'],
   [MaskTypes.Marked, 'marked'],
   [MaskTypes.MarkedWrongly, 'markedWrongly'],
@@ -49,8 +49,8 @@ export default function Cell({
     cellClassName =
       cellType > 0
         ? `hint${cellType}`
-        : _cellTypeToClassNameMap.get(cellType) ?? 'open';
-  else cellClassName = _maskTypeToClassNameMap.get(maskType) ?? 'closed';
+        : cellTypeToClassNameMap.get(cellType) ?? 'open';
+  else cellClassName = maskTypeToClassNameMap.get(maskType) ?? 'closed';
 
   return ['Pending', 'Progress'].includes(gameStatus) ? (
     <div
