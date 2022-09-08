@@ -1,4 +1,4 @@
-# JARVS(Just A Rather Very Simple) Minesweeper
+# JARVS (Just A Rather Very Simple) Minesweeper
 
 You can play the game [here](https://yoh0xff.github.io/jarvs-minesweeper/).
 
