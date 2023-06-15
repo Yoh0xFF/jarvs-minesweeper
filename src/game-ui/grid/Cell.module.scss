@@ -6,32 +6,32 @@
   background-image: url('~assets/sprite.png');
 
   &.closed {
-    background-position: calc(0 * sprite.$cell-assets-hoffset)
+    background-position: calc(0 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
   &.open {
-    background-position: calc(1 * sprite.$cell-assets-hoffset)
+    background-position: calc(1 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
   &.marked {
-    background-position: calc(2 * sprite.$cell-assets-hoffset)
+    background-position: calc(2 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
   &.markedWrongly {
-    background-position: calc(7 * sprite.$cell-assets-hoffset)
+    background-position: calc(7 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
   &.mine {
-    background-position: calc(5 * sprite.$cell-assets-hoffset)
+    background-position: calc(5 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
   &.mineExploded {
-    background-position: calc(6 * sprite.$cell-assets-hoffset)
+    background-position: calc(6 * #{sprite.$cell-assets-hoffset})
       sprite.$cell-assets-voffset;
   }
 
