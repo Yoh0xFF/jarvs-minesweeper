@@ -42,7 +42,6 @@ function updateBoardAfterFail(x: number, y: number, board: Board) {
       // When the users lose the game, point out all cells which are marked wrongly.
       if (grid[x][y] !== CellTypes.Mine && mask[x][y] === MaskTypes.Marked) {
         mask[x][y] = MaskTypes.MarkedWrongly;
-        continue;
       }
     }
   }
