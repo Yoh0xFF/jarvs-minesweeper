@@ -6,27 +6,27 @@
   background-image: url('~assets/sprite.png');
 
   &.unpressed {
-    background-position: calc(0 * sprite.$face-assets-hoffset)
+    background-position: calc(0 * #{sprite.$face-assets-hoffset})
       sprite.$face-assets-voffset;
   }
 
   &.pressed {
-    background-position: calc(1 * sprite.$face-assets-hoffset)
+    background-position: calc(1 * #{sprite.$face-assets-hoffset})
       sprite.$face-assets-voffset;
   }
 
   &.whoops {
-    background-position: calc(2 * sprite.$face-assets-hoffset)
+    background-position: calc(2 * #{sprite.$face-assets-hoffset})
       sprite.$face-assets-voffset;
   }
 
   &.success {
-    background-position: calc(3 * sprite.$face-assets-hoffset)
+    background-position: calc(3 * #{sprite.$face-assets-hoffset})
       sprite.$face-assets-voffset;
   }
 
   &.fail {
-    background-position: calc(4 * sprite.$face-assets-hoffset)
+    background-position: calc(4 * #{sprite.$face-assets-hoffset})
       sprite.$face-assets-voffset;
   }
 }

@@ -3,8 +3,7 @@
 .tableau {
   display: flex;
   background-color: #000;
-  border: 2px;
-  border-style: inset;
+  border: 2px inset;
 
   span {
     width: 2px;
@@ -24,17 +23,17 @@
     }
 
     &.digit0 {
-      background-position: calc(9 * sprite.$digit-assets-hoffset)
+      background-position: calc(9 * #{sprite.$digit-assets-hoffset})
         sprite.$digit-assets-voffset;
     }
 
     &.minus {
-      background-position: calc(10 * sprite.$digit-assets-hoffset)
+      background-position: calc(10 * #{sprite.$digit-assets-hoffset})
         sprite.$digit-assets-voffset;
     }
 
     &.empty {
-      background-position: calc(11 * sprite.$digit-assets-hoffset)
+      background-position: calc(11 * #{sprite.$digit-assets-hoffset})
         sprite.$digit-assets-voffset;
     }
   }
