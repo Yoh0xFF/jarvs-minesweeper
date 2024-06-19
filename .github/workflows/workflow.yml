@@ -18,7 +18,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: cache
         with:
           path: "**/node_modules"
