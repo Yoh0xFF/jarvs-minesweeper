@@ -14,7 +14,8 @@
     "test": "vitest run",
     "test:dev": "vitest dev",
     "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.scss'",
-    "deploy": "gh-pages -d build -u 'github-actions-bot <support+actions@github.com>'"
+    "deploy": "gh-pages -d build -u 'github-actions-bot <support+actions@github.com>'",
+    "clean": "npx rimraf ./**/dist ./**/node_modules"
   },
   "dependencies": {
     "canvas-confetti": "1.9.3",
