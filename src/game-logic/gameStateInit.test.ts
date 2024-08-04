@@ -1,6 +1,7 @@
-import { generateNewBoard, swapMine } from 'game-logic/gameStateInit';
-import { Board, CellTypes, DifficultyLevel, MaskTypes } from 'game-logic/types';
-import { boardConfigs, isOnBoard, steps } from 'game-logic/utils';
+import { generateNewBoard, swapMine } from "./gameStateInit";
+import { Board, CellTypes, DifficultyLevel, MaskTypes } from "./types";
+import { boardConfigs, isOnBoard, steps } from "./utils";
+import { expect, test } from "vitest";
 
 function validateBoardMineCount(board: Board) {
   const { grid, mineCount } = board;
@@ -52,26 +53,26 @@ function validateBoard(board: Board, difficultyLevel: DifficultyLevel) {
   validateBoardMask(board);
 }
 
-test('Board initialized with difficulty level beginner is correct', () => {
-  const difficultyLevel = 'Beginner';
+test("Board initialized with difficulty level beginner is correct", () => {
+  const difficultyLevel = "Beginner";
   const board = generateNewBoard(difficultyLevel);
   validateBoard(board, difficultyLevel);
 });
 
-test('Board initialized with difficulty level intermediate is correct', () => {
-  const difficultyLevel = 'Intermediate';
+test("Board initialized with difficulty level intermediate is correct", () => {
+  const difficultyLevel = "Intermediate";
   const board = generateNewBoard(difficultyLevel);
   validateBoard(board, difficultyLevel);
 });
 
-test('Board initialized with difficulty level expert is correct', () => {
-  const difficultyLevel = 'Expert';
+test("Board initialized with difficulty level expert is correct", () => {
+  const difficultyLevel = "Expert";
   const board = generateNewBoard(difficultyLevel);
   validateBoard(board, difficultyLevel);
 });
 
-test('Board generated after swap mine is correct', () => {
-  const difficultyLevel = 'Beginner';
+test("Board generated after swap mine is correct", () => {
+  const difficultyLevel = "Beginner";
   const board = generateNewBoard(difficultyLevel);
   const { rows, cols, grid } = board;
 

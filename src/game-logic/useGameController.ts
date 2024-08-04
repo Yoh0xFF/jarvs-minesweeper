@@ -1,15 +1,10 @@
-import { markCell, openCell } from 'game-logic/gameStateUpdate';
-import {
-  Action,
-  DifficultyLevel,
-  GameState,
-  GameStatus,
-} from 'game-logic/types';
-import { Dispatch, useReducer } from 'react';
+import { markCell, openCell } from "./gameStateUpdate";
+import { Action, DifficultyLevel, GameState, GameStatus } from "./types";
+import { Dispatch, useReducer } from "react";
 
 // Default initial values
-const defaultDifficultyLevel: DifficultyLevel = 'Beginner';
-const defaultGameStatus: GameStatus = 'Pending';
+const defaultDifficultyLevel: DifficultyLevel = "Beginner";
+const defaultGameStatus: GameStatus = "Pending";
 
 // Initial state
 const initialState: GameState = {
@@ -23,13 +18,13 @@ function reducer(state: GameState, action: Action): GameState {
   let newBoard, newGameStatus;
 
   switch (action.type) {
-    case 'newGame':
+    case "newGame":
       return {
         difficultyLevel: action.difficultyLevel,
-        gameStatus: 'Pending',
+        gameStatus: "Pending",
         board: action.board,
       };
-    case 'open':
+    case "open":
       [newBoard, newGameStatus] = openCell(
         action.x,
         action.y,
@@ -41,12 +36,12 @@ function reducer(state: GameState, action: Action): GameState {
         gameStatus: newGameStatus,
         board: newBoard,
       };
-    case 'mark':
+    case "mark":
       newBoard = markCell(action.x, action.y, state.board);
 
       return {
         ...state,
-        gameStatus: 'Progress',
+        gameStatus: "Progress",
         board: newBoard,
       };
   }

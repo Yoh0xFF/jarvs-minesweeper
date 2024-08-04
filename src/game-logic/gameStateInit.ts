@@ -1,4 +1,4 @@
-import { Board, CellType, CellTypes, DifficultyLevel } from 'game-logic/types';
+import { Board, CellType, CellTypes, DifficultyLevel } from "./types";
 import {
   boardConfigs,
   copyBoard,
@@ -6,7 +6,7 @@ import {
   generateRandomInt,
   isOnBoard,
   steps,
-} from 'game-logic/utils';
+} from "./utils";
 
 function updateHints(x: number, y: number, board: Board) {
   const { grid } = board;

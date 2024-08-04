@@ -1,10 +1,10 @@
 // Game difficulty levels
-export const DifficultyLevels = ['Beginner', 'Intermediate', 'Expert'] as const;
-export type DifficultyLevel = typeof DifficultyLevels[number];
+export const DifficultyLevels = ["Beginner", "Intermediate", "Expert"] as const;
+export type DifficultyLevel = (typeof DifficultyLevels)[number];
 
 // Game progress statuses
-export const GameStatuses = ['Pending', 'Progress', 'Success', 'Fail'] as const;
-export type GameStatus = typeof GameStatuses[number];
+export const GameStatuses = ["Pending", "Progress", "Success", "Fail"] as const;
+export type GameStatus = (typeof GameStatuses)[number];
 
 // Board cell types
 export const CellTypes = {
@@ -20,7 +20,7 @@ export const CellTypes = {
   Seven: 7,
   Eight: 8,
 } as const;
-export type CellType = typeof CellTypes[keyof typeof CellTypes];
+export type CellType = (typeof CellTypes)[keyof typeof CellTypes];
 
 // Board mask types
 export const MaskTypes = {
@@ -29,7 +29,7 @@ export const MaskTypes = {
   Marked: 2,
   MarkedWrongly: 3,
 } as const;
-export type MaskType = typeof MaskTypes[keyof typeof MaskTypes];
+export type MaskType = (typeof MaskTypes)[keyof typeof MaskTypes];
 
 export interface Board {
   readonly rows: number;
@@ -46,6 +46,6 @@ export interface GameState {
 }
 
 export type Action =
-  | { type: 'newGame'; difficultyLevel: DifficultyLevel; board: Board }
-  | { type: 'open'; x: number; y: number; board?: Board }
-  | { type: 'mark'; x: number; y: number };
+  | { type: "newGame"; difficultyLevel: DifficultyLevel; board: Board }
+  | { type: "open"; x: number; y: number; board?: Board }
+  | { type: "mark"; x: number; y: number };

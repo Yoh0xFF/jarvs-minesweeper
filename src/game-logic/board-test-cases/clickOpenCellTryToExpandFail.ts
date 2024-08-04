@@ -3,9 +3,9 @@ import {
   DifficultyLevel,
   GameStatus,
   MaskType,
-} from 'game-logic/types';
+} from "game-logic/types";
 
-export const difficultyLevel: DifficultyLevel = 'Beginner';
+export const difficultyLevel: DifficultyLevel = "Beginner";
 
 // Input
 export const inputGrid: CellType[][] = [
@@ -20,9 +20,9 @@ export const inputGrid: CellType[][] = [
   [1, -1, 2, 1, 0, 0, 0, 0, 0],
 ];
 export const inputMask: MaskType[][] = [
-  [0, 0, 1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [0, 0, 2, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1, 1, 1, 1],
+  [2, 1, 2, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -31,11 +31,11 @@ export const inputMask: MaskType[][] = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-export const inputX = 0;
+export const inputX = 1;
 export const inputY = 2;
 
 // Expected output
-export const expectedStatus: GameStatus = 'Fail';
+export const expectedStatus: GameStatus = "Fail";
 export const expectedGrid: CellType[][] = [
   [0, 1, -2, 1, 0, 0, 0, 1, -1],
   [2, 3, 2, 1, 0, 0, 0, 1, 1],
@@ -49,8 +49,8 @@ export const expectedGrid: CellType[][] = [
 ];
 export const expectedMask: MaskType[][] = [
   [0, 0, 0, 1, 1, 1, 1, 1, 0],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1, 1, 1, 1],
+  [0, 0, 3, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 0, 1, 1, 1, 0],

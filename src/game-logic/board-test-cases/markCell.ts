@@ -1,6 +1,6 @@
-import { CellType, DifficultyLevel, MaskType } from 'game-logic/types';
+import { CellType, DifficultyLevel, MaskType } from "game-logic/types";
 
-export const difficultyLevel: DifficultyLevel = 'Beginner';
+export const difficultyLevel: DifficultyLevel = "Beginner";
 
 // Input
 export const inputGrid: CellType[][] = [
@@ -17,7 +17,7 @@ export const inputGrid: CellType[][] = [
 export const inputMask: MaskType[][] = [
   [0, 0, 1, 1, 1, 1, 1, 1, 1],
   [0, 0, 0, 1, 1, 1, 1, 1, 1],
-  [1, 2, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -33,7 +33,7 @@ export const inputY = 1;
 export const expectedMask: MaskType[][] = [
   [0, 0, 1, 1, 1, 1, 1, 1, 1],
   [0, 0, 0, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 2, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],

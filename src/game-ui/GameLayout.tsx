@@ -1,9 +1,8 @@
-import confetti from 'canvas-confetti';
-import classNames from 'classnames';
-import { GameStatus } from 'game-logic/types';
-import { ReactNode, useEffect } from 'react';
-
-import styles from './GameLayout.module.scss';
+import { GameStatus } from "../game-logic/types";
+import styles from "./GameLayout.module.scss";
+import confetti from "canvas-confetti";
+import classNames from "classnames";
+import { ReactNode, useEffect } from "react";
 
 interface Props {
   gameStatus: GameStatus;
@@ -46,7 +45,7 @@ function runConfettiAnimation() {
 
 export default function GameLayout({ gameStatus, controls, grid }: Props) {
   useEffect(() => {
-    if (gameStatus !== 'Success') return;
+    if (gameStatus !== "Success") return;
 
     runConfettiAnimation();
   }, [gameStatus]);
@@ -54,7 +53,7 @@ export default function GameLayout({ gameStatus, controls, grid }: Props) {
   return (
     <div
       className={classNames(styles.layout, {
-        [styles.shake]: gameStatus === 'Fail',
+        [styles.shake]: gameStatus === "Fail",
       })}
     >
       <section>

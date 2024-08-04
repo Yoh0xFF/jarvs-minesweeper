@@ -1,21 +1,22 @@
-import { markCell, openCell } from 'game-logic/gameStateUpdate';
-import * as clickMarkedCellTestCase from 'game-logic/test/board-test-cases/clickMarkedCell';
-import * as clickOpenCellTryToExpandFailTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandFail';
-import * as clickOpenCellTryToExpandSuccessTestCase from 'game-logic/test/board-test-cases/clickOpenCellTryToExpandSuccess';
-import * as discoverAllMinesTestCase from 'game-logic/test/board-test-cases/discoverAllMines';
-import * as markCellTestCase from 'game-logic/test/board-test-cases/markCell';
-import * as openCellWithHintTestCase from 'game-logic/test/board-test-cases/openCellWithHint';
-import * as openCellWithMineTestCase from 'game-logic/test/board-test-cases/openCellWithMine';
-import * as openEmptyCellTestCase from 'game-logic/test/board-test-cases/openEmptyCell';
-import * as unmarkCellTestCase from 'game-logic/test/board-test-cases/unmarkCell';
+import * as clickMarkedCellTestCase from "./board-test-cases/clickMarkedCell";
+import * as clickOpenCellTryToExpandFailTestCase from "./board-test-cases/clickOpenCellTryToExpandFail";
+import * as clickOpenCellTryToExpandSuccessTestCase from "./board-test-cases/clickOpenCellTryToExpandSuccess";
+import * as discoverAllMinesTestCase from "./board-test-cases/discoverAllMines";
+import * as markCellTestCase from "./board-test-cases/markCell";
+import * as openCellWithHintTestCase from "./board-test-cases/openCellWithHint";
+import * as openCellWithMineTestCase from "./board-test-cases/openCellWithMine";
+import * as openEmptyCellTestCase from "./board-test-cases/openEmptyCell";
+import * as unmarkCellTestCase from "./board-test-cases/unmarkCell";
+import { markCell, openCell } from "./gameStateUpdate";
 import {
   Board,
   CellType,
   DifficultyLevel,
   GameStatus,
   MaskType,
-} from 'game-logic/types';
-import { boardConfigs } from 'game-logic/utils';
+} from "game-logic/types";
+import { boardConfigs } from "game-logic/utils";
+import { expect, test } from "vitest";
 
 function initTestBoard(
   diffiultyLevel: DifficultyLevel,
@@ -69,7 +70,7 @@ function checkMarkCellTestCase(
   expect(newBoard.mask).toEqual(expectedMask);
 }
 
-test('Open cell with hint', () => {
+test("Open cell with hint", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -91,7 +92,7 @@ test('Open cell with hint', () => {
   );
 });
 
-test('Open cell with mine', () => {
+test("Open cell with mine", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -115,7 +116,7 @@ test('Open cell with mine', () => {
   );
 });
 
-test('Open empy cell', () => {
+test("Open empy cell", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -137,7 +138,7 @@ test('Open empy cell', () => {
   );
 });
 
-test('Click open cell, try to expand with success', () => {
+test("Click open cell, try to expand with success", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -159,7 +160,7 @@ test('Click open cell, try to expand with success', () => {
   );
 });
 
-test('Click open cell, try to expand with fail', () => {
+test("Click open cell, try to expand with fail", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -183,7 +184,7 @@ test('Click open cell, try to expand with fail', () => {
   );
 });
 
-test('Discover all mines', () => {
+test("Discover all mines", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -205,7 +206,7 @@ test('Discover all mines', () => {
   );
 });
 
-test('Click marked cell', () => {
+test("Click marked cell", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -227,7 +228,7 @@ test('Click marked cell', () => {
   );
 });
 
-test('Mark cell', () => {
+test("Mark cell", () => {
   const {
     difficultyLevel,
     inputGrid,
@@ -247,7 +248,7 @@ test('Mark cell', () => {
   );
 });
 
-test('Unmark cell', () => {
+test("Unmark cell", () => {
   const {
     difficultyLevel,
     inputGrid,

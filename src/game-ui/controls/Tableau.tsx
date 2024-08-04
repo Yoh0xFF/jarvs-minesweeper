@@ -1,7 +1,5 @@
-import classNames from 'classnames';
-import React from 'react';
-
-import styles from './Tableau.module.scss';
+import styles from "./Tableau.module.scss";
+import classNames from "classnames";
 
 const MAX_NUM = 999;
 const MIN_NUM = -99;
@@ -36,7 +34,7 @@ export default function Tableau({ number }: Props) {
   return (
     <div className={styles.tableau}>
       <div
-        data-testid='digitX'
+        data-testid="digitX"
         className={classNames(
           styles.digit,
           { [styles[`digit${x}`]]: x && x >= 0 },
@@ -48,7 +46,7 @@ export default function Tableau({ number }: Props) {
       <span />
 
       <div
-        data-testid='digitY'
+        data-testid="digitY"
         className={classNames(
           styles.digit,
           { [styles[`digit${y}`]]: y && y >= 0 },
@@ -60,7 +58,7 @@ export default function Tableau({ number }: Props) {
       <span />
 
       <div
-        data-testid='digitZ'
+        data-testid="digitZ"
         className={classNames(styles.digit, styles[`digit${z}`])}
       />
     </div>

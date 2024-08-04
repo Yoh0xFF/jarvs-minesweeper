@@ -1,13 +1,12 @@
-import { generateNewBoard, swapMine } from 'game-logic/gameStateInit';
-import { CellTypes, DifficultyLevel } from 'game-logic/types';
-import useGameController from 'game-logic/useGameController';
-import GameLayout from 'game-ui/GameLayout';
-import Controls from 'game-ui/controls/Controls';
-import Grid from 'game-ui/grid/Grid';
-import Menu from 'game-ui/menu/Menu';
-import { useEffect } from 'react';
-
-import styles from './Game.module.scss';
+import { generateNewBoard, swapMine } from "../game-logic/gameStateInit";
+import { CellTypes, DifficultyLevel } from "../game-logic/types";
+import useGameController from "../game-logic/useGameController";
+import GameLayout from "../game-ui/GameLayout";
+import Controls from "../game-ui/controls/Controls";
+import Grid from "../game-ui/grid/Grid";
+import Menu from "../game-ui/menu/Menu";
+import styles from "./Game.module.scss";
+import { useEffect } from "react";
 
 export default function Game() {
   const [state, dispatch] = useGameController();
@@ -15,7 +14,7 @@ export default function Game() {
   const resetGameHandler = () => {
     // We need to generate board in the handler because the reducer needs to be pure.
     dispatch({
-      type: 'newGame',
+      type: "newGame",
       difficultyLevel: state.difficultyLevel,
       board: generateNewBoard(state.difficultyLevel),
     });
@@ -24,7 +23,7 @@ export default function Game() {
   const newGameHandler = (difficultyLevel: DifficultyLevel) => {
     // We need to generate board in the handler because the reducer needs to be pure.
     dispatch({
-      type: 'newGame',
+      type: "newGame",
       difficultyLevel,
       board: generateNewBoard(difficultyLevel),
     });
@@ -36,13 +35,13 @@ export default function Game() {
     // We need to swap mines in the handler because the reducer needs to be pure.
     let board;
     if (
-      state.gameStatus === 'Pending' &&
+      state.gameStatus === "Pending" &&
       state.board.grid[x][y] === CellTypes.Mine
     )
       board = swapMine(x, y, state.board);
 
     dispatch({
-      type: 'open',
+      type: "open",
       x,
       y,
       board,
@@ -51,7 +50,7 @@ export default function Game() {
 
   const markCellHandler = (x: number, y: number) => {
     dispatch({
-      type: 'mark',
+      type: "mark",
       x,
       y,
     });

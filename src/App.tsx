@@ -1,6 +1,5 @@
-import Game from 'game-ui/Game';
-
-import styles from './App.module.scss';
+import styles from "./App.module.scss";
+import Game from "./game-ui/Game";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-@use '~styles/sprite';
+@use "../../styles/sprite";
 
 .tableau {
   display: flex;
@@ -13,7 +13,7 @@
   .digit {
     width: sprite.$digit-asset-w;
     height: sprite.$digit-asset-h;
-    background-image: url('~assets/sprite.png');
+    background-image: url("../../assets/sprite.png");
 
     @for $i from 1 through 9 {
       &.digit#{$i} {
