@@ -1,20 +1,18 @@
-p {
-  label {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    letter-spacing: 2px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #6272a4;
-    cursor: pointer;
-    border: 3px solid;
-    padding: 0.25em 0.5em;
-    box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
-    white-space: nowrap;
+.radioButton {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #6272a4;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0 0, 2px 2px 0 0, 3px 3px 0 0, 4px 4px 0 0, 5px 5px 0 0;
+  white-space: nowrap;
 
-    input[type="radio"] {
-      accent-color: #6272a4;
-      margin-right: 0.5rem;
-    }
+  input[type="radio"] {
+    accent-color: #6272a4;
+    margin-right: 0.5rem;
   }
 }
