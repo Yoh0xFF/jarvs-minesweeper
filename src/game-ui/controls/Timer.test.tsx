@@ -1,6 +1,6 @@
 import Timer from "./Timer";
 import { act, render, screen } from "@testing-library/react";
-import { expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
 beforeEach(() => {
   vi.useFakeTimers();
