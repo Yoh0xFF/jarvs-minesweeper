@@ -1,7 +1,7 @@
-import { Board, DifficultyLevel, GameStatus } from "../../game-logic/types";
-import Cell from "../grid/Cell";
-import styles from "./Grid.module.scss";
-import classNames from "classnames";
+import classNames from 'classnames';
+import { Board, DifficultyLevel, GameStatus } from '../../game-logic/types';
+import Cell from '../grid/Cell';
+import styles from './Grid.module.scss';
 
 interface Props {
   difficultyLevel: DifficultyLevel;
@@ -22,9 +22,11 @@ export default function Grid({
 
   return (
     <div
-      data-testid="grid"
-      className={classNames(styles.grid, styles[difficultyLevel.toLowerCase()])}
-    >
+      data-testid='grid'
+      className={classNames(
+        styles.grid,
+        styles[difficultyLevel.toLowerCase()],
+      )}>
       {grid.map((row, x) =>
         row.map((_, y) => (
           <Cell
@@ -37,7 +39,7 @@ export default function Grid({
             onCellOpen={onCellOpen}
             onCellMark={onCellMark}
           />
-        ))
+        )),
       )}
     </div>
   );

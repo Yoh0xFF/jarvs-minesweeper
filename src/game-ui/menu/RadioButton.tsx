@@ -1,5 +1,5 @@
-import { DifficultyLevel } from "../../game-logic/types";
-import styles from "./RadioButton.module.scss";
+import { DifficultyLevel } from '../../game-logic/types';
+import styles from './RadioButton.module.scss';
 
 interface Props {
   difficultyLevel: DifficultyLevel;
@@ -15,8 +15,8 @@ export default function RadioButton({
   return (
     <label className={styles.radioButton}>
       <input
-        type="radio"
-        name="radio-group"
+        type='radio'
+        name='radio-group'
         checked={checked}
         onChange={() => onClick()}
       />

@@ -5,12 +5,12 @@ import {
   DifficultyLevel,
   MaskType,
   MaskTypes,
-} from "./types";
+} from './types';
 
 export const boardConfigs = new Map<DifficultyLevel, [number, number, number]>([
-  ["Beginner", [9, 9, 10]],
-  ["Intermediate", [16, 16, 40]],
-  ["Expert", [16, 30, 99]],
+  ['Beginner', [9, 9, 10]],
+  ['Intermediate', [16, 16, 40]],
+  ['Expert', [16, 30, 99]],
 ]);
 
 export const steps = [
@@ -27,13 +27,13 @@ export const steps = [
 export function createBoard(
   rows: number,
   cols: number,
-  mineCount: number
+  mineCount: number,
 ): Board {
   const grid: CellType[][] = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => CellTypes.Empty)
+    Array.from({ length: cols }, () => CellTypes.Empty),
   );
   const mask: MaskType[][] = Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => MaskTypes.Closed)
+    Array.from({ length: cols }, () => MaskTypes.Closed),
   );
 
   const board: Board = {

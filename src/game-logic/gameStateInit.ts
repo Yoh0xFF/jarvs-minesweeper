@@ -1,4 +1,4 @@
-import { Board, CellType, CellTypes, DifficultyLevel } from "./types";
+import { Board, CellType, CellTypes, DifficultyLevel } from './types';
 import {
   boardConfigs,
   copyBoard,
@@ -6,7 +6,7 @@ import {
   generateRandomInt,
   isOnBoard,
   steps,
-} from "./utils";
+} from './utils';
 
 function updateHints(x: number, y: number, board: Board) {
   const { grid } = board;
@@ -73,7 +73,7 @@ export function generateNewBoard(difficultyLevel: DifficultyLevel): Board {
   const config = boardConfigs.get(difficultyLevel);
   if (!config)
     throw new Error(
-      `Config not found for the difficulty level: ${difficultyLevel}`
+      `Config not found for the difficulty level: ${difficultyLevel}`,
     );
   const [rows, cols, mineCount] = config;
 

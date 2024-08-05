@@ -1,6 +1,6 @@
-import { DifficultyLevel, DifficultyLevels } from "../../game-logic/types";
-import RadioButton from "../menu/RadioButton";
-import styles from "./Menu.module.scss";
+import { DifficultyLevel, DifficultyLevels } from '../../game-logic/types';
+import RadioButton from '../menu/RadioButton';
+import styles from './Menu.module.scss';
 
 interface Props {
   difficultyLevel: DifficultyLevel;

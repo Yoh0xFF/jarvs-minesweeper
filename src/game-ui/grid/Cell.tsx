@@ -1,24 +1,24 @@
+import classNames from 'classnames';
+import { useState } from 'react';
 import {
   CellType,
   CellTypes,
   GameStatus,
   MaskType,
   MaskTypes,
-} from "../../game-logic/types";
-import styles from "./Cell.module.scss";
-import classNames from "classnames";
-import { useState } from "react";
+} from '../../game-logic/types';
+import styles from './Cell.module.scss';
 
 const cellTypeToClassNameMap = new Map<CellType, string>([
-  [CellTypes.Empty, "open"],
-  [CellTypes.MineExploded, "mineExploded"],
-  [CellTypes.Mine, "mine"],
+  [CellTypes.Empty, 'open'],
+  [CellTypes.MineExploded, 'mineExploded'],
+  [CellTypes.Mine, 'mine'],
 ]);
 
 const maskTypeToClassNameMap = new Map<MaskType, string>([
-  [MaskTypes.Closed, "closed"],
-  [MaskTypes.Marked, "marked"],
-  [MaskTypes.MarkedWrongly, "markedWrongly"],
+  [MaskTypes.Closed, 'closed'],
+  [MaskTypes.Marked, 'marked'],
+  [MaskTypes.MarkedWrongly, 'markedWrongly'],
 ]);
 
 interface Props {
@@ -48,10 +48,10 @@ export default function Cell({
     cellClassName =
       cellType > 0
         ? `hint${cellType}`
-        : cellTypeToClassNameMap.get(cellType) ?? "open";
-  else cellClassName = maskTypeToClassNameMap.get(maskType) ?? "closed";
+        : (cellTypeToClassNameMap.get(cellType) ?? 'open');
+  else cellClassName = maskTypeToClassNameMap.get(maskType) ?? 'closed';
 
-  return ["Pending", "Progress"].includes(gameStatus) ? (
+  return ['Pending', 'Progress'].includes(gameStatus) ? (
     <div
       onClick={(e) => {
         e.preventDefault();
@@ -70,16 +70,16 @@ export default function Cell({
       className={classNames(
         styles.cell,
         { [styles[cellClassName]]: !mouseDown },
-        { [styles.open]: mouseDown }
+        { [styles.open]: mouseDown },
       )}
-      data-testid="gridCell"
-      role="button"
+      data-testid='gridCell'
+      role='button'
     />
   ) : (
     <div
       className={classNames(styles.cell, styles[cellClassName])}
-      data-testid="gridCell"
-      role="button"
+      data-testid='gridCell'
+      role='button'
     />
   );
 }

@@ -1,6 +1,6 @@
-import { CellType, DifficultyLevel, MaskType } from "game-logic/types";
+import { CellType, DifficultyLevel, MaskType } from 'game-logic/types';
 
-export const difficultyLevel: DifficultyLevel = "Beginner";
+export const difficultyLevel: DifficultyLevel = 'Beginner';
 
 // Input
 export const inputGrid: CellType[][] = [

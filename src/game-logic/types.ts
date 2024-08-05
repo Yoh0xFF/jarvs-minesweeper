@@ -1,9 +1,9 @@
 // Game difficulty levels
-export const DifficultyLevels = ["Beginner", "Intermediate", "Expert"] as const;
+export const DifficultyLevels = ['Beginner', 'Intermediate', 'Expert'] as const;
 export type DifficultyLevel = (typeof DifficultyLevels)[number];
 
 // Game progress statuses
-export const GameStatuses = ["Pending", "Progress", "Success", "Fail"] as const;
+export const GameStatuses = ['Pending', 'Progress', 'Success', 'Fail'] as const;
 export type GameStatus = (typeof GameStatuses)[number];
 
 // Board cell types
@@ -46,6 +46,6 @@ export interface GameState {
 }
 
 export type Action =
-  | { type: "newGame"; difficultyLevel: DifficultyLevel; board: Board }
-  | { type: "open"; x: number; y: number; board?: Board }
-  | { type: "mark"; x: number; y: number };
+  | { type: 'newGame'; difficultyLevel: DifficultyLevel; board: Board }
+  | { type: 'open'; x: number; y: number; board?: Board }
+  | { type: 'mark'; x: number; y: number };

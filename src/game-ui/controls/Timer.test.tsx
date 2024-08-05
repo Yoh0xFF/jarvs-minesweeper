@@ -1,6 +1,6 @@
-import Timer from "./Timer";
-import { act, render, screen } from "@testing-library/react";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { act, render, screen } from '@testing-library/react';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import Timer from './Timer';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -11,8 +11,8 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-test("Check timer is stopped", async () => {
-  render(<Timer gameStatus="Pending" />);
+test('Check timer is stopped', async () => {
+  render(<Timer gameStatus='Pending' />);
 
   for (let i = 0; i < 5; ++i) {
     act(() => {
@@ -20,12 +20,12 @@ test("Check timer is stopped", async () => {
     });
   }
 
-  const z = screen.getByTestId("digitZ");
-  expect(z.className).includes("digit0");
+  const z = screen.getByTestId('digitZ');
+  expect(z.className).includes('digit0');
 });
 
-test("Check timer is in progress", async () => {
-  render(<Timer gameStatus="Progress" />);
+test('Check timer is in progress', async () => {
+  render(<Timer gameStatus='Progress' />);
 
   for (let i = 0; i < 5; ++i) {
     act(() => {
@@ -33,6 +33,6 @@ test("Check timer is in progress", async () => {
     });
   }
 
-  const z = screen.getByTestId("digitZ");
-  expect(z.className).includes("digit5");
+  const z = screen.getByTestId('digitZ');
+  expect(z.className).includes('digit5');
 });

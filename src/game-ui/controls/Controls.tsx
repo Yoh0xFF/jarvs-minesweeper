@@ -1,8 +1,8 @@
-import { GameStatus } from "../../game-logic/types";
-import styles from "./Controls.module.scss";
-import ResetButton from "./ResetButton";
-import Tableau from "./Tableau";
-import Timer from "./Timer";
+import { GameStatus } from '../../game-logic/types';
+import styles from './Controls.module.scss';
+import ResetButton from './ResetButton';
+import Tableau from './Tableau';
+import Timer from './Timer';
 
 interface Props {
   gameStatus: GameStatus;

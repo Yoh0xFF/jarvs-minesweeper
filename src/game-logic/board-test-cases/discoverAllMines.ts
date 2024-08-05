@@ -3,9 +3,9 @@ import {
   DifficultyLevel,
   GameStatus,
   MaskType,
-} from "game-logic/types";
+} from 'game-logic/types';
 
-export const difficultyLevel: DifficultyLevel = "Beginner";
+export const difficultyLevel: DifficultyLevel = 'Beginner';
 
 // Input
 export const inputGrid: CellType[][] = [
@@ -35,7 +35,7 @@ export const inputX = 5;
 export const inputY = 7;
 
 // Expected output
-export const expectedStatus: GameStatus = "Success";
+export const expectedStatus: GameStatus = 'Success';
 export const expectedMask: MaskType[][] = [
   [0, 0, 2, 0, 0, 0, 0, 0, 2],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
