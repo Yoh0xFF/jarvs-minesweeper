@@ -10,6 +10,7 @@
   "homepage": ".",
   "scripts": {
     "start": "vite",
+    "start:preview": "vite preview",
     "build": "tsc && vite build",
     "test": "vitest run",
     "test:dev": "vitest dev",
@@ -20,10 +21,8 @@
   "dependencies": {
     "canvas-confetti": "1.9.3",
     "classnames": "2.5.1",
-    "gh-pages": "6.1.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "web-vitals": "4.2.2"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.4.8",
@@ -42,13 +41,9 @@
     "sass": "1.77.8",
     "typescript": "5.5.4",
     "vite": "5.3.5",
-    "vitest": "2.0.5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "vitest": "2.0.5",
+    "gh-pages": "6.1.1",
+    "web-vitals": "4.2.2"
   },
   "browserslist": {
     "production": [
