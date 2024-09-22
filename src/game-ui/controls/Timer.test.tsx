@@ -1,12 +1,12 @@
 import { act, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import { afterAll, beforeAll, expect, test, vi } from 'vitest';
 import Timer from './Timer';
 
-beforeEach(() => {
+beforeAll(() => {
   vi.useFakeTimers();
 });
 
-afterEach(() => {
+afterAll(() => {
   vi.runOnlyPendingTimers();
   vi.useRealTimers();
 });
