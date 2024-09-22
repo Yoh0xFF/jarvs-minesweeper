@@ -1,8 +1,6 @@
 # JARVS (Just A Rather Very Simple) Minesweeper
 
-<p style="text-align: center;">
-  <img alt='pic' src="https://raw.githubusercontent.com/Yoh0xFF/jarvs-minesweeper/refs/heads/main/minesweeper.png" />
-</p>
+![pic](https://raw.githubusercontent.com/Yoh0xFF/jarvs-minesweeper/refs/heads/main/minesweeper.png)
 
 ## Description
 
