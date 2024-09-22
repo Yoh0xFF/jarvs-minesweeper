@@ -1,6 +1,6 @@
 # JARVS (Just A Rather Very Simple) Minesweeper
 
-<div style="text-align: center;">
+<div style="width: 100%; text-align: center;">
   <img alt='pic' src="https://raw.githubusercontent.com/Yoh0xFF/jarvs-minesweeper/refs/heads/main/minesweeper.png" />
 </div>
 
