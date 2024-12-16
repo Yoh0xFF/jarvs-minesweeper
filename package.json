@@ -21,8 +21,8 @@
   "dependencies": {
     "canvas-confetti": "1.9.3",
     "classnames": "2.5.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.6.3",
@@ -30,7 +30,7 @@
     "@testing-library/user-event": "14.5.2",
     "@types/canvas-confetti": "1.6.4",
     "@types/node": "22.10.2",
-    "@types/react": "18.2.25",
+    "@types/react": "19.0.1",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.4",
     "jsdom": "25.0.1",
