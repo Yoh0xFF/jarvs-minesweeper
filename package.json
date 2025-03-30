@@ -36,7 +36,7 @@
     "jsdom": "26.0.0",
     "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
-    "prettier-plugin-packagejson": "2.5.8",
+    "prettier-plugin-packagejson": "2.5.10",
     "sass": "1.86.0",
     "typescript": "5.8.2",
     "vitest": "3.0.8",
