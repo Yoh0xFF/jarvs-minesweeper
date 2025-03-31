@@ -40,7 +40,7 @@
     "sass": "1.86.0",
     "typescript": "5.8.2",
     "vitest": "3.0.9",
-    "vite": "6.2.2",
+    "vite": "6.2.4",
     "gh-pages": "6.3.0",
     "web-vitals": "4.2.4"
   },
