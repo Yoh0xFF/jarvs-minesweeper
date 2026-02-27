@@ -52,7 +52,9 @@ function checkOpenCellTestCase(
 
   expect(status).toBe(expectedStatus);
   expect(newBoard.mask).toEqual(expectedMask);
-  expectedGrid && expect(newBoard.grid).toEqual(expectedGrid);
+  if (expectedGrid) {
+    expect(newBoard.grid).toEqual(expectedGrid);
+  }
 }
 
 function checkMarkCellTestCase(

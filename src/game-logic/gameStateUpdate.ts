@@ -50,7 +50,7 @@ function updateBoardAfterFail(x: number, y: number, board: Board) {
 function expand(x: number, y: number, board: Board) {
   const { grid, mask } = board;
 
-  var queue = [[x, y]];
+  const queue = [[x, y]];
   mask[x][y] = MaskTypes.Open;
 
   // Expand all the empty cells around the opened empty cell.
