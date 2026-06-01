@@ -1,23 +1,35 @@
 {
   "name": "jarvs-minesweeper",
-  "description": "JARVS(Just A Rather Very Simple) Minesweeper",
   "version": "1.0.0",
-  "author": "Ioram Gordadze <Yoh0xFF@gmail.com>",
-  "license": "MIT",
-  "repository": "https://github.com/Yoh0xFF/jarvs-minesweeper",
   "private": true,
-  "type": "module",
+  "description": "JARVS(Just A Rather Very Simple) Minesweeper",
   "homepage": ".",
+  "repository": "https://github.com/Yoh0xFF/jarvs-minesweeper",
+  "license": "MIT",
+  "author": "Ioram Gordadze <Yoh0xFF@gmail.com>",
+  "type": "module",
   "scripts": {
+    "build": "tsc && vite build",
+    "clean": "npx rimraf ./**/dist ./**/node_modules",
+    "deploy": "gh-pages -d dist -u 'github-actions-bot <support+actions@github.com>'",
+    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.scss'",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
     "start": "vite",
     "start:preview": "vite preview",
-    "build": "tsc && vite build",
     "test": "vitest run",
-    "test:dev": "vitest dev",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.scss'",
-    "deploy": "gh-pages -d dist -u 'github-actions-bot <support+actions@github.com>'",
-    "clean": "npx rimraf ./**/dist ./**/node_modules"
+    "test:dev": "vitest dev"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version, not dead"
+    ]
   },
   "dependencies": {
     "canvas-confetti": "1.9.4",
@@ -48,23 +60,11 @@
     "sass": "1.97.3",
     "typescript": "5.9.3",
     "typescript-eslint": "8.56.1",
-    "vite": "7.3.1",
+    "vite": "8.0.15",
     "vitest": "4.0.18",
     "web-vitals": "5.1.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.59.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
