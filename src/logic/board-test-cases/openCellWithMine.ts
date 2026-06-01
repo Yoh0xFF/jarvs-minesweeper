@@ -1,9 +1,4 @@
-import {
-  CellType,
-  DifficultyLevel,
-  GameStatus,
-  MaskType,
-} from '../types';
+import { CellType, DifficultyLevel, GameStatus, MaskType } from '../types';
 
 export const difficultyLevel: DifficultyLevel = 'Beginner';
 

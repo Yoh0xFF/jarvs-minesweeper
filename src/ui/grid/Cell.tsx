@@ -6,7 +6,7 @@ import {
   GameStatus,
   MaskType,
   MaskTypes,
-} from '../../game-logic/types';
+} from '../../logic/types';
 import styles from './Cell.module.scss';
 
 const cellTypeToClassNameMap = new Map<CellType, string>([

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { generateNewBoard } from '../../game-logic/gameStateInit';
-import { DifficultyLevel, GameStatus } from '../../game-logic/types';
+import { generateNewBoard } from '../../logic/gameStateInit';
+import { DifficultyLevel, GameStatus } from '../../logic/types';
 import Grid from '../grid/Grid';
 
 test('Check grid rendered correctly', async () => {

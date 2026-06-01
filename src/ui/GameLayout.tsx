@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti';
 import classNames from 'classnames';
 import { ReactNode, useEffect } from 'react';
-import { GameStatus } from '../game-logic/types';
+import { GameStatus } from '../logic/types';
 import styles from './GameLayout.module.scss';
 
 interface Props {

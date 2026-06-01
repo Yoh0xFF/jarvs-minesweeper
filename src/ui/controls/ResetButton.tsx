@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { GameStatus } from '../../game-logic/types';
+import { GameStatus } from '../../logic/types';
 import styles from './ResetButton.module.scss';
 
 const gameStatusToClassNameMap = new Map<GameStatus, string>([

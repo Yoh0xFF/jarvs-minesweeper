@@ -1,12 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, test, vi } from 'vitest';
-import {
-  CellType,
-  CellTypes,
-  MaskType,
-  MaskTypes,
-} from '../../game-logic/types';
+import { CellType, CellTypes, MaskType, MaskTypes } from '../../logic/types';
 import Cell from '../grid/Cell';
 
 function initByMaskType(maskType: MaskType) {

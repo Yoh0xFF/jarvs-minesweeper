@@ -1,9 +1,4 @@
-import {
-  CellType,
-  DifficultyLevel,
-  GameStatus,
-  MaskType,
-} from '../types';
+import { CellType, DifficultyLevel, GameStatus, MaskType } from '../types';
 
 export const difficultyLevel: DifficultyLevel = 'Beginner';
 
@@ -31,19 +26,19 @@ export const inputMask: MaskType[][] = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-export const inputX = 5;
-export const inputY = 1;
+export const inputX = 4;
+export const inputY = 3;
 
 // Expected output
 export const expectedStatus: GameStatus = 'Progress';
 export const expectedMask: MaskType[][] = [
-  [1, 1, 1, 0, 0, 0, 0, 0, 1],
-  [1, 1, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 1],
-  [0, 0, 0, 0, 1, 1, 1, 1, 1],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 0, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];

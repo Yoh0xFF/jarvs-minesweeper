@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GameStatus } from '../../game-logic/types';
+import { GameStatus } from '../../logic/types';
 import Tableau from './Tableau';
 
 interface Props {

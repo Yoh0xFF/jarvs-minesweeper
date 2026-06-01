@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { generateNewBoard, swapMine } from '../game-logic/gameStateInit';
-import { CellTypes, DifficultyLevel } from '../game-logic/types';
-import useGameController from '../game-logic/useGameController';
-import GameLayout from '../game-ui/GameLayout';
-import Controls from '../game-ui/controls/Controls';
-import Grid from '../game-ui/grid/Grid';
-import Menu from '../game-ui/menu/Menu';
+import { generateNewBoard, swapMine } from '../logic/gameStateInit';
+import { CellTypes, DifficultyLevel } from '../logic/types';
+import useGameController from '../logic/useGameController';
+import GameLayout from './/GameLayout';
+import Controls from './/controls/Controls';
+import Grid from './/grid/Grid';
+import Menu from './/menu/Menu';
 import styles from './Game.module.scss';
 
 export default function Game() {

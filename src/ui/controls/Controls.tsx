@@ -1,4 +1,4 @@
-import { GameStatus } from '../../game-logic/types';
+import { GameStatus } from '../../logic/types';
 import styles from './Controls.module.scss';
 import ResetButton from './ResetButton';
 import Tableau from './Tableau';

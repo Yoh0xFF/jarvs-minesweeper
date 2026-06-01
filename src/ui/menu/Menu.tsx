@@ -1,4 +1,4 @@
-import { DifficultyLevel, DifficultyLevels } from '../../game-logic/types';
+import { DifficultyLevel, DifficultyLevels } from '../../logic/types';
 import RadioButton from '../menu/RadioButton';
 import styles from './Menu.module.scss';
 

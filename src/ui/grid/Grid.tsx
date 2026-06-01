@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Board, DifficultyLevel, GameStatus } from '../../game-logic/types';
+import { Board, DifficultyLevel, GameStatus } from '../../logic/types';
 import Cell from '../grid/Cell';
 import styles from './Grid.module.scss';
 

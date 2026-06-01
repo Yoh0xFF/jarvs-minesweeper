@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, test, vi } from 'vitest';
-import { boardConfigs } from '../game-logic/utils';
+import { boardConfigs } from '../logic/utils';
 import Game from './Game';
 
 test('Check default difficulty level', async () => {
