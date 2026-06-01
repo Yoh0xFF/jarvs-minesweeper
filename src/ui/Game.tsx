@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { generateNewBoard, swapMine } from '../logic/gameStateInit';
 import { CellTypes, DifficultyLevel } from '../logic/types';
 import useGameController from '../logic/useGameController';
-import GameLayout from './/GameLayout';
-import Controls from './/controls/Controls';
-import Grid from './/grid/Grid';
-import Menu from './/menu/Menu';
 import styles from './Game.module.scss';
+import GameLayout from './GameLayout';
+import Controls from './controls/Controls';
+import Grid from './grid/Grid';
+import Menu from './menu/Menu';
 
 export default function Game() {
   const [state, dispatch] = useGameController();
