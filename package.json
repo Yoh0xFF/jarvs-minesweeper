@@ -12,12 +12,26 @@
     "build": "tsc && vite build",
     "clean": "npx rimraf ./**/dist ./**/node_modules",
     "deploy": "gh-pages -d dist -u 'github-actions-bot <support+actions@github.com>'",
-    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.scss'",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "format": "prettier --no-error-on-unmatched-pattern --write \"./**/*.{js,ts}\" && prettier --write package.json",
+    "git:clear": "git remote prune origin && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -D",
+    "postinstall": "husky init && npx path-exists-cli .husky && echo \"npm run pre-commit\" > .husky/pre-commit && prettier --write package.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "pre-commit": "lint-staged",
+    "prepare": "husky",
     "start": "vite",
     "start:preview": "vite preview",
     "test": "vitest run",
     "test:dev": "vitest dev"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,cjs,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,scss,md,html}": [
+      "prettier --write"
+    ]
   },
   "browserslist": {
     "production": [
@@ -53,7 +67,9 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "gh-pages": "6.3.0",
     "globals": "17.6.0",
+    "husky": "9.1.7",
     "jsdom": "29.1.1",
+    "lint-staged": "17.0.7",
     "prettier": "3.8.3",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "3.0.2",
