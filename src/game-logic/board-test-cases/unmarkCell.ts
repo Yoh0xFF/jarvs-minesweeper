@@ -1,4 +1,4 @@
-import { CellType, DifficultyLevel, MaskType } from 'game-logic/types';
+import { CellType, DifficultyLevel, MaskType } from '../types';
 
 export const difficultyLevel: DifficultyLevel = 'Beginner';
 

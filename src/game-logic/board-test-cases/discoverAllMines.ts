@@ -3,7 +3,7 @@ import {
   DifficultyLevel,
   GameStatus,
   MaskType,
-} from 'game-logic/types';
+} from '../types';
 
 export const difficultyLevel: DifficultyLevel = 'Beginner';
 
